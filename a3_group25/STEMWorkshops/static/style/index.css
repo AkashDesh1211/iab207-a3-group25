@@ -1,0 +1,199 @@
+/*css for nav */
+.navbar {
+    background-color: #e3f2fd;
+}
+
+/* shades the event button a darker colour to signal the current page */
+.nav-item:first-child {
+    background-color: #abc6d5;
+    border-radius: 25px;
+}
+
+/*makes nav buttons rounded */
+.nav-item {
+    border-radius: 25px;
+}
+
+/*adds darker blue to show which nav button is being  hovered over */
+.nav-item:hover {
+    background-color: #bedded;
+    border-radius: 25px;
+}
+
+header {
+    background-color: #bedded;
+}
+
+.img-fluid {
+    object-fit: cover;
+}
+
+#profile-icon {
+    margin-top: 4px;
+    float: right;
+}
+
+
+
+/*CSS for carousel */
+/* add black background to welcome caption on carousel */
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* size of carousel */
+.carousel-item img {
+    height: 400px;
+    object-fit: cover;
+}
+
+
+
+/* CSS for select STEM category section */
+.category-title {
+    background-color: #bedded;
+    padding: 15px;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+/* sets the size of category images */
+.logo {
+    top: 10px;
+    right: 10px;
+    width: 30%;
+    border-radius: 50px;
+}
+
+.categories {
+    background-color: white;
+    border-radius: 25px;
+    color: black;
+    height: 90%;
+}
+
+.categories:hover {
+    opacity: 92%;
+    background-color: #bedded;
+    border: 1px solid;
+}
+
+
+
+/* adds darker blue background to the browse event heading */
+.browse-title {
+    background-color: #bedded;
+    padding: 15px;
+}
+
+
+/*add light blue background behind dropdowns that allow users to search events by different categories */
+.dropdown-section {
+    background-color: #e3f2fd;
+    padding: 5px;
+}
+
+
+.browse-header {
+    background-color: #e3f2fd;
+}
+
+.select-category {
+    background-color: #e3f2fd;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+
+
+
+/* change all button colours */
+.btn-info {
+    background-color: #abc6d5 !important;
+    border: none !important;
+}
+
+
+
+/* CSS of event cards */
+.col-sm-12 {
+    display: flex;
+    justify-content: center;
+}
+
+.card-body {
+    background-color: #e3f2fd;
+}
+
+.card-body:hover {
+    background-color: inherit;
+}
+
+/* changes card background colour and opacity when event is hovered over */
+.card:hover {
+    background-color: #bedded;
+    border: 1px solid;
+    opacity: 92%;
+}
+
+/* ensures event detail text is black */
+.detail {
+    color: black;
+}
+
+/*ensures name of event is black in colour */
+.title {
+    color: black;
+}
+
+/* event date and time details is coloured navy */
+.datetime {
+    color: navy;
+}
+
+/* ensures that the category image is visible on top of the image of the event */
+.evet-images {
+    position: relative;
+}
+
+/* positions category image to the top right corner of the event card */
+.category-logo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15%;
+    border-radius: 50px;
+    border: 1px solid;
+}
+
+
+
+/* creates a top and bottom border to separate different cateories of events into different sections */
+.category-border {
+    border-top: 1px solid darkgrey;
+    border-bottom: 1px solid darkgray;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+
+
+/*Footer */
+footer {
+    background-color: #bedded;
+    padding: 10px;
+}
+
+.footer-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+footer a {
+    color: black;
+}
