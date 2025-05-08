@@ -19,7 +19,7 @@
     <div class="sticky-top">
       <div class=" d-flex justify-content-between  ms-2 me-2 mb-2" id="topnav">
         <!--clicking on the logo navigates user back to home page-->
-        <a href="index.html">
+        <a href="/">
           <!--image of the logo-->
           <img src="./static/img/logo2.png" class="img-fluid" width="300px" height="200px">
         </a>
@@ -41,15 +41,15 @@
           <ul class="navbar-nav mx-auto text-center row w-100">
             <!--1st item - events - navigates users to home page to see all events-->
             <li class="nav-item col-sm-12 col-lg-3 " id="selected-item">
-              <a class="nav-link active full-hover" aria-current="page" href="index.html">Events</a>
+              <a class="nav-link active full-hover" aria-current="page" href="/">Events</a>
             </li>
             <!--2nd item - create events - navigates users to create event page so users can make a new event-->
             <li class="nav-item  col-sm-12 col-lg-3 ">
-              <a class="nav-link full-hover" href="create_event.html">Create Events</a>
+              <a class="nav-link full-hover" href="/create">Create Events</a>
             </li>
             <!--3rd item - Bookings - navigates users back to booking history page to see previously booked events-->
             <li class="nav-item   col-sm-12 col-lg-3 ">
-              <a class="nav-link full-hover" href="booking_history.html">Bookings</a>
+              <a class="nav-link full-hover" href="/history">Bookings</a>
             </li>
             <!--4th item - tickets - place where users can access purchaced tickets (not prototyped in this version)-->
             <li class="nav-item col-sm-12  col-lg-3 ">
@@ -71,7 +71,7 @@
         <div class="row ">
           <div class="d-flex justify-content-start col-4 p-2 ">
             <!--back arrow that allows users to return back to the home page if the wrong event was selected-->
-            <a href="./index.html">
+            <a href=".//">
               <img src="./static/img/backarrowBlue.png" class="back-arrow " width="50px" height="50px">
             </a>
           </div>
@@ -337,7 +337,7 @@
           </div>
           <div class="modal-footer" id="ticket-footer">
             <!--button underneath the booking confirmation message that allows users to naviagate to the bookings page to view booking history-->
-            <a href="./booking_history.html" class="text-decoration-none"><button type="button"
+            <a href=".//history" class="text-decoration-none"><button type="button"
                 class="btn btn-info">View Bookings</button></a>
           </div>
         </div>
@@ -484,7 +484,7 @@
     <!--button that allows users to edit event details if they are in the same account the event was created on-->
     <div class="d-flex justify-content-center update-button ">
       <!--button links user to create events page so that they can edit event details-->
-      <a href="create_event.html" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
+      <a href="/create" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
           <!--pencil in square icon that represents editting event detail-->
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square"
             viewBox="0 0 16 16">
@@ -1154,17 +1154,17 @@
         <div class="col-sm-12 col-md-3 text-center ">
           <!--links event text to home page and category text to their repected events-->
           <ul>
-            <li class="mb-2"><a href="./index.html.#event-browse"><b>Events</b></a></li>
-            <li><a href="./index.html.#event-science">Science</a></li>
-            <li><a href="./index.html.#event_math">Maths</a></li>
-            <li><a href="./index.html.#event-eng">Engineering</a></li>
-            <li><a href="index.html.#event-it">Information Technology</a></li>
+            <li class="mb-2"><a href=".//.#event-browse"><b>Events</b></a></li>
+            <li><a href=".//.#event-science">Science</a></li>
+            <li><a href=".//.#event_math">Maths</a></li>
+            <li><a href=".//.#event-eng">Engineering</a></li>
+            <li><a href="/.#event-it">Information Technology</a></li>
           </ul>
         </div>
         <div class="col-sm-12 col-md-3 text-center ">
           <!--links create events text to create events page-->
           <ul>
-            <li class="mb-2"><a href="./create_event.html"><b> Create Events</b></a></li>
+            <li class="mb-2"><a href=".//create"><b> Create Events</b></a></li>
             <li>Previously Created</li>
             <li>Create New Event</li>
           </ul>
@@ -1172,7 +1172,7 @@
         <div class="col-sm-12 col-md-3 text-center ">
           <!--Links bookings text to bookings page-->
           <ul>
-            <li class="mb-2"><a href="./booking_history.html"><b>Bookings</b></a></li>
+            <li class="mb-2"><a href=".//history"><b>Bookings</b></a></li>
             <li>Booking History</li>
             <li>Book Events</li>
           </ul>
@@ -1188,7 +1188,7 @@
 
       <!--image website logo for footer-->
       <div class="footer-img">
-        <a href="index.html">
+        <a href="/">
           <img src="./static/img/logo2.png" class="img-fluid" width="300px" height="200px" id="logo">
         </a>
       </div>
