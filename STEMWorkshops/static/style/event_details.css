@@ -1,0 +1,331 @@
+/*css for nav */
+.navbar {
+    background-color: #e3f2fd;
+}
+
+/* shades the event button a darker colour to signal the current page */
+.nav-item:first-child {
+    background-color: #abc6d5;
+    border-radius: 25px;
+}
+
+/*makes nav buttons rounded */
+.nav-item {
+    border-radius: 25px;
+}
+
+/*adds darker blue to show which nav button is being hovered over */
+.nav-item:hover {
+    background-color: #bedded;
+    border-radius: 25px;
+}
+
+header {
+    background-color: #bedded;
+}
+
+.img-fluid {
+    object-fit: cover;
+}
+
+#profile-icon {
+    margin-top: 4px;
+    float: right;
+}
+
+
+
+/*Event Heading*/
+.category-logo {
+    object-fit: fill;
+}
+
+.back-arrow {
+    object-fit: cover;
+    width: 90%;
+}
+
+/*makes event heading background a darker blue */
+.event-heading {
+    background-color: #bedded;
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Booking Events within modal */
+#booking-summary {
+    background-color: #bedded;
+    border-radius: 25px;
+}
+
+.summary-details {
+    border-bottom: 1px solid;
+    border-color: darkgray;
+}
+
+#ticket-quantity {
+    width: 70px;
+}
+
+#ticket-info {
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    border-color: darkgray;
+}
+
+
+
+/* Event Summary*/
+.event-img {
+    display: flex;
+    justify-content: center;
+}
+
+.event-summary {
+    background-color: #e3f2fd;
+}
+
+.event-details {
+    border-radius: 25px;
+    background-color: white;
+}
+
+.summary {
+    border-bottom: 2px inset;
+}
+
+.event-info {
+    background-color: #bedded;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+/* ticket information */
+.ticket-price {
+    font-size: 20px;
+    color: green;
+}
+
+.ticket {
+    display: flex;
+    align-items: center;
+}
+
+#ticket-footer {
+    display: flex;
+    justify-content: left;
+}
+
+/* adjusts position of ticket refund details */
+.refund {
+    margin-top: -15px;
+}
+
+/* Position of the book now button */
+.book-button {
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+}
+
+
+
+/*event description */
+.event-description {
+    border-top: 2px outset;
+    border-bottom: 2px inset;
+}
+
+
+
+/*facilitator and degree information */
+.special-details {
+    background-color: #e3f2fd;
+    border-radius: 25px;
+}
+
+
+
+/*Location and transport details*/
+.location {
+    background-color: #e3f2fd;
+    border-radius: 25px;
+}
+
+.map {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#transport-info {
+    background-color: #bedded;
+    border-radius: 25px;
+}
+
+.location-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #e3f2fd;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.location-info-row {
+    background-color: #bedded;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+
+
+/* Event Creators*/
+.event-creator {
+    background-color: #bedded;
+    border-radius: 25px;
+}
+
+.creator-icon {
+    float: left;
+}
+
+.creator-name {
+    font-size: 20px;
+}
+
+.event-creator-name {
+    display: flex;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+}
+
+.facilitator-name {
+    font-size: 20px;
+}
+
+
+
+/* event update button */
+.update-button {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+
+
+/*comment section CSS */
+.row-event {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.comment-col-sm-12 {
+    display: flex;
+    justify-content: center;
+}
+
+/* Makes comment background light blue */
+.card-body {
+    background-color: #e3f2fd;
+}
+
+.comment-date {
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.comment-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* makes read more text blue */
+#comment-read {
+    color: blue;
+}
+
+/* makes comment reply text grey */
+#comment-reply {
+    color: rgb(73, 73, 73);
+}
+
+/* makes comment modal background light blue */
+.comment-modal-body {
+    background-color: #e3f2fd;
+}
+
+#comment-header {
+    background-color: #bedded;
+}
+
+/*adjusts buttons postion within modal */
+#comment-footer {
+    background-color: #e3f2fd;
+    display: flex;
+    justify-content: space-between; 
+}
+
+/* puts border around comment user want to reply to */
+.reply-comment-row {
+    border-radius: 25px;
+    border: 1px solid;
+}
+
+.comment-header-reply-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail {
+    color: black;
+}
+
+.title {
+    color: black;
+}
+
+
+
+/* change all button colours */
+.btn-info {
+    background-color: #abc6d5 !important;
+    border: none !important;
+}
+
+
+
+/*Footer */
+footer {
+    background-color: #bedded;
+    padding: 20px;
+}
+
+.footer-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer ul {
+    list-style-type: none;
+}
+
+footer a {
+    color: black;
+}

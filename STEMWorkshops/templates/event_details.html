@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./static/style/event_details.css">
+  <title>Event Details</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <header>
+
+    <!--top nav where logo and profile icon are located-->
+    <div class="sticky-top">
+      <div class=" d-flex justify-content-between  ms-2 me-2 mb-2" id="topnav">
+        <!--clicking on the logo navigates user back to home page-->
+        <a href="/">
+          <!--image of the logo-->
+          <img src="./static/img/logo2.png" class="img-fluid" width="300px" height="200px">
+        </a>
+        <!--profile picture of the account logged in-->
+        <img src="./static/img/profile.png" id="profile-icon" class="img-fluid" width="45px" height="45px">
+      </div>
+    </div>
+    <!--navbar that allows users to go between pages (events, create events and bookings) (bootstrap navbar used)-->
+    <nav class="navbar navbar-expand-lg  ">
+      <div class="container-fluid m-0">
+        <!--allows navbar to be collapsed within a hamburger icon when screen size is reduced-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--navbar items-->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto text-center row w-100">
+            <!--1st item - events - navigates users to home page to see all events-->
+            <li class="nav-item col-sm-12 col-lg-3 " id="selected-item">
+              <a class="nav-link active full-hover" aria-current="page" href="/">Events</a>
+            </li>
+            <!--2nd item - create events - navigates users to create event page so users can make a new event-->
+            <li class="nav-item  col-sm-12 col-lg-3 ">
+              <a class="nav-link full-hover" href="/create">Create Events</a>
+            </li>
+            <!--3rd item - Bookings - navigates users back to booking history page to see previously booked events-->
+            <li class="nav-item   col-sm-12 col-lg-3 ">
+              <a class="nav-link full-hover" href="/history">Bookings</a>
+            </li>
+            <!--4th item - tickets - place where users can access purchaced tickets (not prototyped in this version)-->
+            <li class="nav-item col-sm-12  col-lg-3 ">
+              <a class="nav-link full-hover" href="">Tickets</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </header>
+
+
+  <main>
+
+    <!--Event title-->
+    <section class="event-heading mt-4  p-1">
+      <div class="container mt-1  mb-2">
+        <div class="row ">
+          <div class="d-flex justify-content-start col-4 p-2 ">
+            <!--back arrow that allows users to return back to the home page if the wrong event was selected-->
+            <a href=".//">
+              <img src="./static/img/backarrowBlue.png" class="back-arrow " width="50px" height="50px">
+            </a>
+          </div>
+
+          <div class="heading col-4 ">
+            <!--image representing the category of the event-->
+            <img src="./static/img/scienceBlue.png" width="60px" height="60px">
+            <!--creates space between stem category logo and event name-->
+            &nbsp; &nbsp;
+            <!--name of the event selected-->
+            <h1>Event </h1> 
+          </div>
+          <div class="d-flex justify-content-end col-4 p-2">
+            <!--signals the status of the event-->
+            <button type="button" class=" btn btn-success btn-lg">Open</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!--image and summary of event information-->
+    <section class="event-summary  mb-2 p-4">
+      <div class="container">
+        <!--row that displays event images and an overview of important event details-->
+        <div class="row">
+
+          <!--event images-->
+          <div class="event-img col-lg-7 col-md-12 mt-4 mb-2">
+            <!---carousel of event images (from bootstrap)-->
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <!--1st event image-->
+                  <img src="./static/img/event1.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <!--2nd event image-->
+                  <img src="./static/img/event2.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <!--3rd event image-->
+                  <img src="./static/img/event3.jpg" class="d-block w-100" alt="...">
+                </div>
+              </div>
+              <!--button that allows users to go back to the previous event image-->
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <!--button that allows users to go to the next event image-->
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+
+          <!--Quick summary of important event details-->
+          <div class="col-lg-5 col-md-12">
+            <div class="event-details">
+
+              <!--heading for event information section-->
+              <div class="event-info">
+                <div class=" d-flex justify-content-center">
+                  <h2 class=" p-3">
+                    <!--calendar icon to represent event-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                      class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
+                      <path
+                        d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
+                    </svg>
+                    <!--title for event information section-->
+                    Event Information
+                  </h2>
+                </div>
+              </div>
+
+              <!--summary of event infromation-->
+              <div class="summary">
+                <!--row that displays date/time and location details-->
+                <div class="row">
+
+                  <!--date/time details for the event-->
+                  <div class="col-md-6 col-sm-12">
+                    <h3 class="text-start pt-2 ms-4 ">
+                      <!--clock icon to represent date/time-->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        class="bi bi-clock-fill" viewBox="0 0 16 16">
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
+                      </svg>
+                      <!--title to represent date/time section-->
+                      Date/ Time
+                    </h3>
+                    <p class="ms-4 ">
+                      <!--date of event-->
+                      <b>Date:</b> 22nd June 2025 <br>
+                      <!--start and end time of event-->
+                      <b>Time:</b> 3pm - 5pm <br>
+                      <!--duration of the event (calculated automatically from start and end time)-->
+                      <b>Duration:</b> 2 Hours
+                    </p>
+                  </div>
+
+                  <!--event location deatils-->
+                  <div class="col-md-6 col-sm-12">
+                    <div>
+                      <h3 class="text-start ms-4 pt-2 me-sm-2">
+                        <!--location icon-->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                          class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                          <path
+                            d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        <!--title for the location section-->
+                        Location
+                      </h3>
+                      <p class="ms-4 ">
+                        <!--venue name of event-->
+                        <b>Venue:</b> QUT <br>
+                        <!--address of the venue that event is being held at-->
+                        <b>Address:</b> 100 James Rd <br>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- STEM category and event type details-->
+              <div class="summary">
+                <p class=" ms-4 pt-3">
+                  <!--category of the event-->
+                  <b>STEM Category:</b> Science <br>
+                  <!--type of event-->
+                  <b>Event Type:</b> In-person <br>
+                </p>
+              </div>
+
+              <!--row that displays ticket information-->
+              <div class="row ">
+                <!--column has ticket infromation and button to book tickets to the event-->
+                <div class="col-md-8 col-sm-12">
+                  <h3 class="text-start ms-4 mt-2 pt-1 ">
+                    <!--ticket icon-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                      class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
+                      <path
+                        d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5m0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5M4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1" />
+                    </svg>
+                    <!--title for ticket information section-->
+                    Ticket
+                  </h3>
+                  <p class="ticket ms-4">
+                    <!--price of ticket for the event selected-->
+                    <b>Ticket Pricing: </b> &nbsp; <span class="ticket-price ">FREE</span>
+                  </p>
+                  <p class="refund ms-4">
+                    <!--ticket refund details-->
+                    <b>Refund Policy: </b> Can refund 7 days prior to event
+                  </p>
+                </div>
+                <div class="book-button col-md-4 col-sm-12 text-start">
+                  <!--book now button that opens up the booking ticket modal to allow users to a book ticket/s to an event-->
+                  <button class="btn btn-info mt-sm-2  p-2 " type="button" data-bs-toggle="modal"
+                    data-bs-target="#book-ticket">
+                    Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+
+
+    <!--Modal to book ticket (triggered when the book now button of the event details page is pressed)-->
+    <!--modal comes from bootstrap-->
+    <div class="modal fade" id="book-ticket" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!--centers modal to the middle of the screen when activiated-->
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <!--contents of the modal where users can see ticket information and booking summary-->
+        <div class="modal-content">
+          <div class="modal-header" id="comment-header">
+            <!--title of modal that also includes the event name the user is booking tickets for-->
+            <h2 class="modal-title" id="exampleModalLabel">Book Ticket: Event </h2>
+            <!--allows users to exit modal and go back to event details page-->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="comment-modal-body p-4">
+            <div class="row ">
+
+              <!--column for users to see ticket details and select ticket quantity-->
+              <div class="col-lg-7 col-md-12 p-3  mt-3" id="ticket-info">
+                <h3>
+                  <!--ticket icon-->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="currentColor"
+                    class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5m0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5M4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1" />
+                  </svg>
+                  <!--title for book ticket section-->
+                  Book Ticket
+                </h3>
+                <!--information on ticket type-->
+                <p class="mt-3"><b>Ticket Type:</b> General</p>
+                <div class=" mt-3 ">
+                  <!--label to describe the input where users select the number of tickets they want-->
+                  <label for="quantity" class="form-label"><b>Select Number of Tickets: </b></label>
+                  <!--input that allows users to type/select the number of tickets they want to book-->
+                  <input type="number" id="ticket-quantity" name="ticket-quantity" class="form-control" value="0"
+                    min="0" max="100" width="20px">
+                </div>
+              </div>
+
+              <!--Column that allows users to  view booking summary based of ticket quantity selected-->
+              <div class="col-lg-5 col-md-12 text-start p-3">
+                <div id="booking-summary" class="p-3">
+                  <!--title for booking summary section-->
+                  <h3 class="mb-4">Booking Summary</h3>
+                  <!--information regarding the ticket type and the ticket quantity selected by the user-->
+                  <p class="summary-details  pb-4"><b>General Ticket:</b> X1</p>
+                  <!--total price of all the tickets selected-->
+                  <h5><b>Total Price:</b> $0</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" id="comment-footer">
+            <!--close button allows user to exit the modal and go back to event details page-->
+            <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+            <!--book ticket button that allows the ticket/s to be booked and triggers a modal confirming the success of the ticket booking-->
+            <button type="button" class="btn btn-info" data-bs-target="#book-success" data-bs-toggle="modal"
+              data-bs-dismiss="modal">Book Ticket</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!--book ticket success message (modal that confirms the ticket was booked successfully after the user pressed the book ticket button)-->
+    <!--uses a bootstrap modal-->
+    <div class="modal fade" id="book-success" aria-hidden="true" aria-labelledby="book-successLabel2" tabindex="-1"
+      data-bs-backdrop="static">
+      <!--centers modal to middle of the screen when triggered-->
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <!--modal contents-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <!--message confirming the the ticket booking was successfu;-->
+            <h4 class="modal-title p-2" id="book-successLabel2">Tickets Booked</h4>
+            <!-- X allows users to exit out of modal and go back to event details page-->
+            <a href="./event_details.html"><button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button></a>
+          </div>
+          <div class="modal-footer" id="ticket-footer">
+            <!--button underneath the booking confirmation message that allows users to naviagate to the bookings page to view booking history-->
+            <a href=".//history" class="text-decoration-none"><button type="button"
+                class="btn btn-info">View Bookings</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!--Event Description and other event details section-->
+    <section class="event-description mt-4">
+      <div class="container pt-3 pb-3">
+        <div class="row ">
+          <!--event description column-->
+          <div class="col-lg-8 col-sm-12 col-md-6  ">
+            <!--title of event description section-->
+            <h2>
+              Event Description
+            </h2>
+            <!--description of the event-->
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum. <br><br>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum. <br><br>
+              dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate.<br><br>
+              dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+
+          <div class="col-lg-4 col-sm-12 col-md-6">
+            <!---facilitator Details-->
+            <div class="special-details p-3">
+              <!--title for facilitators section-->
+              <h2>Facilitators</h2>
+              <div class="event-creator-name">
+                <!--profile pitcure of first facilitator-->
+                <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px">
+                <!--name of first event facilitator-->
+                <p class=" facilitator-name m-2">Professor David Smith</p>
+              </div>
+              <div class="event-creator-name mt-2">
+                <!--profile pitcure of second facilitator-->
+                <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px">
+                <!--name of second event facilitator-->
+                <p class=" facilitator-name m-2">Doctor Maria Scott </p>
+              </div>
+            </div>
+
+            <!--information on related degrees-->
+            <div class="special-details p-3 mt-4">
+              <!--title of related degrees section-->
+              <h2>Related Degrees</h2>
+              <!--list of the names of the related degrees that the workshop compliments-->
+              <ul class="text-start p-1">
+                <li> Bachelor of Science (Physics) </li>
+                <li> Masters of Science (Physics) </li>
+              </ul>
+            </div>
+
+            <!--Event Creator details-->
+            <div class="event-creator mt-4 p-3">
+              <!--title for the event creator section-->
+              <h3>Event Creator</h3>
+              <div class="event-creator-name">
+                <!--profile picture of the event creator-->
+                <img src="./static/img/profile.png" id="creator-icon" width="45px" height="45px">
+                <!--name of event creator-->
+                <p class="creator-name m-2">John Doe</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+
+
+    <!--Transport and location Details sections-->
+    <section class=" container mt-4">
+      <!--Location details and map-->
+      <div class="location-info-row text-center p-3 ">
+        <h2>
+          <!--location icon-->
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-geo-alt-fill"
+            viewBox="0 0 16 16">
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+          </svg>
+          <!--title of location information section-->
+          Location Infromation
+        </h2>
+      </div>
+      <div class="location-row">
+        <div class="col-lg-7 col-sm-12">
+          <!--text telling the user the address and venue of the event-->
+          <p class="creator-name ms-4 mt-3"><b>Address:</b> 100 James Rd &nbsp; <b>Venue: </b> Queensland University of
+            Technology
+          </p>
+          <!--map of where the event is located-->
+          <img class="map img-fluid p-4 pt-0" src="./static/img/map.png" width="700px" height="300px">
+        </div>
+
+        <!--Transport details section-->
+        <div class="col-lg-5 col-sm-12 ">
+          <div class="special-details text-start p-3 m-3 mt-4 " id="transport-info">
+            <h2>
+              <!--car icon to represent trnsport details section-->
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                class="bi bi-car-front-fill" viewBox="0 0 16 16">
+                <path
+                  d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2m10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17s3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z" />
+              </svg>
+              <!--title for transport details section-->
+              Transport Details
+            </h2>
+            <!--transport details-->
+            <p>
+              dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+              ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat.<br>
+              dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+              ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!--button that allows users to edit event details if they are in the same account the event was created on-->
+    <div class="d-flex justify-content-center update-button ">
+      <!--button links user to create events page so that they can edit event details-->
+      <a href="/create" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
+          <!--pencil in square icon that represents editting event detail-->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square"
+            viewBox="0 0 16 16">
+            <path
+              d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+            <path fill-rule="evenodd"
+              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+          </svg> &nbsp;
+          <!--text on update event details button-->
+          Update Event Details</button>
+      </a>
+    </div>
+
+
+
+    <!--Comments (allows users to see comments, create and post new comments or reply to existing ones)-->
+    <section class="event-description mt-3">
+      <div class="container pt-3 pb-3 ">
+        <div class="row">
+          <div class="col-4 text-start">
+            <!--title of the comments section of the event details page-->
+            <h2 class="mb-4">Comments</h2>
+          </div>
+          <div class="col-8">
+            <div class="text-end">
+              <!--add new comment button that opens up a modal where users can type a new comment they want to post about an event-->
+              <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#post-commment"> <span
+                  id="plus-comment">
+                  <!--plus icon-->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                  </svg> &nbsp;
+                  <!--text on addd new comment button-->
+                </span> Add New Comment</button>
+            </div>
+          </div>
+        </div>
+
+
+        <!--Modal to create new comment and post it (triggered when add new comment button is pressed)-->
+        <!--modal from bootstrap-->
+        <div class="modal fade" id="post-commment" tabindex="-1" aria-labelledby="post-commmentLabel"
+          aria-hidden="true">
+          <!--centers modal to the middle of the screen-->
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header" id="comment-header">
+                <!--title of the modal-->
+                <h2 class="modal-title" id="exampleModalLabel">New Coment</h2>
+                <!--allows users to exit out of the modal and go back to event details page-->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <!--contents within the modal-->
+              <div class="comment-modal-body p-4">
+                <div class="event-creator-name mb-3">
+                  <!--profile picture of the current user logged in-->
+                  <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px">
+                  <!--account name of the current user logged in so they know which account they are posting the comment under-->
+                  <p class=" facilitator-name m-2">Alicia Larme</p>
+                </div>
+                <div class="form-floating">
+                  <!--area where user can type in the new comment they want to post-->
+                  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                    style="height: 200px"></textarea>
+                  <!--label for the area where users can type in their new comment-->
+                  <label for="floatingTextarea2">Write Comment</label>
+                </div>
+              </div>
+              <div class="modal-footer" id="comment-footer">
+                <!--close button that allows users to exit out of the modal and go back to event details page-->
+                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+                <!--post comment button that posts the comment for the user and opens up post confirmation modal-->
+                <button type="button" class="btn btn-info" data-bs-target="#post-success" data-bs-toggle="modal"
+                  data-bs-dismiss="modal">Post Comment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!--post comment/reply suceess (triggered when a user posts a comment or a reply to a comment)-->
+        <!--uses modal from bootstrap-->
+        <div class="modal fade" id="post-success" aria-hidden="true" aria-labelledby="post-successLabel2" tabindex="-1"
+          data-bs-backdrop="static">
+          <!--centers modal to the middle of the screen-->
+          <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <!--message confirming that the comments/replies has been successfully posted-->
+                <h5 class="modal-title" id="exampleModalToggleLabel2">Post Successful</h5>
+                <!-- X that allows the modal to be closed so the user can return back to event details page-->
+                <a href="./event_details.html"><button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--Read full contents of comment (modal that allows users to see the complete contents of a comment when the read more text on the comment card is pressed)-->
+        <!--A bootstrap modal is used-->
+        <div class="modal fade" id="read-more-commment" tabindex="-1" aria-labelledby="read-more-commmentLabel"
+          aria-hidden="true">
+          <!--centers modal to the middle of the screen when triggered-->
+          <div class="modal-dialog modal-dialog-centered  modal-lg">
+            <div class="modal-content">
+              <div class="modal-header" id="comment-header">
+                <!--title of the modal (called full comment)-->
+                <h2 class="modal-title" id="read-more-commmentLabel">Full Comment</h2>
+                <!--allows the user to exit out of the modal-->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="comment-modal-body p-4">
+                <!--full comment details-->
+                <div class="reply-comment-row p-2 mb-4  ">
+                  <div class="d-flex justify-content-start  ">
+                    <div class="d-flex  p-2 d-flex justify-content-center">
+                      <!--profile picture of the user who posted the comment-->
+                      <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
+                        class=" ms-1">
+                    </div>
+                    <div class=" mt-2  d-flex justify-content-center">
+                      <div class="title">
+                        <!--name of the user who posted the comment-->
+                        <h6>Sam Jones</h6>
+                        <!--date the comment was posted-->
+                        <p class="comment-date"> 20th June 2025 </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-text px-4">
+                    <!--comment body/contents-->
+                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt
+                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                      tempor incididunt
+                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                      tempor incididunt
+                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                      tempor incididunt
+                      ut labore et dolore magna aliqua.
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer" id="comment-footer">
+                <!--close button that allows users to close the modal and go back onto the event details page-->
+                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+                <!--reply button to post a reply to a specific comment-->
+                <button type="button" class="btn btn-info" data-bs-target="#reply-commment" data-bs-toggle="modal"
+                  data-bs-dismiss="modal">
+                  <!--reply icon-->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
+                    class="bi bi-reply-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                  </svg>
+                  <!--button text-->
+                  Reply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!--write reply to comment (a modal that is activated when the reply text on the comment card is pressed or the reply button within the full comment modal is pressed)-->
+        <!--A bootstrap modal is used-->
+        <div class="modal fade" id="reply-commment" tabindex="-1" aria-labelledby="reply-commmentLabel"
+          aria-hidden="true" data-bs-backdrop="static">
+          <!--allows modal to appear in the center of the screen when triggered-->
+          <div class="modal-dialog modal-dialog-centered  modal-lg">
+            <div class="modal-content">
+              <div class="modal-header" id="comment-header">
+                <!--title of modal-->
+                <h2 class="modal-title" id="reply-commentLabel">Reply to comment</h2>
+                <!--allows the user to exit out of the modal-->
+                <a href="./event_details.html"><button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button></a>
+              </div>
+              <div class="comment-modal-body p-4">
+                <!--title telling user that the comment below is the one they have chosen to reply to-->
+                <h5>Comment you want to reply to:</h5>
+                <!--A preview of the comment they have selected to reply to-->
+                <div class="reply-comment-row p-2 mb-4  ">
+                  <div class="d-flex justify-content-start  ">
+                    <div class="d-flex  p-2 d-flex justify-content-center">
+                      <!--profile picture of the user that posted the comment they want to reply to-->
+                      <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
+                        class=" ms-1">
+                    </div>
+                    <div class=" mt-2  d-flex justify-content-center">
+                      <div class="title ">
+                        <!--name of the person who posted the comment they want to reply to-->
+                        <h6>Sam Jones</h6>
+                        <!--the creation date of the comment they selected-->
+                        <p class="comment-date"> 20th June 2025 </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!--contents of the comment they selected-->
+                  <div class="card-text px-4">
+                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt
+                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                      tempor incididunt
+                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                      tempor incididunt
+                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                      tempor incididunt
+                      ut labore et dolore magna aliqua.
+                  </div>
+                </div>
+                <div class="event-creator-name mb-3">
+                  <!--title signifying to the user that the input box below is where they type their reply-->
+                  <h5>Write Reply:</h5>
+                </div>
+                <!--form that allows user to type their reply to a comment-->
+                <div class="form-floating">
+                  <!--area in which user can type their reply to a comment-->
+                  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                    style="height: 100px"></textarea>
+                  <!--label for text area so user knows what they have to type inside-->
+                  <label for="floatingTextarea2">Write Reply</label>
+                </div>
+              </div>
+              <div class="modal-footer" id="comment-footer">
+                <!--close button allows user to exit out of the modal and go back to event details page-->
+                <a href="./event_details.html"><button type="button" class="btn btn-secondary "
+                    data-bs-dismiss="modal">Close</button></a>
+                <!--button allows user to post a reply to a comment which then opens a post success modal to confirm that the reply went through-->
+                <button type="button" class="btn btn-info" data-bs-target="#post-success" data-bs-toggle="modal"
+                  data-bs-dismiss="modal">Post Reply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!---First row of comments present on event details page-->
+        <div class="row">
+
+          <!--first comment-->
+          <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
+            <!--comment card (from bootstrap)-->
+            <div class="card" style="width: 20rem;">
+              <div class="card-body">
+                <div class="row ">
+                  <!--comment details-->
+                  <h5 class="card-title ">
+                    <div class="comment-row">
+                      <div class="col-3">
+                        <!--profile picture of user who posted comment-->
+                        <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
+                          class=" text-start ms-1">
+                      </div>
+                      <div class="col-9 mt-3">
+                        <!--name of person who posted comment-->
+                        <div class="title">Sam Jones
+                        </div>
+                        <!--Date comment was posted-->
+                        <p class="comment-date"> 20th June 2025 </p>
+                      </div>
+                    </div>
+                  </h5>
+                </div>
+                <div class="card-text">
+                  <!--comment contents (won't display the full comment if it is too long)-->
+                  <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt
+                    ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
+                  <div class="row mt-3">
+                    <div class=" col-6 text-start">
+                      <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
+                      <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
+                    </div>
+                    <div class="col-6 text-end">
+                      <!--reply text opens a modal where users can then write a reply to the comment they selected-->
+                      <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!--Second comment-->
+          <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
+            <!--comment card (from bootstrap)-->
+            <div class="card" style="width: 20rem;">
+              <div class="card-body">
+                <div class="row ">
+                  <!--comment details-->
+                  <h5 class="card-title ">
+                    <div class="comment-row">
+                      <div class="col-3">
+                        <!--profile picture of user who posted comment-->
+                        <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
+                          class=" text-start ms-1">
+                      </div>
+                      <div class="col-9 mt-3">
+                        <!--name of person who posted comment-->
+                        <div class="title">Sam Jones
+                        </div>
+                        <!--Date comment was posted-->
+                        <p class="comment-date"> 20th June 2025 </p>
+                      </div>
+                    </div>
+                  </h5>
+                </div>
+                <div class="card-text">
+                  <!--comment contents (won't display the full comment if it is too long)-->
+                  <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt
+                    ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
+                  <div class="row mt-3">
+                    <div class=" col-6 text-start">
+                      <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
+                      <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
+                    </div>
+                    <div class="col-6 text-end">
+                      <!--reply text opens a modal where users can then write a reply to the comment they selected-->
+                      <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!--third comment-->
+          <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
+            <!--comment card (from bootstrap)-->
+            <div class="card" style="width: 20rem;">
+              <div class="card-body">
+                <div class="row ">
+                  <!--comment details-->
+                  <h5 class="card-title ">
+                    <div class="comment-row">
+                      <div class="col-3">
+                        <!--profile picture of user who posted comment-->
+                        <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
+                          class=" text-start ms-1">
+                      </div>
+                      <div class="col-9 mt-3">
+                        <!--name of person who posted comment-->
+                        <div class="title">Sam Jones
+                        </div>
+                        <!--Date comment was posted-->
+                        <p class="comment-date"> 20th June 2025 </p>
+                      </div>
+                    </div>
+                  </h5>
+                </div>
+                <div class="card-text">
+                  <!--comment contents (won't display the full comment if it is too long)-->
+                  <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt
+                    ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
+                  <div class="row mt-3">
+                    <div class=" col-6 text-start">
+                      <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
+                      <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
+                    </div>
+                    <div class="col-6 text-end">
+                      <!--reply text opens a modal where users can then write a reply to the comment they selected-->
+                      <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--fourth comment-->
+          <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
+            <!--comment card (from bootstrap)-->
+            <div class="card" style="width: 20rem;">
+              <div class="card-body">
+                <div class="row ">
+                  <!--comment details-->
+                  <h5 class="card-title ">
+                    <div class="comment-row">
+                      <div class="col-3">
+                        <!--profile picture of user who posted comment-->
+                        <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
+                          class=" text-start ms-1">
+                      </div>
+                      <div class="col-9 mt-3">
+                        <!--name of person who posted comment-->
+                        <div class="title">Sam Jones
+                        </div>
+                        <!--Date comment was posted-->
+                        <p class="comment-date"> 20th June 2025 </p>
+                      </div>
+                    </div>
+                  </h5>
+                </div>
+                <div class="card-text">
+                  <!--comment contents (won't display the full comment if it is too long)-->
+                  <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt
+                    ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
+                  <div class="row mt-3">
+                    <div class=" col-6 text-start">
+                      <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
+                      <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
+                    </div>
+                    <div class="col-6 text-end">
+                      <!--reply text opens a modal where users can then write a reply to the comment they selected-->
+                      <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <!--button to load more comments (once pressed another row of comments appears below the button to allow users to see alll the comments under an event)-->
+        <div class="mt-3 mb-4 text-center">
+          <!--view more comments button (triggers a collapse feature to allow users to expand or hide extra comments specific to an event)-->
+          <button type="button" class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#collapse-comment"
+            aria-expanded="false" aria-controls="collapse-comment">
+            <!--down arrow icon to support view more comments text-->
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+              class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" />
+            </svg> &nbsp;
+            <!--text that appears on button-->
+            View More Comments</button>
+        </div>
+
+
+
+        <!--Collapsable comments (these comments appear below once the view more comments button is pressed)-->
+        <div class="collapse" id="collapse-comment">
+          <!--begins a second row of comments-->
+          <div class="row">
+
+            <!--fiffth comment-->
+            <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
+              <!--comment card (from bootstrap)-->
+              <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                  <div class="row ">
+                    <!--comment details-->
+                    <h5 class="card-title ">
+                      <div class="comment-row">
+                        <div class="col-3">
+                          <!--profile picture of user who posted comment-->
+                          <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
+                            class=" text-start ms-1">
+                        </div>
+                        <div class="col-9 mt-3">
+                          <!--name of person who posted comment-->
+                          <div class="title">Sam Jones
+                          </div>
+                          <!--Date comment was posted-->
+                          <p class="comment-date"> 20th June 2025 </p>
+                        </div>
+                      </div>
+                    </h5>
+                  </div>
+                  <div class="card-text">
+                    <!--comment contents (won't display the full comment if it is too long)-->
+                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt
+                      ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
+                    <div class="row mt-3">
+                      <div class=" col-6 text-start">
+                        <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
+                        <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
+                          data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
+                      </div>
+                      <div class="col-6 text-end">
+                        <!--reply text opens a modal where users can then write a reply to the comment they selected-->
+                        <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
+                          data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!--sixth comment-->
+            <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
+              <!--comment card (from bootstrap)-->
+              <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                  <div class="row ">
+                    <!--comment details-->
+                    <h5 class="card-title ">
+                      <div class="comment-row">
+                        <div class="col-3">
+                          <!--profile picture of user who posted comment-->
+                          <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
+                            class=" text-start ms-1">
+                        </div>
+                        <div class="col-9 mt-3">
+                          <!--name of person who posted comment-->
+                          <div class="title">Sam Jones
+                          </div>
+                          <!--Date comment was posted-->
+                          <p class="comment-date"> 20th June 2025 </p>
+                        </div>
+                      </div>
+                    </h5>
+                  </div>
+                  <div class="card-text">
+                    <!--comment contents (won't display the full comment if it is too long)-->
+                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt
+                      ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
+                    <div class="row mt-3">
+                      <div class=" col-6 text-start">
+                        <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
+                        <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
+                          data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
+                      </div>
+                      <div class="col-6 text-end">
+                        <!--reply text opens a modal where users can then write a reply to the comment they selected-->
+                        <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
+                          data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!--Seventh comment-->
+            <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
+              <!--comment card (from bootstrap)-->
+              <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                  <div class="row ">
+                    <!--comment details-->
+                    <h5 class="card-title ">
+                      <div class="comment-row">
+                        <div class="col-3">
+                          <!--profile picture of user who posted comment-->
+                          <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
+                            class=" text-start ms-1">
+                        </div>
+                        <div class="col-9 mt-3">
+                          <!--name of person who posted comment-->
+                          <div class="title">Sam Jones
+                          </div>
+                          <!--Date comment was posted-->
+                          <p class="comment-date"> 20th June 2025 </p>
+                        </div>
+                      </div>
+                    </h5>
+                  </div>
+                  <div class="card-text">
+                    <!--comment contents (won't display the full comment if it is too long)-->
+                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt
+                      ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
+                    <div class="row mt-3">
+                      <div class=" col-6 text-start">
+                        <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
+                        <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
+                          data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
+                      </div>
+                      <div class="col-6 text-end">
+                        <!--reply text opens a modal where users can then write a reply to the comment they selected-->
+                        <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
+                          data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!--eighth comment-->
+            <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
+              <!--comment card (from bootstrap)-->
+              <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                  <div class="row ">
+                    <!--comment details-->
+                    <h5 class="card-title ">
+                      <div class="comment-row">
+                        <div class="col-3">
+                          <!--profile picture of user who posted comment-->
+                          <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
+                            class=" text-start ms-1">
+                        </div>
+                        <div class="col-9 mt-3">
+                          <!--name of person who posted comment-->
+                          <div class="title">Sam Jones
+                          </div>
+                          <!--Date comment was posted-->
+                          <p class="comment-date"> 20th June 2025 </p>
+                        </div>
+                      </div>
+                    </h5>
+                  </div>
+                  <div class="card-text">
+                    <!--comment contents (won't display the full comment if it is too long)-->
+                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt
+                      ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
+                    <div class="row mt-3">
+                      <div class=" col-6 text-start">
+                        <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
+                        <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
+                          data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
+                      </div>
+                      <div class="col-6 text-end">
+                        <!--reply text opens a modal where users can then write a reply to the comment they selected-->
+                        <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
+                          data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!--creates space between main content and footer-->
+    <div class="mb-4"></div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+  </main>
+
+
+  <footer>
+    <div class="container mt-3">
+      <div class="row  mb-2 ">
+        <div class="col-sm-12 col-md-3 text-center ">
+          <!--links event text to home page and category text to their repected events-->
+          <ul>
+            <li class="mb-2"><a href=".//.#event-browse"><b>Events</b></a></li>
+            <li><a href=".//.#event-science">Science</a></li>
+            <li><a href=".//.#event_math">Maths</a></li>
+            <li><a href=".//.#event-eng">Engineering</a></li>
+            <li><a href="/.#event-it">Information Technology</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-3 text-center ">
+          <!--links create events text to create events page-->
+          <ul>
+            <li class="mb-2"><a href=".//create"><b> Create Events</b></a></li>
+            <li>Previously Created</li>
+            <li>Create New Event</li>
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-3 text-center ">
+          <!--Links bookings text to bookings page-->
+          <ul>
+            <li class="mb-2"><a href=".//history"><b>Bookings</b></a></li>
+            <li>Booking History</li>
+            <li>Book Events</li>
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-3 text-center">
+          <!--text regarding tickets (not protyped in this version but in another it would allow users to view each specific ticket they have bought in the past)-->
+          <ul>
+            <li class="mb-2"><a href=""><b>Tickets</b></a></li>
+            <li>Ticket History</li>
+          </ul>
+        </div>
+      </div>
+
+      <!--image website logo for footer-->
+      <div class="footer-img">
+        <a href="/">
+          <img src="./static/img/logo2.png" class="img-fluid" width="300px" height="200px" id="logo">
+        </a>
+      </div>
+      <div>
+        <!--website name and year-->
+        <p class="text-center">&copy; 2025 STEM Workshops</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
