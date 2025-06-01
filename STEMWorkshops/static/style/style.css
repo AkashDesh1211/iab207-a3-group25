@@ -125,6 +125,10 @@ footer a {
     background-color: #e3f2fd;
 }
 
+.card {
+    transition: 0.25s;
+}
+
 .card:hover {
     background-color: #bedded;
     border: 1px solid;
