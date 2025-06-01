@@ -1,69 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet", type="text/css", href="/static/style/index.css">
-  <title>Home</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  
+{% block header %}
+    
+{% endblock %}
+  
 
-</head>
-
-<body>
-
-  <header>
-
-    <!--top nav where logo and profile icon are located-->
-    <div class=" d-flex justify-content-between  ms-2 me-2 mb-2" id="topnav">
-      <!--clicking on the logo navigates user back to home page-->
-      <a href="/">
-        <!--image of the logo-->
-        <img src="./static/img/logo2.png" class="img-fluid" width="300px" height="200px">
-      </a>
-      <!--profile picture of the account logged in-->
-      <img src="./static/img/profile.png" id="profile-icon" class="img-fluid" width="45px" height="45px">
-    </div>
-
-    <!--navbar that allows users to go between pages (events, create events and bookings) (bootstrap navbar used)-->
-    <nav class="navbar navbar-expand-lg  ">
-      <div class="container-fluid m-0">
-        <!--allows navbar to be collapsed within a hamburger icon when screen size is reduced-->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!--navbar items-->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto text-center row w-100">
-            <!--1st item - events - navigates users to home page to see all events-->
-            <li class="nav-item col-sm-12 col-lg-3 " id="selected-item">
-              <a class="nav-link active full-hover" aria-current="page" href="/">Events</a>
-            </li>
-            <!--2nd item - create events - navigates users to create event page so users can make a new event-->
-            <li class="nav-item  col-sm-12 col-lg-3 ">
-              <a class="nav-link full-hover" href="/create">Create Events</a>
-            </li>
-            <!--3rd item - Bookings - navigates users back to booking history page to see previously booked events-->
-            <li class="nav-item   col-sm-12 col-lg-3 ">
-              <a class="nav-link full-hover" href="/history">Bookings</a>
-            </li>
-            <!--4th item - tickets - place where users can access purchaced tickets (not prototyped in this version)-->
-            <li class="nav-item col-sm-12  col-lg-3 ">
-              <a class="nav-link full-hover" href="">Tickets</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-  </header>
-
-
-  <main>
+ {% block content %}
+  
 
 
     <!--Carousel showing different worshop events (carousel from bootstrap)-->
@@ -320,37 +264,156 @@
     <!--title telling the user the type of events located underneath 
     - title changes depending on what dropdown item was selected or what was typed into the searchbar
     - title intially says all events with all the events being located underneath it-->
-    <div id="event-all" class="all-event-heading mt-3">
+    <div id="event-all" class="all-event-heading mt-3 mb-5">
       <h3 class=" d-flex justify-content-center">All Events</h3>
     </div>
 
 
-    <!--creates space between headings/titles and the event cards-->
-    <div class="mb-4"></div>
-    <div class="mb-4"></div>
+
+
+
+
+    <div class="d-flex justify-content-center">
+      <div class="row row-cols-1 row-cols-md-4 g-4 m-2">
+        <div class="col">
+          <div class="card h-100">
+            <img src="./static/img/263846206_4613062452080176_3310568034096503692_n-1024x683.jpg" class="card-img-top" alt="./static/img/s-l1200.jpg">
+            <div class="card-body">
+              <h5 class="card-title">Book Signing (12/29/25) <!-- Creates the "new" badge. --> <span class="badge rounded-pill bg-success">New</span></h5>
+              <p class="card-text">Come join us for a book signing event!<br><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-half" viewBox="0 0 16 16">
+                <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+              </svg>
+            </p>
+              <a href="./ticket.html" class="btn btn-primary">Join Event</a>
+            </div>
+            <div class="card-footer">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./static/img/book-copyright-day.jpg" class="card-img-top" alt="./static/img/s-l1200.jpg">
+            <div class="card-body">
+              <h5 class="card-title">Read. Circle (04/15/25) <span class="badge rounded-pill bg-warning text-bg-warning">Soon</span></h5>
+              <p class="card-text">Come join us for an event!<br><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+              </svg>
+            </p>
+              <a href="./ticket.html" class="btn btn-primary">Join Event</a>
+            </div>
+            <div class="card-footer">
+              <small class="text-body-secondary">Last updated 1 day ago</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./static/img/istockphoto-997638600-612x612.jpg" class="card-img-top" alt="./static/img/s-l1200.jpg">
+            <div class="card-body">
+              <h5 class="card-title">Discussion (05/05/25) <span class="badge rounded-pill bg-danger text-bg-danger">Full</span></h5>
+              <p class="card-text">Come join us for an event!<br><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+              </svg>
+            </p>
+            <a href="./ticket.html" class="btn btn-primary disabled">Join Event</a>
+            </div>
+            <div class="card-footer">
+              <small class="text-body-secondary">Last updated 2 weeks ago</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./static/img/imagesb.jpg" class="card-img-top" alt="./static/img/s-l1200.jpg">
+            <div class="card-body">
+              <h5 class="card-title">Reading Circle (06/06/25)</h5>
+              <p class="card-text">Come join us for an event!<br><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+            </p>
+              <a href="./ticket.html" class="btn btn-primary">Join Event</a>
+            </div>
+            <div class="card-footer">
+              <small class="text-body-secondary">Last updated 1 month ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
 
 
     <!---First row of events -->
     <!--events are located within cards that come from bootstrap-->
-    <div class="container">
+    <div class="container ">
       <div class="row">
 
         <!--first event card -->
-        <div class=" col-sm-12 col-md-6  col-lg-3  mb-3">
+        <div class=" col-sm-12 col-md-6  col-lg-3  mb-3 g-4 frontpage-cards,  d-flex, justify-content-center">
           <!--set card width-->
-          <div class="card" style="width: 20rem;">
+          <div class="card mx-1 my-1" style="width: 18rem;">
 
             <!--event image (located at the top of the card)-->
             <div class="evet-images">
               <!--clicking the event image brings user to the event details page of the event selected-->
               <a href="/details" class="text-decoration-none"> <img src="./static/img/event1.jpg"
                   class="card-img-top" alt="..."></a>
-              <img src="./static/img/calc.png" class="category-logo">
+             <!--HERE-->
             </div>
 
             <!--event details-->
-            <div class="card-body">
+            <div class="card-body mx-1">
               <!--row that displays event name and status next to one another-->
               <div class="row mb-2">
                 <!--event name-->
@@ -450,9 +513,9 @@
 
 
         <!--second event card-->
-        <div class=" col-sm-12 col-md-6  col-lg-3  mb-3">
+        <div class=" col-sm-12 col-md-6  col-lg-3  mb-3 g-4 frontpage-cards,  d-flex, justify-content-center ">
           <!--set card width-->
-          <div class="card" style="width: 20rem;">
+          <div class="card" style="width: 18rem;">
 
             <!--event image (located at the top of the card)-->
             <div class="evet-images">
@@ -460,7 +523,11 @@
               <a href="/details" class="text-decoration-none"> <img src="./static/img/event2.jpg"
                   class="card-img-top" alt="..."></a>
               <!--image of the category the event belongs to-->
-              <img src="./static/img/science.png" class="category-logo">
+            
+              
+              <!--HERE-->
+
+
             </div>
 
             <!--event details-->
@@ -564,9 +631,9 @@
 
 
         <!--third event card-->
-        <div class=" col-sm-12 col-md-6  col-lg-3  mb-3">
+        <div class=" col-sm-12 col-md-6  col-lg-3  mb-3 g-4 frontpage-cards,  d-flex, justify-content-center">
           <!--set card width-->
-          <div class="card" style="width: 20rem;">
+          <div class="card" style="width: 18rem;">
 
             <!--event image (located at the top of the card)-->
             <div class="evet-images">
@@ -574,7 +641,12 @@
               <a href="/details" class="text-decoration-none"> <img src="./static/img/event3.jpg"
                   class="card-img-top" alt="..."></a>
               <!--image of the category the event belongs to-->
-              <img src="./static/img/engineering.png" class="category-logo">
+             
+
+              <!--HERE-->
+
+
+
             </div>
 
             <!--event details-->
@@ -678,9 +750,9 @@
 
 
         <!--fourth event card-->
-        <div class=" col-sm-12 col-md-6  col-lg-3  mb-3">
+        <div class=" col-sm-12 col-md-6  col-lg-3  mb-3 g-4 frontpage-cards, d-flex, justify-content-center">
           <!--set card width-->
-          <div class="card" style="width: 20rem;">
+          <div class="card" style="width: 18rem;">
 
             <!--event image (located at the top of the card)-->
             <div class="evet-images">
@@ -688,7 +760,11 @@
               <a href="/details" class="text-decoration-none"> <img src="./static/img/event3.jpg"
                   class="card-img-top" alt="..."></a>
               <!--image of the category the event belongs to-->
-              <img src="./static/img/computer.png" class="category-logo">
+              
+              <!--HERE-->
+
+
+
             </div>
 
             <!--event details-->
@@ -3733,73 +3809,12 @@
     </div>
 
 
-    <!--creates gap between main body and footer of the page-->
-    <div class="mb-5"></div>
+  
+
+  {% endblock %}
 
 
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
 
-  </main>
+  
 
-
-  <footer>
-
-    <div class="container mt-3">
-      <div class="row  mb-2 ">
-        <div class="col-sm-12 col-md-3 text-center ">
-          <!--links event text to home page and category text to their repected events-->
-          <ul>
-            <li class="mb-2"><a href=".//.#event-browse"><b>Events</b></a></li>
-            <li><a href=".//.#event-science">Science</a></li>
-            <li><a href=".//.#event_math">Maths</a></li>
-            <li><a href=".//.#event-eng">Engineering</a></li>
-            <li><a href="/.#event-it">Information Technology</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-12 col-md-3 text-center ">
-          <!--links create events text to create events page-->
-          <ul>
-            <li class="mb-2"><a href=".//create"><b> Create Events</b></a></li>
-            <li>Previously Created</li>
-            <li>Create New Event</li>
-          </ul>
-        </div>
-        <div class="col-sm-12 col-md-3 text-center ">
-          <!--Links bookings text to bookings page-->
-          <ul>
-            <li class="mb-2"><a href=".//history"><b>Bookings</b></a></li>
-            <li>Booking History</li>
-            <li>Book Events</li>
-          </ul>
-        </div>
-        <div class="col-sm-12 col-md-3 text-center">
-          <!--text regarding tickets (not protyped in this version but in another it would allow users to view each specific ticket they have bought in the past)-->
-          <ul>
-            <li class="mb-2"><a href=""><b>Tickets</b></a></li>
-            <li>Ticket History</li>
-          </ul>
-        </div>
-      </div>
-
-      <!--image website logo for footer-->
-      <div class="footer-img">
-        <a href="/">
-          <img src="./static/img/logo2.png" class="img-fluid" width="300px" height="200px" id="logo">
-        </a>
-      </div>
-      <div>
-        <!--website name and year-->
-        <p class="text-center">&copy; 2025 STEM Workshops</p>
-      </div>
-    </div>
-
-  </footer>
-
-
-</body>
-
-</html>

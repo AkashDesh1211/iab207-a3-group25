@@ -8,7 +8,6 @@ def index():
     return render_template('index.html')
 
 @main_bp.route('/history')
-
 def history():
     return render_template('booking_history.html')
 
@@ -22,3 +21,12 @@ def events():
 
 @main_bp.route('/details')
 def details():
+    return render_template('event_details.html')
+
+@main_bp.route('/login')
+def login():
+    return render_template('login.html')
+
+@main_bp.route('/register')
+def register():
+    return render_template('register.html')
