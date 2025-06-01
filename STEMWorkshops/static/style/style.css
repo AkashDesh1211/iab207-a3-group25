@@ -1,0 +1,395 @@
+.frontpage-cards {
+    display: flex;
+    justify-content: center;
+}
+
+.card-body {
+    background-color: #e3f2fd;
+}
+
+.card-body:hover {
+    background-color: inherit;
+}
+
+/* changes card background colour and opacity when event is hovered over */
+.card:hover {
+    background-color: #bedded;
+    border: 1px solid;
+    opacity: 92%;
+}
+
+
+
+
+
+
+
+/* === NAVIGATION BAR === */
+.navbar {
+    background-color: #e3f2fd;
+}
+
+.nav-item {
+    border-radius: 25px;
+}
+
+.nav-item:hover {
+    background-color: #bedded;
+}
+
+header {
+    background-color: #bedded;
+}
+
+.img-fluid {
+    object-fit: cover;
+}
+
+#profile-icon {
+    margin-top: 4px;
+    float: right;
+}
+
+/* === GENERAL BUTTON STYLE === */
+.btn-info {
+    background-color: #abc6d5 !important;
+    border: none !important;
+}
+
+/* === FOOTER === */
+footer {
+    background-color: #bedded;
+    padding: 10px;
+}
+
+.footer-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer ul, ul {
+    list-style-type: none;
+}
+
+footer a {
+    color: black;
+}
+
+/* === INDEX PAGE === */
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-item img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.category-title, .browse-title {
+    background-color: #bedded;
+    padding: 15px;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.logo {
+    width: 30%;
+    border-radius: 50px;
+}
+
+.categories {
+    background-color: white;
+    border-radius: 25px;
+    color: black;
+    height: 90%;
+}
+
+.categories:hover {
+    opacity: 0.92;
+    background-color: #bedded;
+    border: 1px solid;
+}
+
+.dropdown-section, .browse-header, .select-category {
+    background-color: #e3f2fd;
+    padding: 5px;
+}
+
+.select-category {
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.card-body {
+    background-color: #e3f2fd;
+}
+
+.card:hover {
+    background-color: #bedded;
+    border: 1px solid;
+    opacity: 0.92;
+}
+
+.detail, .title {
+    color: black;
+}
+
+.datetime {
+    color: navy;
+}
+
+.category-border {
+    border-top: 1px solid darkgrey;
+    border-bottom: 1px solid darkgray;
+    margin: 0 40px;
+}
+
+/* === CREATE EVENT PAGE === */
+.create-events-header {
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    background-color: #bedded;
+}
+
+#add-image {
+    background-color: rgb(201, 201, 201);
+    border: 1px solid;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-image-text {
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+#image-upload {
+    display: none;
+}
+
+label {
+    font-size: 1rem;
+}
+
+.heading-info {
+    background-color: #bedded;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 1rem;
+}
+
+.background-colour {
+    background-color: #e3f2fd;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.border-info {
+    border-radius: 25px;
+    background-color: #bedded;
+}
+
+/* === EVENT DETAILS PAGE === */
+.back-arrow {
+    object-fit: cover;
+    width: 90%;
+}
+
+.event-heading {
+    background-color: #bedded;
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#booking-summary {
+    background-color: #bedded;
+    border-radius: 25px;
+}
+
+.summary-details,
+#ticket-info {
+    border-bottom: 1px solid darkgray;
+}
+
+#ticket-info {
+    border-top: 1px solid darkgray;
+}
+
+#ticket-quantity {
+    width: 70px;
+}
+
+.evet-images {
+    display: flex;
+    justify-content: center;
+}
+
+.event-summary {
+    background-color: #e3f2fd;
+}
+
+.event-details {
+    border-radius: 25px;
+    background-color: white;
+}
+
+.summary {
+    border-bottom: 2px inset;
+}
+
+.event-info {
+    background-color: #bedded;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.ticket-price {
+    font-size: 20px;
+    color: green;
+}
+
+.ticket {
+    display: flex;
+    align-items: center;
+}
+
+#ticket-footer {
+    display: flex;
+    justify-content: left;
+}
+
+.refund {
+    margin-top: -15px;
+}
+
+.book-button {
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.event-description {
+    border-top: 2px outset;
+    border-bottom: 2px inset;
+}
+
+.special-details, .location {
+    background-color: #e3f2fd;
+    border-radius: 25px;
+}
+
+.map {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#transport-info {
+    background-color: #bedded;
+    border-radius: 25px;
+}
+
+.location-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #e3f2fd;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.location-info-row {
+    background-color: #bedded;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.event-creator {
+    background-color: #bedded;
+    border-radius: 25px;
+}
+
+.creator-icon {
+    float: left;
+}
+
+.creator-name,
+.facilitator-name {
+    font-size: 20px;
+}
+
+.event-creator-name {
+    display: flex;
+    align-items: center;
+}
+
+.update-button {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* === COMMENT SECTION === */
+.row-event {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.comment-col-sm-12 {
+    display: flex;
+    justify-content: center;
+}
+
+.comment-date {
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.comment-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#comment-read {
+    color: blue;
+}
+
+#comment-reply {
+    color: rgb(73, 73, 73);
+}
+
+.comment-modal-body {
+    background-color: #e3f2fd;
+}
+
+#comment-header {
+    background-color: #bedded;
+}
+
+#comment-footer {
+    background-color: #e3f2fd;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reply-comment-row {
+    border-radius: 25px;
+    border: 1px solid;
+}
+
+.comment-header-reply-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
