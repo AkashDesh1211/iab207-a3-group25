@@ -27,8 +27,12 @@
             <img src="./static/img/event1.jpg" class="d-block w-100 img-fluid" alt="...">
             <!--message located on first carousel slide to welcome the user who has just logged in (acts as a confirmation that the user is logged in)-->
             <div class="carousel-caption d-block ">
+              {% if current_user.is_authenticated %}
               <!--dispalys the name of the user logged in (assumed that the user is already logged in within this prototype)-->
-              <h1>Welcome Alicia Larme...</h1>
+              <h1>Hello, {{current_user.name}}...</h1>
+              {% else %}
+              <h1>Welcome...</h1>
+              {% endif %}
             </div>
           </div>
           <!--image of second event-->
