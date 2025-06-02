@@ -420,6 +420,8 @@ label {
     background-color:#e3f2fd ;
 }
 
-.booking-card.card:hover {
-    background-color:#bedded;
+.booking-card:hover {
+    background-color: #bedded;
+    border: 1px solid;
+    opacity: 92%;
 }
