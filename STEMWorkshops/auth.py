@@ -31,7 +31,11 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             #commit to the database and redirect to HTML page
+
+            #automatically logs in user
+            login_user(new_user)
             return redirect(url_for('main.index'))
+    
     #the else is called when the HTTP request calling this page is a GET
     else:
         return render_template('user.html', form=register, heading='Register')
