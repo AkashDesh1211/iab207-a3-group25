@@ -418,6 +418,7 @@ label {
 
 .booking-card {
     background-color:#e3f2fd ;
+    transition: 0.35s;
 }
 
 .booking-card:hover {
