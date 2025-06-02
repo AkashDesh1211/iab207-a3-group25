@@ -9,6 +9,7 @@ def index():
     return render_template('index.html')
 
 @main_bp.route('/history')
+@login_required
 def history():
     return render_template('booking_history.html')
 
