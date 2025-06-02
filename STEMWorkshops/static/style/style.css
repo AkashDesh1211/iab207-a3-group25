@@ -86,11 +86,15 @@ footer a {
     object-fit: cover;
 }
 
-.category-title, .browse-title {
+.category-title {
     background-color: #bedded;
     padding: 15px;
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
+}
+
+.browse-title {
+    background-color: #bedded;
 }
 
 .logo {
@@ -111,10 +115,14 @@ footer a {
     border: 1px solid;
 }
 
-.dropdown-section, .browse-header, .select-category {
+.dropdown-section, .select-category {
     background-color: #e3f2fd;
     padding: 5px;
 }
+
+ .browse-header {
+    background-color: #e3f2fd;
+ }
 
 .select-category {
     border-bottom-right-radius: 25px;
