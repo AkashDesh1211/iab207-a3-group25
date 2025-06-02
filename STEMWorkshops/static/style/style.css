@@ -3,9 +3,7 @@
     justify-content: center;
 }
 
-.card-body {
-    background-color: #e3f2fd;
-}
+
 
 .card-body:hover {
     background-color: inherit;
@@ -43,6 +41,7 @@ header {
 
 .img-fluid {
     object-fit: cover;
+   
 }
 
 #profile-icon {
@@ -132,19 +131,13 @@ footer a {
     border-bottom-left-radius: 25px;
 }
 
-.card-body {
-    background-color: #e3f2fd;
-}
+
 
 .card {
     transition: 0.35s;
 }
 
-.card:hover {
-    background-color: #bedded;
-    border: 1px solid;
-    opacity: 0.92;
-}
+
 
 .detail, .title {
     color: black;
@@ -207,7 +200,7 @@ label {
     background-color: #bedded;
 }
 
-/* === EVENT DETAILS PAGE === */
+/* Event details page CSS */
 .back-arrow {
     object-fit: cover;
     width: 90%;
@@ -417,4 +410,16 @@ label {
 
 .event-name {
     color: black;
+}
+
+.card-body {
+    background-color: #e3f2fd;
+}
+
+.booking-card {
+    background-color:#e3f2fd ;
+}
+
+.booking-card.card:hover {
+    background-color:#bedded;
 }
