@@ -12,6 +12,9 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(255), nullable=False)
     comments = db.relationship('Comment', backref='user')
 
+    def get_id(self):
+        return (self.user_id)
+
 class Event(db.Model):
     __tablename__ = 'events'
     event_id = db.Column(db.Integer, primary_key=True)
