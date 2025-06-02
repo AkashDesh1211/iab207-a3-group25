@@ -24,7 +24,7 @@
 
 
 
-/* === NAVIGATION BAR === */
+/* Navigation bar*/
 .navbar {
     background-color: #e3f2fd;
 }
@@ -50,13 +50,16 @@ header {
     float: right;
 }
 
-/* === GENERAL BUTTON STYLE === */
+
+
+
+/* Button CSS */
 .btn-info {
     background-color: #abc6d5 !important;
     border: none !important;
 }
 
-/* === FOOTER === */
+/* Footer CSS */
 footer {
     background-color: #bedded;
     padding: 10px;
@@ -76,7 +79,7 @@ footer a {
     color: black;
 }
 
-/* === INDEX PAGE === */
+/* Index CSS */
 .carousel-caption {
     background-color: rgba(0, 0, 0, 0.7);
 }
@@ -157,7 +160,7 @@ footer a {
     margin: 0 40px;
 }
 
-/* === CREATE EVENT PAGE === */
+/* Create Event Page CSS */
 .create-events-header {
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
@@ -349,7 +352,7 @@ label {
     padding: 1rem;
 }
 
-/* === COMMENT SECTION === */
+/* Comment Section CSS */
 .row-event {
     display: flex;
     flex-wrap: wrap;
@@ -404,4 +407,10 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+/* Booking history CSS */
+.booking-header {
+    background-color:  #bedded ;
 }
