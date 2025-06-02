@@ -414,3 +414,7 @@ label {
 .booking-header {
     background-color:  #bedded ;
 }
+
+.event-name {
+    color: black;
+}
