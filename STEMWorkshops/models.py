@@ -26,7 +26,8 @@ class Event(db.Model):
     event_address = db.Column(db.String(80))
     event_venue = db.Column(db.String(80))
     ticket_price = db.Column(db.Numeric(10,2), nullable=False)
-    ticket_policy = db.Column(db.String(100))
+    ticket_policy = db.Column(db.Integer)
+    max_num_tickets = db.Column(db.String(100))
     description = db.Column(db.String(200))
     image = db.Column(db.String(400))
 
