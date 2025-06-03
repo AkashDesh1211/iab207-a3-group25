@@ -357,6 +357,7 @@
           </div>
           <div class="col-8">
             <div class="text-end">
+               {% if current_user.is_authenticated %}
               <!--add new comment button that opens up a modal where users can type a new comment they want to post about an event-->
               <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#post-commment"> <span
                   id="plus-comment">
@@ -368,6 +369,8 @@
                   </svg> &nbsp;
                   <!--text on addd new comment button-->
                 </span> Add New Comment</button>
+                 {% else %}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -613,9 +616,12 @@
                         data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
                     </div>
                     <div class="col-6 text-end">
+                      {% if current_user.is_authenticated %}
                       <!--reply text opens a modal where users can then write a reply to the comment they selected-->
                       <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
                         data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
+                        {% else %}
+                         {% endif %}
                     </div>
                   </div>
                 </div>
