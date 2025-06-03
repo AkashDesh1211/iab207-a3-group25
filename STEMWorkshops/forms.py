@@ -39,3 +39,4 @@ class EventsForm(FlaskForm):
     image = FileField('Destination Image', validators=[
         FileRequired(message = 'Image cannot be empty'),
         FileAllowed(ALLOWED_FILE, message='Only supports png, jpg, JPG, PNG')])
+    submit = SubmitField
