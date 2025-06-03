@@ -18,7 +18,16 @@ class User(db.Model, UserMixin):
 class Event(db.Model):
     __tablename__ = 'events'
     event_id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
+    event_name = db.Column(db.String(80), nullable=False)
+    event_start = db.Column(db.DateTime)
+    event_end = db.Column(db.DateTime)
+    STEM_category = db.Column(db.Enum("Science", "Information Technology", "Maths", "Engineering"), nullable=False)
+    event_type = db.Column(db.Enum("Online", "In-person"))
+    event_address = db.Column(db.String(80))
+    event_venue = db.Column(db.String(80))
+    ticket_price = db.Column(db.Numeric(10,2), nullable=False)
+    ticket_policy = db.Column(db.Integer)
+    max_num_tickets = db.Column(db.String(100))
     description = db.Column(db.String(200))
     image = db.Column(db.String(400))
 
