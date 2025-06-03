@@ -31,6 +31,7 @@ class Event(db.Model):
     max_num_tickets = db.Column(db.String(100))
     description = db.Column(db.String(200))
     image = db.Column(db.String(400))
+    event_status = db.Column(db.Enum("Open", "Inactive", "Sold Out", "Cancelled"))
 
     def get_id(self):
         return (self.event_id)
