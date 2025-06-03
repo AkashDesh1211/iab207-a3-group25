@@ -31,6 +31,9 @@ class Event(db.Model):
     description = db.Column(db.String(200))
     image = db.Column(db.String(400))
 
+    def get_id(self):
+        return (self.event_id)
+
 class Comment(db.Model):
     __tablename__ = 'comments'
     comment_id = db.Column(db.Integer, primary_key=True)
