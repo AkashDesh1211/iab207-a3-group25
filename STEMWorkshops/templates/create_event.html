@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% from "bootstrap5/form.html" import render_form %}
+{% from "bootstrap5/form.html" import render_field %}
 
   
 {% block header %}
@@ -58,41 +59,26 @@
 
                 <!--start of the input/text areas where users can add event details-->
                 <!--Event Name input-->
-                <div class="mt-2 p-3 ">
+                <div class="p-3 ">
                   <!--label naming the input event name (located above input area)-->
-                  <label for="event-name" class="form-label">Event Name</label>
                   <!--input where users can type event name-->
-                  <input type="text" class="form-control" id="event-name" required>
+                  {{render_field(form.event_name, class="form-control")}}
                 </div>
 
                 <!--STEM Field dropdown-->
-                <div class="mt-2 p-3">
+                <div class="p-3">
                   <!--label naming the dropdown STEM Category (located above dropdown)-->
-                  <label for="stem-category" class="form-label">STEM Category</label>
                   <!--dropdown where users can select STEM category (either science, IT, engineering or maths)-->
-                  <select class="form-select" id="stem-category" required>
+                  {{render_field(form.STEM_category, class="form")}}
                     <!--dropdown form has the word choose within it before an option is chosen (initial value)-->
-                    <option selected disabled value="">Choose...</option>
-                    <!--STEM category options-->
-                    <option>Science</option>
-                    <option>Information Technology</option>
-                    <option>Engineering</option>
-                    <option>Maths</option>
-                  </select>
                 </div>
 
                 <!--Event Type dropdown-->
-                <div class="mt-2 p-3">
+                <div class="p-3">
                   <!--label naming the dropdown Event type (located above dropdown)-->
-                  <label for="event-type" class="form-label">Event Type</label>
                   <!--dropdown where users can select event type (either in-person or online)-->
-                  <select class="form-select" id="event-type" required>
+                  {{render_field(form.event_type, class="form")}}
                     <!--dropdown form has the word choose within it before an option is chosen (initial value)-->
-                    <option selected disabled value="">Choose...</option>
-                    <!--event type options-->
-                    <option>In-person</option>
-                    <option>Online</option>
-                  </select>
                 </div>
 
                 
@@ -113,6 +99,7 @@
                   <path
                     d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z" />
                 </svg>
+                <div>{{render_field(form.image, class="form")}}</div>
                 <!--ensures the space between the image icon and add image text is not underlined-->
                 <span class="text-decoration-none">&nbsp;</span>
                 <!--text that users can click on to upload an image from files-->

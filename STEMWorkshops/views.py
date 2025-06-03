@@ -13,11 +13,6 @@ def index():
 def history():
     return render_template('booking_history.html')
 
-@main_bp.route('/create')
-@login_required
-def create():
-    return render_template('create_event.html')
-
 @main_bp.route('/events')
 def events():
     return render_template('event_category.html')

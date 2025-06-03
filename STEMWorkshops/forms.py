@@ -31,7 +31,7 @@ class EventsForm(FlaskForm):
     event_name=StringField(validators=[InputRequired('Please enter an event name')])
     start_time=DateTimeField(validators=[InputRequired()])
     end_time=DateTimeField(validators=[InputRequired()])
-    STEM_category=RadioField(choices=[('Science', 'Science'),('Information Technology', 'Information Technology'),('Maths', 'Maths'),('Engineering', 'Engineering')])
+    STEM_category=RadioField('STEM Category', choices=[('Science', 'Science'),('Information Technology', 'Information Technology'),('Maths', 'Maths'),('Engineering', 'Engineering')])
     event_type=RadioField(choices=[('Online','Online'),('In-Person','In-Person')])
     event_address=StringField(validators=[InputRequired()])
     event_venue=StringField(validators=[InputRequired()])
@@ -42,4 +42,4 @@ class EventsForm(FlaskForm):
     image = FileField('Event Image', validators=[
         FileRequired(message = 'Image cannot be empty'),
         FileAllowed(ALLOWED_FILE, message='Only supports png, jpg, JPG, PNG')])
-    submit = SubmitField
+    submit = SubmitField()
