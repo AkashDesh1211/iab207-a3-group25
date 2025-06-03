@@ -328,6 +328,7 @@
 
 
     <!--button that allows users to edit event details if they are in the same account the event was created on-->
+    {% if current_user.is_authenticated %}
     <div class="d-flex justify-content-center update-button ">
       <!--button links user to create events page so that they can edit event details-->
       <a href="/create" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
@@ -342,7 +343,10 @@
           <!--text on update event details button-->
           Update Event Details</button>
       </a>
+     
     </div>
+     {% else %}
+    {% endif %}
 
 
 
@@ -369,6 +373,18 @@
                   <!--text on addd new comment button-->
                 </span> Add New Comment</button>
                  {% else %}
+                 <a href="/login">
+                  <button type="button" class="btn btn-info" > 
+                    <span id="plus-comment">
+                  <!--plus icon-->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                  </svg> &nbsp;
+                  <!--text on addd new comment button-->
+                </span> Add New Comment</button>
+                </a>
                 {% endif %}
             </div>
           </div>
