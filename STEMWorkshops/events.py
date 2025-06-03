@@ -8,7 +8,7 @@ from flask_login import login_required, current_user
 
 
 
-events_bp = Blueprint('main', __name__)
+events_bp = Blueprint('events', __name__)
 
 @events_bp.route('/create', methods=['GET', 'POST'])
 @login_required
@@ -42,7 +42,7 @@ def create_event():
         #Always end with redirect when form is valid
         return redirect(url_for('new_event.create_event'))
 
-    return render_template('create_event.html', new_event=new_event )
+    return render_template('create_event.html', new_event=new_event, form=create_event)
 
 def check_upload_file(form):
   # get file data from form  
