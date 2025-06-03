@@ -19,8 +19,9 @@ class Event(db.Model):
     __tablename__ = 'events'
     event_id = db.Column(db.Integer, primary_key=True)
     event_name = db.Column(db.String(80), nullable=False)
-    event_start = db.Column(db.DateTime)
-    event_end = db.Column(db.DateTime)
+    event_date = db.Column(db.Date)
+    start_time = db.Column(db.Time)
+    end_time = db.Column(db.Time)
     STEM_category = db.Column(db.Enum("Science", "Information Technology", "Maths", "Engineering"), nullable=False)
     event_type = db.Column(db.Enum("Online", "In-person"))
     event_address = db.Column(db.String(80))
