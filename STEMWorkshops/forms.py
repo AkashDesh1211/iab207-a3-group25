@@ -38,7 +38,7 @@ class EventsForm(FlaskForm):
     ticket_policy=StringField(validators=[InputRequired()])
     max_num_tickets=StringField(validators=[InputRequired()])
     description=StringField(validators=[InputRequired()])
-    image = FileField('Destination Image', validators=[
+    image = FileField('Event Image', validators=[
         FileRequired(message = 'Image cannot be empty'),
         FileAllowed(ALLOWED_FILE, message='Only supports png, jpg, JPG, PNG')])
     submit = SubmitField

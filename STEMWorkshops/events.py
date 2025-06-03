@@ -9,7 +9,37 @@ from flask_login import login_required, current_user
 
 events_bp = Blueprint('main', __name__)
 
-@events_bp.route('/create')
+@events_bp.route('/create', methods=['GET', 'POST'])
 @login_required
-def create():
-    return render_template('create_event.html')
+def create_event():
+    create_event = EventsForm()
+    if (create_event.validate_on_submit()==True):
+        # call the function that checks and returns image
+        db_file_path = check_upload_file(create_event)
+
+        #get event details from form
+        event_name=create_event.event_name.data
+        event_date=create_event.event_date.data
+        start_time=create_event.start_time.data
+        end_time=create_event.end_time.data
+        STEM_category=create_event.STEM_category.data
+        event_type=create_event.event_type.data
+        event_address=create_event.event_address.data
+        event_venue=create_event.event_venue.data
+        ticket_price=create_event.ticket_price.data
+        ticket_policy=create_event.ticket_policy.data
+        max_num_tickets=create_event.max_num_tickets.data
+        description=create_event.description.data
+        
+        new_event = Event(event_name=event_name, event_date=event_date, start_time=start_time, end_time=end_time, STEM_category=STEM_category, event_type=event_type, event_address=event_address, event_venue=event_venue, ticket_price=ticket_price, ticket_policy=ticket_policy, max_num_tickets=max_num_tickets, description=description, image=db_file_path)
+
+        # add the object to the db session
+        db.session.add( new_event )
+        # commit to the database
+        db.session.commit()
+        flash('Successfully created a new event')
+
+        #Always end with redirect when form is valid
+        return redirect(url_for('new_event.create_event'))
+
+    return render_template('create_event.html', new_event=new_event )
