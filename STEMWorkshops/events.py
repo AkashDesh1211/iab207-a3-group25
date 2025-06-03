@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 from flask_login import login_required, current_user
 
 
+
 events_bp = Blueprint('main', __name__)
 
 @events_bp.route('/create', methods=['GET', 'POST'])
@@ -19,7 +20,6 @@ def create_event():
 
         #get event details from form
         event_name=create_event.event_name.data
-        event_date=create_event.event_date.data
         start_time=create_event.start_time.data
         end_time=create_event.end_time.data
         STEM_category=create_event.STEM_category.data
@@ -31,7 +31,7 @@ def create_event():
         max_num_tickets=create_event.max_num_tickets.data
         description=create_event.description.data
         
-        new_event = Event(event_name=event_name, event_date=event_date, start_time=start_time, end_time=end_time, STEM_category=STEM_category, event_type=event_type, event_address=event_address, event_venue=event_venue, ticket_price=ticket_price, ticket_policy=ticket_policy, max_num_tickets=max_num_tickets, description=description, image=db_file_path)
+        new_event = Event(event_name=event_name, start_time=start_time, end_time=end_time, STEM_category=STEM_category, event_type=event_type, event_address=event_address, event_venue=event_venue, ticket_price=ticket_price, ticket_policy=ticket_policy, max_num_tickets=max_num_tickets, description=description, image=db_file_path)
 
         # add the object to the db session
         db.session.add( new_event )

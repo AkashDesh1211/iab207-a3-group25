@@ -3,6 +3,8 @@ from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordFiel
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
+
+
 ALLOWED_FILE = {'PNG', 'JPG', 'JPEG', 'png', 'jpg', 'jpeg'}
 
 # creates the login information
@@ -27,9 +29,8 @@ class RegisterForm(FlaskForm):
 
 class EventsForm(FlaskForm):
     event_name=StringField(validators=[InputRequired('Please enter an event name')])
-    event_date=DateField(validators=[InputRequired()])
-    start_time=TimeField(validators=[InputRequired()])
-    end_time=TimeField(validators=[InputRequired()])
+    start_time=DateTimeField(validators=[InputRequired()])
+    end_time=DateTimeField(validators=[InputRequired()])
     STEM_category=RadioField(choices=[('Science', 'Science'),('Information Technology', 'Information Technology'),('Maths', 'Maths'),('Engineering', 'Engineering')])
     event_type=RadioField(choices=[('Online','Online'),('In-Person','In-Person')])
     event_address=StringField(validators=[InputRequired()])

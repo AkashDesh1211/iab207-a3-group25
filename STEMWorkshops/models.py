@@ -1,6 +1,8 @@
 from . import db
 from datetime import datetime
 from flask_login import UserMixin
+from datetime import datetime
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -19,9 +21,8 @@ class Event(db.Model):
     __tablename__ = 'events'
     event_id = db.Column(db.Integer, primary_key=True)
     event_name = db.Column(db.String(80), nullable=False)
-    event_date = db.Column(db.Date)
-    start_time = db.Column(db.Time)
-    end_time = db.Column(db.Time)
+    start_time = db.Column(db.DateTime)
+    end_time = db.Column(db.DateTime)
     STEM_category = db.Column(db.Enum("Science", "Information Technology", "Maths", "Engineering"), nullable=False)
     event_type = db.Column(db.Enum("Online", "In-person"))
     event_address = db.Column(db.String(80))
