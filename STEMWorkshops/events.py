@@ -8,7 +8,7 @@ from flask_login import login_required, current_user
 
 
 
-events_bp = Blueprint('main', __name__)
+events_bp = Blueprint('events', __name__)
 
 @events_bp.route('/create', methods=['GET', 'POST'])
 @login_required
