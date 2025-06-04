@@ -290,7 +290,7 @@
                 <div class="col-6 mt-2">
                   <h5 class="card-title ">
                     <!--clicking on the event name brings user to the event details page of the event selected--->
-                    <a href="/details" class="text-decoration-none">
+                    <a href="{{url_for('events.show', id=events.id)}}" class="text-decoration-none">
                       <div class="title">
                         <!--calendar icon that repsents event-->
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -308,7 +308,7 @@
                 <!--event status-->
                 <div class="col-6 text-end">
                   <!--clicking on the event status button brings user to the event details page of the event selected--->
-                  <a href="/details" class="text-decoration-none">
+                  <a href="{{url_for('events.show', id=events.id)}}" class="text-decoration-none">
                     <!--event status text - located within a button coloured in a way that reflects the status (e.g green to represent open)-->
                     <!--signals the status of the event-->
             <button type="button" class=" btn btn-md
@@ -326,7 +326,7 @@
 
               <!--event time and date-->
               <!--clicking on the event date/time brings user to the event details page of the event selected--->
-              <a href="/details" class="text-decoration-none">
+              <a href="{{url_for('events.show', id=events.id)}}" class="text-decoration-none">
                 <!--row allows event date and time to be located next to each other-->
                 <div class="row mb-1 ">
 
@@ -365,7 +365,7 @@
 
               <!--location and event type details-->
               <!--clicking on the event location/type brings user to the event details page of the event selected--->
-              <a href="/details" class="text-decoration-none">
+              <a href="{{url_for('events.show', id=events.id)}}" class="text-decoration-none">
                 <div class="card-text">
                   <!--location details-->
                   <p class="detail mb-1">
