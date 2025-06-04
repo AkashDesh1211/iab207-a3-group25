@@ -11,7 +11,7 @@ main_bp = Blueprint('main', __name__)
 @main_bp.route('/')
 def index():
     events = db.session.scalars(db.select(Event)).all()
-    return render_template('index.html')
+    return render_template('index.html', events=events)
 
 @main_bp.route('/history')
 @login_required
