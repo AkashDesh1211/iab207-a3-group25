@@ -279,7 +279,8 @@
 
     <div class="d-flex justify-content-center">
       <div class="row row-cols-2 row-cols-md-3 g-4 m-2">
-        <div>
+        <div class="card-group">
+          {% for event in events %}
           <div class="card">
             <img src="./static/img/event1.jpg" class="card-img-top" alt="./static/img/s-l1200.jpg">
             <div class="card-body">
@@ -384,6 +385,7 @@
               <small class="text-body-secondary">STEMWorkshops</small>
             </div>
           </div>
+          {% endfor %}
         </div>
 
 
