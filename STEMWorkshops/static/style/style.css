@@ -132,18 +132,44 @@ footer a {
 }
 
 
-
+/* Base card styling: makes sure all cards are flexible, full-height, and vertically structured */
 .card {
-    transition: 0.35s;
+    transition: 0.35s;             /* Smooth hover/transition effect */
+    height: 100% !important;       
+    width: 100% !important;        
+    display: flex;
+    flex-direction: column;
+}
+/* Ensures event card images are the same size and cropped neatly */
+.event-card-img {
+    width: 100% !important;          /* Fills full width of card */
+    height: 260px !important;        /* Fixed image height for consistency */
+    object-fit: cover !important; 
+    border-top-left-radius: 12px; 
+    border-top-right-radius: 12px;
+    display: block;
 }
 
-.event-card-img {
-    object-fit: cover !important;
-    width: 100% !important;
-    height: 15vw !important;
-    object-fit: cover !important;
-    
+/* On desktop screens (≥992px), force 3 cards per row with clean spacing */
+@media (min-width: 992px) {
+    .row.row-cols-md-3 > * {
+        flex: 0 0 30% !important;         /* Each card column is 30% wide */
+        max-width: 30% !important;        /* Prevents growing beyond 30% */
+        margin-left: 1%%;
+        margin-right: 1%;
+    }
 }
+/* Ensures all columns expand evenly and stretch cards to same height */
+.col {
+    display: flex !important;
+}
+/* Ensures cards using "card-event" class stretch full width of column */
+.card.card-event {
+    width: 100%;
+}
+
+
+
 
 
 
