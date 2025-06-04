@@ -18,7 +18,7 @@ def show(id):
     # If the database doesn't return a destination, show a 404 page
     if not event:
        abort(404)
-    return render_template('event_.html', event=event, form=form)
+    return render_template('event_details.html', event=event, form=form)
 
 @events_bp.route('/create', methods=['GET', 'POST'])
 @login_required
