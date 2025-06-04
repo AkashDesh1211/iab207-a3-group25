@@ -50,6 +50,7 @@ class Order(db.Model):
     __tablename__ = 'orders'
     order_id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.now())
-    ticket_quantity = db.Column(db.Integer)
+    ticket_quantity = db.Column(db.Decimal(10,2))
+    total_amount = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'))
