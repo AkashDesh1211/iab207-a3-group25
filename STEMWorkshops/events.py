@@ -49,7 +49,7 @@ def create_event():
         flash('Successfully created a new event')
 
         #Always end with redirect when form is valid
-        return redirect(url_for('main.events'))
+        return redirect(url_for('main.index'))
 
     return render_template('create_event.html', form=create_event)
 
