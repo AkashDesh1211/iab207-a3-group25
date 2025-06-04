@@ -10,6 +10,16 @@ from flask_login import login_required, current_user
 
 events_bp = Blueprint('events', __name__)
 
+@events_bp.route('/<id>')
+def show(id):
+    event = db.session.scalar(db.select(Event).where(Event.event_id==id))
+    # create the comment form
+    form = CommentsFrom()
+    # If the database doesn't return a destination, show a 404 page
+    if not event:
+       abort(404)
+    return render_template('event_.html', event=event, form=form)
+
 @events_bp.route('/create', methods=['GET', 'POST'])
 @login_required
 def create_event():
