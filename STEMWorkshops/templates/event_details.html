@@ -29,7 +29,15 @@
           </div>
           <div class="d-flex justify-content-end col-4 p-2">
             <!--signals the status of the event-->
-            <button type="button" class=" btn btn-success btn-lg">{{ event.event_status }}</button>
+            <button type="button" class=" btn btn-lg
+             {% if event.event_status == 'Open' %}
+             btn-success
+             {% elif event.event_status == 'Inactive' %}
+             btn-warning
+             {% else %}
+            btn-danger
+            {% endif %}
+             ">{{ event.event_status }}</button>
           </div>
         </div>
       </div>
