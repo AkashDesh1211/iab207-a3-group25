@@ -51,3 +51,7 @@ class CommentsForm(FlaskForm):
     text = TextAreaField('Comment', [InputRequired()])
     submit = SubmitField('Create Comment')
     
+
+
+class OrdersForm(FlaskForm):
+    submit=SubmitField("Book Ticket")
