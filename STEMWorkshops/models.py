@@ -24,7 +24,7 @@ class Event(db.Model):
     start_time = db.Column(db.DateTime)
     end_time = db.Column(db.DateTime)
     STEM_category = db.Column(db.Enum("Science", "Information Technology", "Maths", "Engineering"), nullable=False)
-    event_type = db.Column(db.Enum("Online", "In-person"))
+    event_type = db.Column(db.Enum("Online", "In-Person"))
     event_address = db.Column(db.String(80))
     event_venue = db.Column(db.String(80))
     ticket_price = db.Column(db.Numeric(10,2), nullable=False)
