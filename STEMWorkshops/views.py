@@ -22,7 +22,4 @@ def history():
 def events():
     return render_template('event_category.html')
 
-@main_bp.route('/details')
-def details():
-    return render_template('event_details.html')
 
