@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% from "bootstrap5/form.html" import render_form %}
+{% from "bootstrap5/form.html" import render_field %}
 
 {% block header %}
     
@@ -181,7 +182,8 @@
     </section>
 
 
-
+    <form method="post" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
     <!--Modal to book ticket (triggered when the book now button of the event details page is pressed)-->
     <!--modal comes from bootstrap-->
     <div class="modal fade" id="book-ticket" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -238,12 +240,14 @@
             <!--close button allows user to exit the modal and go back to event details page-->
             <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
             <!--book ticket button that allows the ticket/s to be booked and triggers a modal confirming the success of the ticket booking-->
+            {{render_field(form.submit, id="booking")}}
             <button type="button" class="btn btn-info" data-bs-target="#book-success" data-bs-toggle="modal"
               data-bs-dismiss="modal">Book Ticket</button>
           </div>
         </div>
       </div>
     </div>
+    </form>
 
 
 
