@@ -17,6 +17,7 @@ def create_event():
     if (create_event.validate_on_submit()==True):
         # call the function that checks and returns image
         db_file_path = check_upload_file(create_event)
+        print(current_user)
 
         #get event details from form
         event_name=create_event.event_name.data
@@ -31,8 +32,8 @@ def create_event():
         max_num_tickets=create_event.max_num_tickets.data
         description=create_event.description.data
         
-        new_event = Event(event_name=event_name, start_time=start_time, end_time=end_time, STEM_category=STEM_category, event_type=event_type, event_address=event_address, event_venue=event_venue, ticket_price=ticket_price, ticket_policy=ticket_policy, max_num_tickets=max_num_tickets, description=description, image=db_file_path, user=current_user)
-
+        new_event = Event(event_name=event_name, start_time=start_time, end_time=end_time, STEM_category=STEM_category, event_type=event_type, event_address=event_address, event_venue=event_venue, ticket_price=ticket_price, ticket_policy=ticket_policy, max_num_tickets=max_num_tickets, description=description, image=db_file_path, user_id=current_user.user_id)
+        print(current_user)
         # add the object to the db session
         db.session.add( new_event )
         # commit to the database
