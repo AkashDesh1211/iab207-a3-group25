@@ -278,11 +278,10 @@
 
 
     <div class="d-flex justify-content-center">
-      <div class="">
-        <div class="card-group mx-1">
+        <div class="row row-cols-md-3 g-4 m-2">
           {% for event in events %}
-          <div class="card mx-3">
-            <img src="./static/img/event1.jpg" class="card-img-top" alt="./static/img/s-l1200.jpg">
+          <div class="card">
+            <img src="{{event.image}}" class="card-img-top" alt="./static/img/s-l1200.jpg">
             <div class="card-body">
               <!--row that displays event name and status next to one another-->
               <div class="row mb-2">
@@ -299,7 +298,7 @@
                             d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
                         </svg>
                         <!--name of event-->
-                        Event 1
+                        {{event.event_name}}
                       </div>
                     </a>
                   </h5>
@@ -386,7 +385,6 @@
             </div>
           </div>
           {% endfor %}
-        </div>
   {% endblock %}
 
 
