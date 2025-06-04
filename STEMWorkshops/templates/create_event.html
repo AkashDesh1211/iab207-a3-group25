@@ -9,7 +9,7 @@
 
 
 {% block content %}
-  <form method="post" enctype="multipart/form-data">
+  <form method="post" action="" enctype="multipart/form-data">
 
     <!--Create events heading-->
     <section class=" mt-4  ">
@@ -107,7 +107,7 @@
                     Event Image
                   </h2>
                   <div class="row p-3">
-                  {{render_field(form.image, class="form-control")}}
+                  {{render_field(form.image, class="form-control-file")}}
                 </div>
               </div>
 
