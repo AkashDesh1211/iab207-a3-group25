@@ -54,4 +54,5 @@ class CommentsForm(FlaskForm):
 
 
 class OrdersForm(FlaskForm):
+    ticket_quantity=StringField(validators=[InputRequired()])
     submit=SubmitField("Book Ticket")
