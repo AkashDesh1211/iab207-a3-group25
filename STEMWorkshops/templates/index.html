@@ -282,7 +282,7 @@
         {% for event in events %}
         <div class="col">
           <div class="card">
-            <img src="{{event.image}}" class="card-img-top" alt="./static/img/s-l1200.jpg">
+            <img src="{{event.image}}" class="card-img-top img-fluid " alt="./static/img/s-l1200.jpg" >
             <div class="card-body">
               <!--row that displays event name and status next to one another-->
               <div class="row mb-2">
@@ -310,7 +310,16 @@
                   <!--clicking on the event status button brings user to the event details page of the event selected--->
                   <a href="/details" class="text-decoration-none">
                     <!--event status text - located within a button coloured in a way that reflects the status (e.g green to represent open)-->
-                    <button type="button" class="btn btn-success rounded-pill"><b>Open</b></button>
+                    <!--signals the status of the event-->
+            <button type="button" class=" btn btn-md
+             {% if event.event_status == 'Open' %}
+             btn-success
+             {% elif event.event_status == 'Inactive' %}
+             btn-warning
+             {% else %}
+            btn-danger
+            {% endif %}
+             ">{{ event.event_status }}</button>
                   </a>
                 </div>
               </div>
@@ -333,7 +342,7 @@
                           d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
                       </svg>
                       <!--text displaying date of event-->
-                      <b>2nd June 2025 </b>
+                      <b>{{event.start_time}} </b>
                     </p>
                   </div>
 
@@ -347,7 +356,7 @@
                           d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
                       </svg>
                       <!--text displaying start and end time of event-->
-                      <b>3pm - 5pm </b>
+                      <b>{{event.end_time}} </b>
                     </p>
                   </div>
                 </div>
@@ -366,17 +375,17 @@
                       <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
                     </svg>
                     <!--name of event's location-->
-                    <b>Location:</b> 100 James Rd
+                    <b>Location:</b> {{event.event_venue}}, {{event.event_address}}
                   </p>
                   <!--event type details-->
                   <p class="detail mb-1">
                     <!--name of event type-->
-                    <b>Event Type:</b> In-person
+                    <b>Event Type:</b> {{event.event_type}}
                   </p>
                    <!--Event category-->
                    <p class="detail mb-1">
                     <!--name of event type-->
-                    <b>Category:</b> Science
+                    <b>Category:</b> {{event.STEM_category}}
                   </p>
                 </div>
               </a>
