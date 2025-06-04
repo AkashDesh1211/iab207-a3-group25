@@ -120,7 +120,7 @@
 
               <!--start of the input/text areas where users can add event details-->
               <!--event date and time details section (located below the upload image section)-->
-              <div class="p-3  mt-4">
+              <div class="p-3  mt-2">
                 <div class="border-info">
                   <!--heading for date/time detail section-->
                   <h2 class="heading-info text-center">
@@ -232,34 +232,47 @@
                   </h2>
 
                   <!--start of the input/text areas where users can add event details-->
+                  
+
+
+                  <div class="row p-3">
+
+                    <div class="col-md-6 col-sm-12 ">
+                  <!--ticket price-->
+                  
+                    <!--label naming the number input ticket price (located about input)-->
+                    <div class="input-group">
+                      <!--input where users can select/type the ticket price
+                        - number within input increases or decreases by 1 whenever the up/down arrow is clicked on-->
+                      {{render_field(form.ticket_price, class="form-control", id="ticket-price", type="number", step="0.01", min="0")}}
+                    </div>
+                  
+                  </div>
+
+
+                  <div class="col-md-6 col-sm-12 ">
                   <!--maximun number of tickets-->
-                  <div class="p-3">
+                  
                     <!--label naming the number input Maximum Number of Tickets (located about input) -->
                     <div class="input-group">
                       <!--input where users can select/type the max number of tickets
                         - number within input increases or decreases by 1 whenever the up/down arrow is clicked on-->
                       {{render_field(form.max_num_tickets, class="form-control", id="ticket-max", type="number", step="1", min="0")}}
                     </div>
+                  
                   </div>
 
-                  <!--ticket price-->
-                  <div class="mt-2 p-3">
-                    <!--label naming the number input ticket price (located about input)-->
-                    <div class="input-group">
-                      <!--shows the currency of the ticket price-->
-                      <span class="input-group-text">$</span>
-                      <!--input where users can select/type the ticket price
-                        - number within input increases or decreases by 1 whenever the up/down arrow is clicked on-->
-                      {{render_field(form.ticket_price, class="form-control", id="ticket-price", type="number", step="0.01", min="0")}}
-                    </div>
+
                   </div>
 
                   <!--ticket refund policy-->
-                  <div class="mt-2 mb-4 p-3 pb-4">
+                  <div class="row  mb-4 p-3 pb-4">
                     <!--label naming the text area ticket refund policy (located about text area)-->
                     <!--text area where users can type the ticket refund details-->
                     {{render_field(form.ticket_policy, class="form", id="refund-ticket", rows="2")}}
                   </div>
+
+
                 </div>
               </div>
             </div>
