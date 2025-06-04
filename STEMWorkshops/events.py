@@ -56,3 +56,21 @@ def check_upload_file(form):
   # save the file and return the db upload path
   fp.save(upload_path)
   return db_upload_path
+
+
+
+
+
+@destbp.route('/<id>/comment', methods=['GET', 'POST'])  
+@login_required
+def create_comment(id): 
+   create_comment = CommentsFrom() 
+   if (create_comment.validate_on_submit()==True):
+      comment_text = create_comment.text.data
+
+      new_comment = Comment(text=comment_text, event_id=event.event.id, user_id=current_user.user_id )
+
+      db.session.add(new_comment) 
+      db.session.commit() 
+
+      return redirect(url_for('main.events', id=id))
