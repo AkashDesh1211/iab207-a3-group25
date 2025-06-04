@@ -150,7 +150,7 @@ footer a {
     display: block;
 }
 
-/* On desktop screens (≥992px), force 3 cards per row with clean spacing */
+/* On desktop screens, force 3 cards per row with clean spacing */
 @media (min-width: 992px) {
     .row.row-cols-md-3 > * {
         flex: 0 0 30% !important;         /* Each card column is 30% wide */
@@ -159,6 +159,16 @@ footer a {
         margin-right: 1%;
     }
 }
+/* On phone screens, force 1 card per row with full width */
+@media (max-width: 576px) {
+  .row.row-cols-md-3 > * {
+    flex: 0 0 100% !important;     /* Each card takes 100% width */
+    max-width: 100% !important;
+    margin-left: 0 !important;     /* Remove side margins */
+    margin-right: 0 !important;
+  }
+}
+
 /* Ensures all columns expand evenly and stretch cards to same height */
 .col {
     display: flex !important;
