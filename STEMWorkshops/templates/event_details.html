@@ -298,7 +298,7 @@
 
 
     <!--button that allows users to edit event details if they are in the same account the event was created on-->
-    {% if current_user.is_authenticated %}
+    {% if event.user_id == current_user.user_id %}
     <div class="d-flex justify-content-center update-button ">
       <!--button links user to create events page so that they can edit event details-->
       <a href="/create" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
