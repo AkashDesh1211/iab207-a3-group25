@@ -43,3 +43,11 @@ class EventsForm(FlaskForm):
         FileRequired(message = 'Image cannot be empty'),
         FileAllowed(ALLOWED_FILE, message='Only supports png, jpg, JPG, PNG')])
     submit = SubmitField("Create Event")
+
+
+
+    # User adding comments
+class CommentsFrom(FlaskForm):
+    text = TextAreaField('Comment', [InputRequired()])
+    submit = SubmitField('Create Comment')
+    
