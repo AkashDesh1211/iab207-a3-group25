@@ -9,7 +9,7 @@
 
 
 {% block content %}
-  
+  <form action="" method="post">
 
     <!--Create events heading-->
     <section class=" mt-4  ">
@@ -108,8 +108,7 @@
                     Event Image
                   </h2>
                   <div class="row p-3">
-                  <div class=" mb-4">{{render_field(form.image, class="form")}}</div>
-                    </div>
+                  {{render_field(form.image)}}
                 </div>
               </div>
 
@@ -310,7 +309,6 @@
           <!--button to create Event (submits the form once the event details have been filled out and creates/updates an event)-->
           <div class="col-12">
              {{render_field(form.submit)}}
-            
           </div>
 
 
