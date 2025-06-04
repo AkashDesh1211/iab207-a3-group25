@@ -9,7 +9,7 @@
 
 
 {% block content %}
-  <form action="" method="post">
+  <form method="post" enctype="multipart/form-data">
 
     <!--Create events heading-->
     <section class=" mt-4  ">
@@ -33,7 +33,6 @@
 
     <!--form containing inputs users can fill out in order to add details about an event (cannot submmit the form unless required fields have been filled out)-->
     <!--form template comes from bootstrap - create event button submits the form-->
-    <!--<form action="event_details.html" method="get"-->
       <!--Add General event information-->
       <section>
         <!--creates an area where all event detail input boxes and headings/labels are located-->
@@ -108,7 +107,7 @@
                     Event Image
                   </h2>
                   <div class="row p-3">
-                  {{render_field(form.image)}}
+                  {{render_field(form.image, class="form-control")}}
                 </div>
               </div>
 
