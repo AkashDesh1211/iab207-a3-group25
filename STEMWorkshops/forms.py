@@ -47,7 +47,7 @@ class EventsForm(FlaskForm):
 
 
     # User adding comments
-class CommentsFrom(FlaskForm):
+class CommentsForm(FlaskForm):
     text = TextAreaField('Comment', [InputRequired()])
     submit = SubmitField('Create Comment')
     
