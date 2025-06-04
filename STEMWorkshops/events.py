@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
 from .models import Event, Comment
-from .forms import EventsForm, CommentsFrom
+from .forms import EventsForm, CommentsForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
@@ -14,7 +14,7 @@ events_bp = Blueprint('events', __name__)
 def show(id):
     event = db.session.scalar(db.select(Event).where(Event.event_id==id))
     # create the comment form
-    form = CommentsFrom()
+    form = CommentsForm()
     # If the database doesn't return a destination, show a 404 page
     if not event:
        abort(404)
@@ -74,7 +74,7 @@ def check_upload_file(form):
 @events_bp.route('/<id>/comment', methods=['GET', 'POST'])  
 @login_required
 def create_comment(id): 
-   create_comment = CommentsFrom() 
+   create_comment = CommentsForm() 
    if (create_comment.validate_on_submit()==True):
       comment_text = create_comment.text.data
 
