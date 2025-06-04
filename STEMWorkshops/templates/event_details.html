@@ -25,7 +25,7 @@
             <!--creates space between stem category logo and event name-->
             &nbsp; &nbsp;
             <!--name of the event selected-->
-            <h1>Event </h1> 
+            <h1>{{ event.event_name }}</h1> 
           </div>
           <div class="d-flex justify-content-end col-4 p-2">
             <!--signals the status of the event-->
@@ -50,7 +50,7 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <!--1st event image-->
-                  <img src="./static/img/event1.jpg" class="d-block w-100" alt="...">
+                  <img src="{{ event.image }}" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
                   <!--2nd event image-->
@@ -115,7 +115,7 @@
                     </h3>
                     <p class="ms-4 ">
                       <!--date of event-->
-                      <b>Date:</b> 22nd June 2025 <br>
+                      <b>Date:</b> {{ event.start_time }} <br>
                       <!--start and end time of event-->
                       <b>Time:</b> 3pm - 5pm <br>
                     </p>
@@ -136,9 +136,9 @@
                       </h3>
                       <p class="ms-4 ">
                         <!--venue name of event-->
-                        <b>Venue:</b> QUT <br>
+                        <b>Venue:</b> {{ event.event_venue }} <br>
                         <!--address of the venue that event is being held at-->
-                        <b>Address:</b> 100 James Rd <br>
+                        <b>Address:</b> {{ event.event_address }} <br>
                       </p>
                     </div>
                   </div>
@@ -150,9 +150,9 @@
               <div class="summary">
                 <p class=" ms-4 pt-3">
                   <!--category of the event-->
-                  <b>STEM Category:</b> Science <br>
+                  <b>STEM Category:</b> {{ event.STEM_category }} <br>
                   <!--type of event-->
-                  <b>Event Type:</b> In-person <br>
+                  <b>Event Type:</b> {{ event.event_type }} <br>
                 </p>
               </div>
 
@@ -172,11 +172,11 @@
                   </h3>
                   <p class="ticket ms-4">
                     <!--price of ticket for the event selected-->
-                    <b>Ticket Pricing: </b> &nbsp; <span class="ticket-price ">FREE</span>
+                    <b>Ticket Pricing: </b> &nbsp; <span class="ticket-price ">{{ event.ticket_price }}</span>
                   </p>
                   <p class="refund ms-4">
                     <!--ticket refund details-->
-                    <b>Refund Policy: </b> Can refund 7 days prior to event
+                    <b>Refund Policy: </b> {{ event.ticket_policy }}
                   </p>
                 </div>
                 <div class="book-button col-md-4 col-sm-12 text-start">
@@ -299,23 +299,7 @@
             </h2>
             <!--description of the event-->
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum. <br><br>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum. <br><br>
-              dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate.<br><br>
-              dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat.
+              {{ event.description }}
             </p>
           </div>
 
