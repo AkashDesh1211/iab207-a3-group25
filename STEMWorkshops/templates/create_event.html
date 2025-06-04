@@ -90,25 +90,33 @@
             <!--column containing the sections where users can add event image and add date and time event details (located to the right of the general event details section)-->
             <div class=" col-md-6 col-sm-12  ">
 
-              <!--upload image section-->
-              <div id="add-image" class=" mt-4">
-                <!--image icon -->
+
+              <!--start of the input/text areas where users can add event details-->
+              <!--event image details section -->
+              <div class="p-3  ">
+                <div class="border-info">
+                  <!--heading for image detail section-->
+                  <h2 class="heading-info text-center">
+                    <!--image icon -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                   class="bi bi-card-image" viewBox="0 0 16 16">
                   <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                   <path
                     d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z" />
                 </svg>
-                <div>{{render_field(form.image, class="form")}}</div>
-                <!--ensures the space between the image icon and add image text is not underlined-->
-                <span class="text-decoration-none">&nbsp;</span>
-                <!--text that users can click on to upload an image from files-->
-                <label for="image-upload" class="add-image-text">
-                  Add Image
-                </label>
-                <!--opens the users files when add image text is clicked on by user-->
-                <input type="file" id="image-upload">
+                    <!--title of image section-->
+                    Event Image
+                  </h2>
+                  <div class="row p-3">
+                  <div class=" mb-4">{{render_field(form.image, class="form")}}</div>
+                    </div>
+                </div>
               </div>
+
+
+
+
+
 
               <!--start of the input/text areas where users can add event details-->
               <!--event date and time details section (located below the upload image section)-->
