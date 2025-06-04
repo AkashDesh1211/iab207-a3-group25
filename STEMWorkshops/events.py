@@ -31,7 +31,7 @@ def create_event():
         max_num_tickets=create_event.max_num_tickets.data
         description=create_event.description.data
         
-        new_event = Event(event_name=event_name, start_time=start_time, end_time=end_time, STEM_category=STEM_category, event_type=event_type, event_address=event_address, event_venue=event_venue, ticket_price=ticket_price, ticket_policy=ticket_policy, max_num_tickets=max_num_tickets, description=description, image=db_file_path)
+        new_event = Event(event_name=event_name, start_time=start_time, end_time=end_time, STEM_category=STEM_category, event_type=event_type, event_address=event_address, event_venue=event_venue, ticket_price=ticket_price, ticket_policy=ticket_policy, max_num_tickets=max_num_tickets, description=description, image=db_file_path, user=current_user)
 
         # add the object to the db session
         db.session.add( new_event )
@@ -42,7 +42,7 @@ def create_event():
         #Always end with redirect when form is valid
         return redirect(url_for('main.events'))
 
-    return render_template('create_event.html', form=create_event)
+    return render_template('user.html', form=create_event)
 
 def check_upload_file(form):
   # get file data from form  
@@ -51,9 +51,9 @@ def check_upload_file(form):
   # get the current path of the module file… store image file relative to this path  
   BASE_PATH = os.path.dirname(__file__)
   # upload file location – directory of this file/static/image
-  upload_path = os.path.join(BASE_PATH, 'static/image', secure_filename(filename))
+  upload_path = os.path.join(BASE_PATH, 'static/img', secure_filename(filename))
   # store relative path in DB as image location in HTML is relative
-  db_upload_path = '/static/image/' + secure_filename(filename)
+  db_upload_path = '/static/img/' + secure_filename(filename)
   # save the file and return the db upload path
   fp.save(upload_path)
   return db_upload_path

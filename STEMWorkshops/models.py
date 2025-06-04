@@ -33,6 +33,7 @@ class Event(db.Model):
     description = db.Column(db.String(200))
     image = db.Column(db.String(400))
     event_status = db.Column(db.Enum("Open", "Inactive", "Sold Out", "Cancelled"))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
     def get_id(self):
         return (self.event_id)

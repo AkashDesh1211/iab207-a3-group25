@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, RadioField, IntegerField, DecimalField, DateField, TimeField
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, RadioField, IntegerField, DecimalField, DateField, TimeField, DateTimeLocalField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
@@ -29,8 +29,8 @@ class RegisterForm(FlaskForm):
 
 class EventsForm(FlaskForm):
     event_name=StringField(validators=[InputRequired('Please enter an event name')])
-    start_time=DateTimeField(validators=[InputRequired()])
-    end_time=DateTimeField(validators=[InputRequired()])
+    start_time=DateTimeLocalField(validators=[InputRequired()])
+    end_time=DateTimeLocalField(validators=[InputRequired()])
     STEM_category=RadioField('STEM Category', choices=[('Science', 'Science'),('Information Technology', 'Information Technology'),('Maths', 'Maths'),('Engineering', 'Engineering')])
     event_type=RadioField(choices=[('Online','Online'),('In-Person','In-Person')])
     event_address=StringField(validators=[InputRequired()])
