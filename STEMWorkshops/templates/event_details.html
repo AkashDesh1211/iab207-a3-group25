@@ -13,21 +13,20 @@
     <section class="event-heading mt-4  p-1">
       <div class="container mt-1  mb-2">
         <div class="row ">
-          <div class="d-flex justify-content-start col-4 p-2 ">
+          <div class="d-flex justify-content-start col-3 p-2 ">
             <!--back arrow that allows users to return back to the home page if the wrong event was selected-->
             <a href=".//">
               <img src="./static/img/backarrowBlue.png" class="back-arrow " width="50px" height="50px">
             </a>
           </div>
 
-          <div class="heading col-4 ">
+          <div class="heading col-6 ">
           
-            <!--creates space between stem category logo and event name-->
-            &nbsp; &nbsp;
+           
             <!--name of the event selected-->
             <h1>{{ event.event_name }}</h1> 
           </div>
-          <div class="d-flex justify-content-end col-4 p-2">
+          <div class="d-flex justify-content-end col-3 p-2">
             <!--signals the status of the event-->
             <button type="button" class=" btn btn-lg
              {% if event.event_status == 'Open' %}
@@ -96,9 +95,9 @@
                     </h3>
                     <p class="ms-4 ">
                       <!--date of event-->
-                      <b>Date:</b> {{ event.start_time }} <br>
+                      <b>Date:</b> {{event.start_time.strftime('%d/%m/%Y')}}  <br>
                       <!--start and end time of event-->
-                      <b>Time:</b> 3pm - 5pm <br>
+                      <b>Time:</b> {{event.end_time.strftime('%I:%M %p')}} - {{event.end_time.strftime('%I:%M %p')}}<br>
                     </p>
                   </div>
 
@@ -153,7 +152,13 @@
                   </h3>
                   <p class="ticket ms-4">
                     <!--price of ticket for the event selected-->
-                    <b>Ticket Pricing: </b> &nbsp; <span class="ticket-price ">{{ event.ticket_price }}</span>
+                    <b>Ticket Pricing: </b> &nbsp; <span class="ticket-price ">
+                      {% if event.ticket_price == '00.00' %}
+                      FREE
+                      {% else %}
+                      ${{ event.ticket_price }}
+                      {% endif %}
+                    </span>
                   </p>
                   <p class="refund ms-4">
                     <!--ticket refund details-->

@@ -295,6 +295,10 @@ label {
 
 .ticket-price {
     font-size: 20px;
+}
+
+.ticket-price-free {
+    font-size: 20px;
     color: green;
 }
 
