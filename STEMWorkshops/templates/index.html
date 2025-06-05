@@ -269,7 +269,13 @@
     - title changes depending on what dropdown item was selected or what was typed into the searchbar
     - title intially says all events with all the events being located underneath it-->
     <div id="event-all" class="all-event-heading mt-3 mb-5">
-      <h3 class=" d-flex justify-content-center">All Events</h3>
+      <h3 class=" d-flex justify-content-center">
+        {% if category %}
+          {{ category}} Events 
+          {% else %}
+            All Events 
+          {% endif %}
+      </h3>
     </div>
 
 
