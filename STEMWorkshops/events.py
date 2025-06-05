@@ -22,6 +22,18 @@ def show(id):
     return render_template('event_details.html', event=event, form=form)
 
 
+#cancel an event
+@events_bp.route('/<id>/cancel', methods=['POST'])
+@login_required
+def cancel_event(id):
+    event = db.session.scalar(db.select(Event).where(Event.event_id==id))
+
+    if event:
+        event.event_status = "Cancelled"
+        db.session.commit()
+        flash('Event has been cancelled')
+    return render_template('create_event.html', id=id)
+
 
 
 @events_bp.route('/history')
