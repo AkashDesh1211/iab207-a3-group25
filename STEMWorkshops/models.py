@@ -56,3 +56,5 @@ class Order(db.Model):
     total_amount = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'))
+
+    event=db.relationship('Event', backref='orders', lazy=True)
