@@ -28,7 +28,7 @@ def show(id):
 def booking_history():
     bookings = db.session.scalar(db.select(Order).where(Order.user_id==current_user.user_id)).all()
     
-    return render_template('event_details.html', bookings=bookings)
+    return render_template('booking_history.html', bookings=bookings)
 
 
 
