@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
-from .models import Event, Comment
-from .forms import EventsForm, CommentsForm
+from .models import Event, Comment, Order
+from .forms import EventsForm, CommentsForm, OrdersForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
