@@ -71,19 +71,19 @@ def check_upload_file(form):
 @events_bp.route('/<id>/booking', methods=['GET', 'POST'])  
 @login_required
 def booking(id):
-   booking = OrdersForm()
+   booking_form = OrdersForm()
    event = db.session.scalar(db.select(Event).where(Event.event_id==id))
-   if(booking.validate_on_submit()==True):
-      ticket_quantity = booking.ticket_quantity.data
+   if(booking_form.validate_on_submit()==True):
+      ticket_quantity = booking_form.ticket_quantity.data
 
-      new_booking = Order(created_at=datetime.now() ,ticket_quantity=ticket_quantity, user_id=current_user.user_id, event=Event.event_id)
+      new_booking = Order(created_at=datetime.now() ,ticket_quantity=ticket_quantity, user_id=current_user.user_id, event_id=Event.event_id)
       db.session.add(new_booking) 
       db.session.commit()  
 
       flash('Successfully booked event')
       return redirect(url_for('main.history'))  # Correct indentation
    
-   return render_template('user.html', form=booking, id=id)
+   return render_template('user.html', form=booking_form, id=id)
 
 
 
