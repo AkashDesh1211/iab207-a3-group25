@@ -96,7 +96,7 @@ def booking(id):
       db.session.commit()  
 
       flash('Successfully booked event')
-      return redirect(url_for('main.history'))  # Correct indentation
+      return redirect(url_for('events.booking_history'))  # Correct indentation
    
    return render_template('user.html', form=booking_form, id=id)
 
