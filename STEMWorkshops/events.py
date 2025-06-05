@@ -21,6 +21,19 @@ def show(id):
        abort(404)
     return render_template('event_details.html', event=event, form=form)
 
+
+
+
+@events_bp.route('/history')
+def booking_history():
+    bookings = db.session.scalar(db.select(Order).where(Order.user_id==current_user.id)).all()
+    
+    return render_template('event_details.html', bookings=bookings)
+
+
+
+
+
 @events_bp.route('/create', methods=['GET', 'POST'])
 @login_required
 def create_event():
