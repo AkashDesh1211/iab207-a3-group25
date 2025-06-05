@@ -24,9 +24,9 @@ def show(id):
 
 
 
-@events_bp.route('/history')
+@events_bp.route('/history', methods=['GET'])
 def booking_history():
-    bookings = db.session.scalar(db.select(Order).where(Order.user_id==current_user.id)).all()
+    bookings = db.session.scalar(db.select(Order).where(Order.user_id==current_user.user_id)).all()
     
     return render_template('event_details.html', bookings=bookings)
 
