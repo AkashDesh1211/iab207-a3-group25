@@ -338,115 +338,6 @@
       </div>
     </div>
 
-    <!-- Display Comments as Cards with Read More -->
-    <div class="row mt-4">
-      {% for comment in event.comments %}
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="d-flex align-items-center mb-2">
-                <img src="/static/img/facilitator.png" width="40" height="40" class="me-2 rounded-circle">
-                <div>
-                  <strong>{{ comment.user.name }}</strong>
-                  <div class="text-muted small">{{ comment.created_at.strftime('%d %B %Y') }}</div>
-                </div>
-              </div>
-              <p class="card-text">{{ comment.text[:140] }}{% if comment.text|length > 140 %}...{% endif %}</p>
-              {% if comment.text|length > 140 %}
-              <a href="#" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#fullCommentModal{{ comment.comment_id }}">Read More</a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-
-        <!-- Modal for Full Comment -->
-        <div class="modal fade" id="fullCommentModal{{ comment.comment_id }}" tabindex="-1" aria-labelledby="fullCommentLabel{{ comment.comment_id }}" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="fullCommentLabel{{ comment.comment_id }}">Full Comment</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div class="d-flex align-items-center mb-3">
-                  <img src="/static/img/facilitator.png" width="45" height="45" class="me-3 rounded-circle">
-                  <div>
-                    <h6 class="mb-0">{{ comment.user.name }}</h6>
-                    <small class="text-muted">{{ comment.created_at.strftime('%d %B %Y') }}</small>
-                  </div>
-                </div>
-                <p>{{ comment.text }}</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      {% else %}
-        <p>No comments yet.</p>
-      {% endfor %}
-    </div>
-
-    <!-- Collapsible Comment Form -->
-    {% if current_user.is_authenticated %}
-    <div id="comment-form" class="collapse mt-4">
-      <form method="POST" action="{{ url_for('events.create_comment', id=event.event_id) }}">
-        {{ form.hidden_tag() }}
-        <div class="mb-3">
-          {{ form.text.label }}
-          {{ form.text(rows=3, class="form-control") }}
-        </div>
-        {{ form.submit(class="btn btn-primary") }}
-      </form>
-    </div>
-    {% endif %}
-  </div>
-</section>
-<!-- END -->
-
-
-
-    <!--Comments (allows users to see comments, create and post new comments or reply to existing ones)-->
-    <section class="event-description mt-3">
-      <div class="container pt-3 pb-3 ">
-        <div class="row">
-          <div class="col-4 text-start">
-            <!--title of the comments section of the event details page-->
-            <h2 class="mb-4">Comments</h2>
-          </div>
-          <div class="col-8">
-            <div class="text-end">
-               {% if current_user.is_authenticated %}
-              <!--add new comment button that opens up a modal where users can type a new comment they want to post about an event-->
-              <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#post-commment"> <span
-                  id="plus-comment">
-                  <!--plus icon-->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                    class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
-                  </svg> &nbsp;
-                  <!--text on addd new comment button-->
-                </span> Add New Comment</button>
-                 {% else %}
-                 <a href="/login">
-                  <button type="button" class="btn btn-info" > 
-                    <span id="plus-comment">
-                  <!--plus icon-->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                    class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
-                  </svg> &nbsp;
-                  <!--text on addd new comment button-->
-                </span> Add New Comment</button>
-                </a>
-                {% endif %}
-            </div>
-          </div>
-        </div>
-
 
         <!--Modal to create new comment and post it (triggered when add new comment button is pressed)-->
         <!--modal from bootstrap-->
@@ -460,7 +351,7 @@
                 <h2 class="modal-title" id="exampleModalLabel">New Coment</h2>
                 <!--allows users to exit out of the modal and go back to event details page-->
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
+                </div>
               <!--contents within the modal-->
               <div class="comment-modal-body p-4">
                 <div class="event-creator-name mb-3">
@@ -468,7 +359,7 @@
                   <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px">
                   <!--account name of the current user logged in so they know which account they are posting the comment under-->
                   <p class=" facilitator-name m-2">Alicia Larme</p>
-                </div>
+              </div>
                 <div class="form-floating">
                   <!--area where user can type in the new comment they want to post-->
                   <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
@@ -530,15 +421,15 @@
                       <!--profile picture of the user who posted the comment-->
                       <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
                         class=" ms-1">
-                    </div>
+                  </div>
                     <div class=" mt-2  d-flex justify-content-center">
                       <div class="title">
                         <!--name of the user who posted the comment-->
                         <h6>Sam Jones</h6>
                         <!--date the comment was posted-->
                         <p class="comment-date"> 20th June 2025 </p>
-                      </div>
-                    </div>
+                </div>
+              </div>
                   </div>
                   <div class="card-text px-4">
                     <!--comment body/contents-->
