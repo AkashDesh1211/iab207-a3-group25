@@ -33,34 +33,24 @@
 
 
 
-    <!--booking history details-->
-    <section>
-      <div class="container">
-
-        
-        <!--first row of bookings-->
-        <div class="row">
-          {% for booking in bookings %}
-          <!--first booking history card-->
-          <div class="col-lg-6 col-md-12">
-            <div class=" card mb-3">
-              <div class="booking-card ">
-                <div class="row g-0">
-                  <div class="col-md-7">
-                    <!--image of the event that has previously been booked (postioned to the left of booking history details)-->
-                    <img src="{{ booking.event.image }}" class="img-fluid rounded-start" alt="..." height="100%"
-                      width="100%">
-                  </div>
-                  <div class="col-md-5">
-                    <!--booking history details-->
-                    <div class="card-body">
-                      <!--booking ID of previously booked event-->
-                      <h4 class="card-title">
+        <div class="d-flex justify-content-center">
+      <div class="row row-cols-md-3 g-4 m-2">
+        {% for booking in bookings %}
+        <div class="col">
+          <div class="card">
+            <img src="{{ booking.event.image }}" class="card-img-top img-fluid event-card-img" alt="./static/img/s-l1200.jpg" >
+            <div class="card-body">
+              <!--row that displays event name and status next to one another-->
+              <div class="row ">
+                <!--BookingID-->
+                  <h5 class="card-title ">
+                   <!--booking ID of previously booked event-->
                         <b>BookingID:</b> {{ booking.order_id }}
-                      </h4>
-                      <!--date and time of previously booked event (styled in a lighter and smaller font than other booking history details for greater contrast)-->
+                  </h5>    
+              </div>
+               <!--date and time of previously booked event (styled in a lighter and smaller font than other booking history details for greater contrast)-->
                       <p class="card-text"><small class="text-muted"><b>Booked:</b> {{ booking.created_at.strftime('%d/%m/%Y %I:%M %p') }}</small></p>
-                      <a href="/details" class="text-decoration-none">
+             
                         <!--event that has previously been booked-->
                         <h5 class="event-name card-text mt-2">
                           <!--calendar icon that represents event-->
@@ -72,22 +62,16 @@
                           <!--name of the event previously booked-->
                           <b>Event Name:</b> <br>{{ booking.event.event_name }}
                         </h5>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                      
             </div>
+            
           </div>
-
-{% endfor %}
+        </div>
+        
+      {% endfor %}
 </div>
- 
-          
+</div>
 
-    
-      </div>
-    </section>
 
    
   
