@@ -27,7 +27,7 @@ def show(id):
 @events_bp.route('/history')
 @login_required
 def booking_history():
-    bookings = db.session.scalars(db.select(Order).where(Order.user_id==current_user.user_id)).all()
+    bookings = db.session.scalars(db.select(Order).join(Event).where(Order.user_id==current_user.user_id)).all()
     
     return render_template('booking_history.html', bookings=bookings)
 
