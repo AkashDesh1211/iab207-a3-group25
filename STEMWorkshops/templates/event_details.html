@@ -322,34 +322,87 @@
     {% endif %}
 
 
-    <!-- START: Working Comment Display and Form -->
-<div class="mt-5">
-  <h4>Comments</h4>
-  <ul class="list-unstyled">
-    {% for comment in event.comments %}
-      <li class="mb-2">
-        <strong>{{ comment.user.name }}</strong> 
-        ({{ comment.created_at.strftime('%d %B %Y') }}): 
-        {{ comment.text }}
-      </li>
-    {% else %}
-      <li>No comments yet.</li>
-    {% endfor %}
-  </ul>
-
-  {% if current_user.is_authenticated %}
-  <form method="POST" action="{{ url_for('events.create_comment', id=event.event_id) }}">
-    {{ form.hidden_tag() }}
-    <div class="mb-3">
-      {{ form.text.label }}
-      {{ form.text(rows=3, class="form-control") }}
+<!-- Comments Section With Styled Cards and Full Comment Modal -->
+<section class="event-description mt-3">
+  <div class="container pt-3 pb-3">
+    <div class="row">
+      <div class="col-4 text-start">
+        <h2 class="mb-4">Comments</h2>
+      </div>
+      <div class="col-8 text-end">
+        {% if current_user.is_authenticated %}
+          <button type="button" class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#comment-form">Add New Comment</button>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}" class="btn btn-info">Log in to comment</a>
+        {% endif %}
+      </div>
     </div>
-    {{ form.submit(class="btn btn-primary") }}
-  </form>
-  {% else %}
-  <p><a href="{{ url_for('auth.login') }}">Log in</a> to post a comment.</p>
-  {% endif %}
-</div>
+
+    <!-- Display Comments as Cards with Read More -->
+    <div class="row mt-4">
+      {% for comment in event.comments %}
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <img src="/static/img/facilitator.png" width="40" height="40" class="me-2 rounded-circle">
+                <div>
+                  <strong>{{ comment.user.name }}</strong>
+                  <div class="text-muted small">{{ comment.created_at.strftime('%d %B %Y') }}</div>
+                </div>
+              </div>
+              <p class="card-text">{{ comment.text[:140] }}{% if comment.text|length > 140 %}...{% endif %}</p>
+              {% if comment.text|length > 140 %}
+              <a href="#" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#fullCommentModal{{ comment.comment_id }}">Read More</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal for Full Comment -->
+        <div class="modal fade" id="fullCommentModal{{ comment.comment_id }}" tabindex="-1" aria-labelledby="fullCommentLabel{{ comment.comment_id }}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="fullCommentLabel{{ comment.comment_id }}">Full Comment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="/static/img/facilitator.png" width="45" height="45" class="me-3 rounded-circle">
+                  <div>
+                    <h6 class="mb-0">{{ comment.user.name }}</h6>
+                    <small class="text-muted">{{ comment.created_at.strftime('%d %B %Y') }}</small>
+                  </div>
+                </div>
+                <p>{{ comment.text }}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <p>No comments yet.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Collapsible Comment Form -->
+    {% if current_user.is_authenticated %}
+    <div id="comment-form" class="collapse mt-4">
+      <form method="POST" action="{{ url_for('events.create_comment', id=event.event_id) }}">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+          {{ form.text.label }}
+          {{ form.text(rows=3, class="form-control") }}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+      </form>
+    </div>
+    {% endif %}
+  </div>
+</section>
 <!-- END -->
 
 
