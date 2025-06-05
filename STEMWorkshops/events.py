@@ -84,7 +84,7 @@ def booking(id):
       flash('Successfully booked event')
       return redirect(url_for('main.history'))  # Correct indentation
    
-   return render_template('event_details.html', booking_form=booking_form, id=id)
+   return render_template('user.html', form=booking_form, id=id)
 
 
 
