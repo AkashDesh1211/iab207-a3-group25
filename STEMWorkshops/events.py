@@ -32,7 +32,7 @@ def cancel_event(id):
         event.event_status = "Cancelled"
         db.session.commit()
         flash('Event has been cancelled')
-    return render_template('create_event.html', id=id)
+    return render_template('event_details.html', event=event)
 
 
 

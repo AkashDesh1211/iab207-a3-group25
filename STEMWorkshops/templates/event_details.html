@@ -316,7 +316,11 @@
           <!--text on update event details button-->
           Update Event Details</button>
       </a>
-     
+      
+      <form method="POST" action="{{ url_for('events.cancel_event', id=event.event_id)}}">
+        <button type="submit" class="btn btn-info">Cancel Event</button>
+      </form>
+
     </div>
      {% else %}
     {% endif %}
