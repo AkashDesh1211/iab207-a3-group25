@@ -75,14 +75,14 @@ def booking(id):
    if(booking.validate_on_submit()==True):
       ticket_quantity = booking.ticket_quantity.data
 
-      new_booking = Order(created_at=datetime.now ,ticket_quantity=ticket_quantity, user_id=current_user.user_id, event_id=Event.event_id)
+      new_booking = Order(created_at=datetime.now() ,ticket_quantity=ticket_quantity, user_id=current_user.user_id, event_id=Event.event_id)
       db.session.add(new_booking) 
       db.session.commit()  
 
       flash('Successfully booked event')
       return redirect(url_for('main.history'))  # Correct indentation
    
-   return render_template('event_details.html', form=booking)
+   return render_template('event_details.html', form=booking, id=id)
 
 
 
@@ -100,7 +100,10 @@ def create_comment(id):
       db.session.add(new_comment) 
       db.session.commit() 
 
-      return redirect(url_for('main.events', id=id))
+      flash('Comment Successfully Added')
+      return redirect(url_for('main.index'))
+   
+   return render_template('event_details.html', form=create_comment, id=id)
 
 
 
