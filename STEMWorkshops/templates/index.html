@@ -79,7 +79,7 @@
           <!--column for Science category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2">
             <!--links user to the section containing science events (located further down the home page)-->
-            <a href="{{ url_for('main.index', category='Science') }}" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Science') }}#browse-events" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories  m-2 p-2">
                 <!--image/logo for science category-->
@@ -93,7 +93,7 @@
           <!--column for IT category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
             <!--links user to the section containing IT events (located further down the home page)-->
-            <a href="{{ url_for('main.index', category='Information Technology') }}" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Information Technology') }}#browse-events" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories m-2 p-2">
                 <!--image/logo for IT category-->
@@ -107,7 +107,7 @@
           <!--column for engineering category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
             <!--links user to the section containing engineering events (located further down the home page)-->
-            <a href="{{ url_for('main.index', category='Engineering') }}" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Engineering') }}#browse-events" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories m-2 p-2">
                 <!--image/logo for engineering category-->
@@ -121,7 +121,7 @@
           <!--column for maths category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
             <!--links user to the section containing maths events (located further down the home page)-->
-            <a href="{{ url_for('main.index', category='Maths') }}" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Maths') }}#browse-events" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories m-2 p-2">
                 <!--image/logo for maths category-->
@@ -138,7 +138,7 @@
 
 
     <!--creates space bewtween STEM category section and browse events section-->
-    <div class="mb-5"></div>
+    <div class="mb-5" id="browse-events"></div>
 
 
     <!--browse events header - includes dropdowns to search events in different categories and a search bar -->
@@ -166,15 +166,15 @@
               <!--list of dropdown items specific to the category of events-->
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <!--shows user all the event cards (locates user to the event cards directly below header)-->
-                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index')}}">All</a></li>
+                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index')}}#browse-events">All</a></li>
                 <!--links user to the section containing science events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Science')}}">Science</a></li>
+                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Science')}}#browse-events">Science</a></li>
                 <!--links user to the section containing IT events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Information Technology')}}">Information Technology</a></li>
+                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Information Technology')}}#browse-events">Information Technology</a></li>
                 <!--links user to the section containing engineering events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Engineering')}}">Engineering</a></li>
+                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Engineering')}}#browse-events">Engineering</a></li>
                 <!--links user to the section containing maths events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Maths')}}">Maths</a></li>
+                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Maths')}}#browse-events">Maths</a></li>
               </ul>
             </div>
           </div>
@@ -192,11 +192,11 @@
               <!--list of dropdown items specific to the type of events-->
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <!--shows user all the event cards (locates user to the event cards directly below header)-->
-                <li><a class="dropdown-item" href="#event-all">All</a></li>
+                <li><a class="dropdown-item" href="{{url_for('main.index')}}#browse-events">All</a></li>
                 <!--shows user events that are marked as in-person only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
-                <li><a class="dropdown-item" href="#event-all">In-person</a></li>
+                <li><a class="dropdown-item" href="{{url_for('main.index', event_type='In-Person')}}#browse-events">In-person</a></li>
                 <!--shows user events that are marked as online only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
-                <li><a class="dropdown-item" href="#event-all">Online</a></li>
+                <li><a class="dropdown-item" href="{{url_for('main.index', event_type='Online')}}#browse-events">Online</a></li>
               </ul>
             </div>
           </div>
