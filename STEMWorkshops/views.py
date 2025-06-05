@@ -10,8 +10,9 @@ main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
 def index():
+    category = request.args.get('category')
     events = db.session.scalars(db.select(Event)).all()
-    return render_template('index.html', events=events)
+    return render_template('index.html', events=events, category=category)
 
 
 @main_bp.route('/events')

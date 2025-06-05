@@ -79,7 +79,7 @@
           <!--column for Science category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2">
             <!--links user to the section containing science events (located further down the home page)-->
-            <a href="#event-science" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Science') }}" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories  m-2 p-2">
                 <!--image/logo for science category-->
@@ -93,7 +93,7 @@
           <!--column for IT category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
             <!--links user to the section containing IT events (located further down the home page)-->
-            <a href="#event-it" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Information Technology') }}" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories m-2 p-2">
                 <!--image/logo for IT category-->
@@ -107,7 +107,7 @@
           <!--column for engineering category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
             <!--links user to the section containing engineering events (located further down the home page)-->
-            <a href="#event-eng" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Engineering') }}" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories m-2 p-2">
                 <!--image/logo for engineering category-->
@@ -121,7 +121,7 @@
           <!--column for maths category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
             <!--links user to the section containing maths events (located further down the home page)-->
-            <a href="#event_math" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Maths') }}" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories m-2 p-2">
                 <!--image/logo for maths category-->
@@ -166,15 +166,15 @@
               <!--list of dropdown items specific to the category of events-->
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <!--shows user all the event cards (locates user to the event cards directly below header)-->
-                <li><a class="dropdown-item text-decoration-none" href="#event-all">All</a></li>
+                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index')}}">All</a></li>
                 <!--links user to the section containing science events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="#event-science">Science</a></li>
+                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Science')}}">Science</a></li>
                 <!--links user to the section containing IT events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="#event-it">Information Technology</a></li>
+                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Information Technology')}}">Information Technology</a></li>
                 <!--links user to the section containing engineering events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="#event-eng">Engineering</a></li>
+                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Engineering')}}">Engineering</a></li>
                 <!--links user to the section containing maths events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="#event_math">Maths</a></li>
+                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Maths')}}">Maths</a></li>
               </ul>
             </div>
           </div>
@@ -250,7 +250,7 @@
             <!--Search bar to find events (located to the right of the dropdowns)-->
             <form class=" d-flex justify-content-start align-items-start mb-2">
               <!--input that users can type in to find specific events-->
-              <input class="form-control me-2 w-76" type="search" placeholder="Search" aria-label="Search">
+              <input class="form-control me-2 w-75" type="search" placeholder="Search" aria-label="Search">
               <!--button that allows users to search for events based on what they typed in the input-->
               <button class="btn btn-info" type="submit">Search</button>
             </form>
@@ -269,7 +269,13 @@
     - title changes depending on what dropdown item was selected or what was typed into the searchbar
     - title intially says all events with all the events being located underneath it-->
     <div id="event-all" class="all-event-heading mt-3 mb-5">
-      <h3 class=" d-flex justify-content-center">All Events</h3>
+      <h3 class=" d-flex justify-content-center">
+        {% if category %}
+          {{ category}} Events 
+          {% else %}
+            All Events 
+          {% endif %}
+      </h3>
     </div>
 
 
@@ -280,6 +286,7 @@
     <div class="d-flex justify-content-center">
       <div class="row row-cols-md-3 g-4 m-2">
         {% for event in events %}
+           {% if not category or event.STEM_category == category %}
         <div class="col">
           <div class="card">
             <img src="{{event.image}}" class="card-img-top img-fluid event-card-img" alt="./static/img/s-l1200.jpg" >
@@ -356,7 +363,7 @@
                           d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
                       </svg>
                       <!--text displaying start and end time of event-->
-                      <b>{{event.start_time.strftime('%I:%M %p')}} - {{event.end_time.strftime('%I:%M %p')}}</b>
+                      <b>{{event.end_time.strftime('%I:%M %p')}} - {{event.end_time.strftime('%I:%M %p')}}</b>
                     </p>
                   </div>
                 </div>
@@ -375,25 +382,17 @@
                       <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
                     </svg>
                     <!--name of event's location-->
-                    <b>-</b> {{event.event_venue}}, {{event.event_address}}
+                    <b>Location:</b> {{event.event_venue}}, {{event.event_address}}
                   </p>
                   <!--event type details-->
                   <p class="detail mb-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
-                      <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
-                      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                    </svg>
                     <!--name of event type-->
-                    <b>-</b> {{event.event_type}}
+                    <b>Event Type:</b> {{event.event_type}}
                   </p>
                    <!--Event category-->
                    <p class="detail mb-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
-                      <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2"/>
-                      <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0"/>
-                    </svg>
                     <!--name of event type-->
-                    <b>-</b> {{event.STEM_category}}
+                    <b>Category:</b> {{event.STEM_category}}
                   </p>
                 </div>
               </a>
@@ -403,6 +402,7 @@
             </div>
           </div>
         </div>
+        {%endif %}
       {% endfor %}
   {% endblock %}
 
