@@ -72,10 +72,11 @@ def check_upload_file(form):
 @login_required
 def booking(id):
    booking = OrdersForm()
+   event = db.session.scalar(db.select(Event).where(Event.event_id==id))
    if(booking.validate_on_submit()==True):
       ticket_quantity = booking.ticket_quantity.data
 
-      new_booking = Order(created_at=datetime.now() ,ticket_quantity=ticket_quantity, user_id=current_user.user_id, event_id=Event.event_id)
+      new_booking = Order(created_at=datetime.now() ,ticket_quantity=ticket_quantity, user_id=current_user.user_id, event=Event.event_id)
       db.session.add(new_booking) 
       db.session.commit()  
 
@@ -92,6 +93,7 @@ def booking(id):
 @login_required
 def create_comment(id): 
    create_comment = CommentsForm() 
+   
    if (create_comment.validate_on_submit()==True):
       comment_text = create_comment.text.data
 
