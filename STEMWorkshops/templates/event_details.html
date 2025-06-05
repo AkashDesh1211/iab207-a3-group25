@@ -322,6 +322,37 @@
     {% endif %}
 
 
+    <!-- START: Working Comment Display and Form -->
+<div class="mt-5">
+  <h4>Comments</h4>
+  <ul class="list-unstyled">
+    {% for comment in event.comments %}
+      <li class="mb-2">
+        <strong>{{ comment.user.user_name }}</strong> 
+        ({{ comment.created_at.strftime('%d %B %Y') }}): 
+        {{ comment.text }}
+      </li>
+    {% else %}
+      <li>No comments yet.</li>
+    {% endfor %}
+  </ul>
+
+  {% if current_user.is_authenticated %}
+  <form method="POST" action="{{ url_for('events.create_comment', id=event.event_id) }}">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+      {{ form.text.label }}
+      {{ form.text(rows=3, class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+  </form>
+  {% else %}
+  <p><a href="{{ url_for('auth.login') }}">Log in</a> to post a comment.</p>
+  {% endif %}
+</div>
+<!-- END -->
+
+
 
     <!--Comments (allows users to see comments, create and post new comments or reply to existing ones)-->
     <section class="event-description mt-3">

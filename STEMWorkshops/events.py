@@ -88,25 +88,40 @@ def booking(id):
 
 
 
-
-
-@events_bp.route('/<id>/comment', methods=['GET', 'POST'])  
+@events_bp.route('/<id>/comment', methods=['POST'])
 @login_required
-def create_comment(id): 
-   create_comment = CommentsForm() 
-   
-   if (create_comment.validate_on_submit()==True):
-      comment_text = create_comment.text.data
+def create_comment(id):
+    form = CommentsForm()
 
-      new_comment = Comment(text=comment_text, event_id=Event.event_id, user_id=current_user.user_id )
+    # Find the event by ID
+    event = db.session.scalar(db.select(Event).where(Event.event_id == id))
+    if not event:
+        abort(404)
 
-      db.session.add(new_comment) 
-      db.session.commit() 
+    if form.validate_on_submit():
+        comment_text = form.text.data
 
-      flash('Comment Successfully Added')
-      return redirect(url_for('main.index'))
-   
-   return render_template('event_details.html', form=create_comment, id=id)
+        new_comment = Comment(
+            text=comment_text,
+            event_id=event.event_id,
+            user_id=current_user.user_id
+        )
+
+        db.session.add(new_comment)
+        db.session.commit()
+
+        flash('Comment Successfully Added')
+        return redirect(url_for('events.show', id=id))
+
+    return render_template('event_details.html', event=event, form=form)
+
+
+
+
+
+
+  
+
 
 
 
