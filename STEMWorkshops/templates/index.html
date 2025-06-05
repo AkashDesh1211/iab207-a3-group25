@@ -79,7 +79,7 @@
           <!--column for Science category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2">
             <!--links user to the section containing science events (located further down the home page)-->
-            <a href="#event-science" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Science') }}" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories  m-2 p-2">
                 <!--image/logo for science category-->
@@ -93,7 +93,7 @@
           <!--column for IT category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
             <!--links user to the section containing IT events (located further down the home page)-->
-            <a href="#event-it" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Information Technology') }}" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories m-2 p-2">
                 <!--image/logo for IT category-->
@@ -107,7 +107,7 @@
           <!--column for engineering category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
             <!--links user to the section containing engineering events (located further down the home page)-->
-            <a href="#event-eng" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Engineering') }}" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories m-2 p-2">
                 <!--image/logo for engineering category-->
@@ -121,7 +121,7 @@
           <!--column for maths category-->
           <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
             <!--links user to the section containing maths events (located further down the home page)-->
-            <a href="#event_math" class="text-decoration-none">
+            <a href="{{ url_for('main.index', category='Maths') }}" class="text-decoration-none">
               <!--area containing category name and image-->
               <div class="categories m-2 p-2">
                 <!--image/logo for maths category-->
