@@ -327,7 +327,7 @@
   <ul class="list-unstyled">
     {% for comment in event.comments %}
       <li class="mb-2">
-        <strong>{{ comment.user.user_name }}</strong> 
+        <strong>{{ comment.user.name }}</strong> 
         ({{ comment.created_at.strftime('%d %B %Y') }}): 
         {{ comment.text }}
       </li>
