@@ -351,7 +351,7 @@
                 <h2 class="modal-title" id="exampleModalLabel">New Coment</h2>
                 <!--allows users to exit out of the modal and go back to event details page-->
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
+                </div>
               <!--contents within the modal-->
               <div class="comment-modal-body p-4">
                 <div class="event-creator-name mb-3">
@@ -359,7 +359,7 @@
                   <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px">
                   <!--account name of the current user logged in so they know which account they are posting the comment under-->
                   <p class=" facilitator-name m-2">Alicia Larme</p>
-                </div>
+              </div>
                 <div class="form-floating">
                   <!--area where user can type in the new comment they want to post-->
                   <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
@@ -421,15 +421,15 @@
                       <!--profile picture of the user who posted the comment-->
                       <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
                         class=" ms-1">
-                    </div>
+                  </div>
                     <div class=" mt-2  d-flex justify-content-center">
                       <div class="title">
                         <!--name of the user who posted the comment-->
                         <h6>Sam Jones</h6>
                         <!--date the comment was posted-->
                         <p class="comment-date"> 20th June 2025 </p>
-                      </div>
-                    </div>
+                </div>
+              </div>
                   </div>
                   <div class="card-text px-4">
                     <!--comment body/contents-->
@@ -479,7 +479,7 @@
                 <!--allows the user to exit out of the modal-->
                 <a href="./event_details.html"><button type="button" class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button></a>
-    </div>
+              </div>
               <div class="comment-modal-body p-4">
                 <!--title telling user that the comment below is the one they have chosen to reply to-->
                 <h5>Comment you want to reply to:</h5>
@@ -577,7 +577,7 @@
                       <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
                       <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
                         data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
-    </div>
+                    </div>
                     <div class="col-6 text-end">
                       {% if current_user.is_authenticated %}
                       <!--reply text opens a modal where users can then write a reply to the comment they selected-->
@@ -588,8 +588,8 @@
                           <!--reply text opens a modal where users can then write a reply to the comment they selected-->
                       <p class="detail text-end mt-2 mb-1" id="comment-reply" >Reply</p>
                         </a>
-    {% endif %}
-  </div>
+                         {% endif %}
+                    </div>
                   </div>
                 </div>
               </div>
