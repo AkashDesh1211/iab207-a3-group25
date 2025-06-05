@@ -47,7 +47,7 @@ class Comment(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'))
-
+# class of orders
 class Order(db.Model):
     __tablename__ = 'orders'
     order_id = db.Column(db.Integer, primary_key=True)
