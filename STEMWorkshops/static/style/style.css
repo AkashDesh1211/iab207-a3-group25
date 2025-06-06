@@ -465,3 +465,16 @@ label {
     border: 1px solid;
     opacity: 92%;
 }
+
+.event-image {
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .event-image {
+    max-height: 250px;
+  }
+}
