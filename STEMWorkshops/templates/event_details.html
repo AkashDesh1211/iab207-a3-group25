@@ -440,9 +440,28 @@
         <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3 mt-2">
          {% if event.event_status == 'Cancelled' %}
       {%else%}
+        <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancel-confirmation">Cancel Event</button>
+      
+      <!-- Modal for not booking tickets if the event status is something other than open-->
+<div class="modal fade" id="cancel-confirmation" tabindex="-1" aria-labelledby="cancel-confirmation" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to cancel this event?</h5>
+            
+      </div>
+     <div class="modal-footer justify-content-between">
+      <button type="button" class="btn btn-info " >No</button>
+
       <form method="POST" action="{{ url_for('events.cancel_event', id=event.event_id)}}">
-        <button type="submit" class="btn btn-danger">Cancel Event</button>
+      <button type="submit" class="btn btn-danger ">Yes, Cancel Event</button>
       </form>
+
+      </div>
+     </div>
+    </div>
+  </div>
+</div>
       {%endif%}
         </div>
 
