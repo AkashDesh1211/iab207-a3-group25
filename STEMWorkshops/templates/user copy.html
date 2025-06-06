@@ -16,14 +16,17 @@
 
 
 <!-- Form rendering is simple and easy if using WTForms and Bootstrap -->
-<div class="page-header mt-5 ms-2">
+<div class="page-header mt-5 d-flex justify-content-center align-items-center">
     <h4>{{heading}}</h4>
 </div>
 
 <!-- Form rendering is simple and easy if using WTForms and Bootstrap -->
-<div class="col-md-6 ms-2">
+<div class="d-flex justify-content-center align-items-center">
+<div class="col-md-6">
     {{render_form(form)}}
     <a href="/" type="button" class="btn btn-primary">Cancel</a>
 </div>
+</div>
+
 
 </html>
