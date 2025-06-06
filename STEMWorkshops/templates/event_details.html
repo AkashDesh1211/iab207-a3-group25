@@ -323,31 +323,7 @@
 
 
 
-    <!--button that allows users to edit event details if they are in the same account the event was created on-->
-    {% if event.user_id == current_user.user_id %}
-    <div class="d-flex justify-content-center update-button ">
-      <!--button links user to create events page so that they can edit event details-->
-      <a href="/create" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
-          <!--pencil in square icon that represents editting event detail-->
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square"
-            viewBox="0 0 16 16">
-            <path
-              d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-            <path fill-rule="evenodd"
-              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-          </svg> &nbsp;
-          <!--text on update event details button-->
-          Update Event Details</button>
-      </a>
-      
-      <form method="POST" action="{{ url_for('events.cancel_event', id=event.event_id)}}">
-        <button type="submit" class="btn btn-info">Cancel Event</button>
-      </form>
-
-    </div>
-     {% else %}
-    {% endif %}
-
+    
 
 <!-- Comments Section With Styled Cards and Full Comment Modal -->
 <section class="event-description mt-3">
@@ -432,6 +408,51 @@
 </section>
 <!-- END -->
 
+
+
+
+<!--button that allows users to edit event details if they are in the same account the event was created on-->
+    {% if event.user_id == current_user.user_id %}
+    <div class="container pt-3 pb-3 ">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3">
+          <h2>
+          Edit Event
+        </h2>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3">
+          <!--button links user to create events page so that they can edit event details-->
+      <a href="/create" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
+          <!--pencil in square icon that represents editting event detail-->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square"
+            viewBox="0 0 16 16">
+            <path
+              d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+            <path fill-rule="evenodd"
+              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+          </svg> &nbsp;
+          <!--text on update event details button-->
+          Update Event Details</button>
+      </a>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3">
+         {% if event.event_status == 'Cancelled' %}
+      {%else%}
+      <form method="POST" action="{{ url_for('events.cancel_event', id=event.event_id)}}">
+        <button type="submit" class="btn btn-danger">Cancel Event</button>
+      </form>
+      {%endif%}
+        </div>
+
+
+      </div>
+       
+
+    </div>
+     {% else %}
+    {% endif %}
 
 
    
