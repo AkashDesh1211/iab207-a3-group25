@@ -21,12 +21,12 @@
       <!--clicking on the logo navigates user back to home page-->
       <a href="/">
         <!--image of the logo-->
-        <img src="./static/img/logo2.png" class="img-fluid" width="300px" height="200px">
+        <img src="{{ url_for('static', filename='img/logo2.png') }}" class="img-fluid" width="300px" height="200px">
       </a>
       <!--profile picture of the account logged in-->
       <div>
       <a href="/login">
-        <img src="./static/img/profile.png" id="profile-icon" class="img-fluid" width="45px" height="45px">
+        <img src="{{ url_for('static', filename='img/profile.png') }}" id="profile-icon" class="img-fluid" width="45px" height="45px">
       </a>
       {% if current_user.is_authenticated %}
       <a type="submit" href="#" class="btn rounded-pill w-10 h-75 me-2 mt-2">{{current_user.name}}</a>
@@ -140,7 +140,7 @@
       <!--image website logo for footer-->
       <div class="footer-img">
         <a href="index.html">
-          <img src="./static/img/logo2.png" class="img-fluid" width="300px" height="200px" id="logo">
+          <img src="{{ url_for('static', filename='img/logo2.png') }}" class="img-fluid" width="300px" height="200px" id="logo">
         </a>
       </div>
       <div>
