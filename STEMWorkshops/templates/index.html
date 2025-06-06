@@ -348,7 +348,7 @@
                   <a href="{{url_for('events.show', id=events.id)}}" class="text-decoration-none">
                     <!--event status text - located within a button coloured in a way that reflects the status (e.g green to represent open)-->
                     <!--signals the status of the event-->
-            <button type="button" class=" btn btn-md
+            <button type="button" class=" btn btn-md rounded-pill
              {% if event.event_status == 'Open' %}
              btn-success
              {% elif event.event_status == 'Inactive' %}

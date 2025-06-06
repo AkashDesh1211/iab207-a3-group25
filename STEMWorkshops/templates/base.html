@@ -16,6 +16,34 @@
 
     <!-- Header -->
     <header>
+      <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Your Account</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex justify-content-center align-items-center mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                </svg>
+              </div>
+              <div class="d-flex justify-content-center align-items-center mt-1">
+                <h3>
+                  {{current_user.name}}
+                </h3>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-between">
+              <p>STEMWorkshops</p>
+              <a type="submit" href="/logout" class="btn btn-primary w-10 h-75 me-2 mt-2">Logout</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
          <!--top nav where logo and profile icon are located-->
     <div class=" d-flex justify-content-between  ms-2 me-2 mb-2" id="topnav">
       <!--clicking on the logo navigates user back to home page-->
@@ -25,12 +53,11 @@
       </a>
       <!--profile picture of the account logged in-->
       <div>
-      <a href="/login">
-        <img src="{{ url_for('static', filename='img/profile.png') }}" id="profile-icon" class="img-fluid" width="45px" height="45px">
-      </a>
       {% if current_user.is_authenticated %}
       <a type="submit" href="#" class="btn rounded-pill w-10 h-75 me-2 mt-2">{{current_user.name}}</a>
-      <a type="submit" href="/logout" class="btn btn-primary w-10 h-75 me-2 mt-2">Logout</a>
+      <a href="#" data-bs-toggle="modal" data-bs-target="#accountModal">
+        <img src="{{ url_for('static', filename='img/profile.png') }}" id="profile-icon" class="img-fluid" width="45px" height="45px">
+      </a>
       {% else %}
       <a type="submit" href="/login" class="btn btn-primary w-10 h-75 me-2 mt-2">Login</a>
       {% endif %}
