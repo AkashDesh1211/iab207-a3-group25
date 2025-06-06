@@ -80,7 +80,7 @@ def create_event():
         #Always end with redirect when form is valid
         return redirect(url_for('main.index'))
 
-    return render_template('create_event.html', form=create_event)
+    return render_template('create_event.html', form=create_event, heading='Create Event')
 
 def check_upload_file(form):
   # get file data from form  
