@@ -5,6 +5,7 @@ from . import db
 import os
 from werkzeug.utils import secure_filename
 from flask_login import login_required, current_user
+from datetime import datetime
 
 main_bp = Blueprint('main', __name__)
 
@@ -13,8 +14,9 @@ def index():
     category = request.args.get('category')
     status = request.args.get('status')
     time = request.args.get('time')
+    event_type = request.args.get('event_type')
     events = db.session.scalars(db.select(Event)).all()
-    return render_template('index.html', events=events, category=category, status=status, time=time)
+    return render_template('index.html', events=events, category=category, status=status, time=time, event_type=event_type, now=datetime.now)
 
 
 @main_bp.route('/events')

@@ -271,11 +271,31 @@
     - title intially says all events with all the events being located underneath it-->
     <div id="event-all" class="all-event-heading mt-3 mb-5">
       <h3 class=" d-flex justify-content-center">
-        {% if category %}
-          {{ category}} Events 
-          {% else %}
-            All Events 
-          {% endif %}
+      {# Start the heading with Category if selected #}
+      {% if category %}{{ category}}{% endif %}
+
+      {# Add Event Type if selected #}
+      {% if event_type %}
+          {% if category or status %} - {% endif %}
+          {{ event_type}}
+      {% endif %}
+
+      {# Add Status if selected #}
+      {% if status %}
+          {% if category  or event_type %} - {% endif %}
+          {{ status}}
+      {% endif %}
+
+      {# Add Time if selected #}
+      {% if time %}
+        {% if category or status or event_type %} - {% endif %}
+        Events This {{ time}}
+      {% endif %}
+
+      {# If no filters selected, show default heading #}
+      {% if not category and not status and not time and not event_type %}
+         All Events 
+      {% endif %}
       </h3>
     </div>
 
