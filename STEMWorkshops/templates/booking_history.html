@@ -43,16 +43,16 @@
               <!--row that displays event name and status next to one another-->
               <div class="row ">
                 <!--BookingID-->
-                  <h5 class="card-title ">
+                  <h4 class=" event-name">
                    <!--booking ID of previously booked event-->
                         <b>BookingID:</b> {{ booking.order_id }}
-                  </h5>    
+                  </h4>    
               </div>
                <!--date and time of previously booked event (styled in a lighter and smaller font than other booking history details for greater contrast)-->
                       <p class="card-text"><small class="text-muted"><b>Booked:</b> {{ booking.created_at.strftime('%d/%m/%Y %I:%M %p') }}</small></p>
              
                         <!--event that has previously been booked-->
-                        <h5 class="event-name card-text mt-2">
+                        <h5 class="card-title mt-2">
                           <!--calendar icon that represents event-->
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
@@ -60,8 +60,12 @@
                               d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
                           </svg>
                           <!--name of the event previously booked-->
-                          <b>Event Name:</b> <br>{{ booking.event.event_name }}
+                          <b>-</b> {{ booking.event.event_name }}
                         </h5>
+                        <h6 class="card-title mt-2">
+                          <!--number of teckets booked-->
+                          <b>Ticket Quantity:</b> {{ booking.ticket_quantity | int }}
+                        </h6>
                       
             </div>
             
