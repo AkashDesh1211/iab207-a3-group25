@@ -104,6 +104,8 @@ def update_event(id):
     form = EventsForm(obj= update_event)
     
     if form.validate_on_submit():
+        # call the function that checks and returns image
+        db_file_path = check_upload_file(update_event)
         form.populate_obj(update_event) 
 
 
