@@ -57,4 +57,4 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'))
 
-    event=db.relationship('Event', backref='orders', lazy=True)
+    event=db.relationship('Event', backref='orders')
