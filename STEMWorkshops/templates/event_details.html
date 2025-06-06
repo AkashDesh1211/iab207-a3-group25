@@ -423,7 +423,7 @@
 
         <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3">
           <!--button links user to create events page so that they can edit event details-->
-      <a href="/create" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
+      <a href="{{ url_for('events.update_event', id=event.event_id)}}" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
           <!--pencil in square icon that represents editting event detail-->
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square"
             viewBox="0 0 16 16">

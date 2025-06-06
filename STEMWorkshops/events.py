@@ -97,6 +97,26 @@ def check_upload_file(form):
   return db_upload_path
 
 
+@events_bp.route('/<id>/update', methods=['GET', 'POST'])  
+@login_required
+def update_event(id):
+    update_event = Event.query.get(id)
+    form = EventsForm(obj= update_event)
+    
+    if form.validate_on_submit():
+        form.populate_obj(update_event) 
+
+
+        db.session.commit()
+
+        return redirect(url_for('events.show', id=update_event.event_id))
+
+    return render_template('create_event.html', form=form, heading='Update Event Details')
+
+
+
+
+
 @events_bp.route('/<id>/booking', methods=['GET', 'POST'])  
 @login_required
 def booking(id):
