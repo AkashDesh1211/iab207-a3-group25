@@ -202,21 +202,22 @@
           </div>
 
 
-          <!--location dropdown-->
+          <!--status dropdown-->
           <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
             <div class="dropdown mb-1">
               <!--allows a list of dropdown items to appear when user clicks on the dropdown-->
               <a class="btn btn-info dropdown-toggle w-75" href="#" role="button" id="dropdownMenuLink"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 <!--name of dropdown-->
-                Location
+                Status
               </a>
-              <!--list of dropdown items specific to the location of events-->
+              <!--list of dropdown items specific to the status of events-->
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <!--shows user all the event cards (locates user to the event cards directly below header)-->
-                <li><a class="dropdown-item" href="#event-all">All</a></li>
-                <!--shows user events that are nearby to the users current location only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
-                <li><a class="dropdown-item" href="#event-all">Nearby</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('main.index')}}#browse-events">All</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('main.index', status='Open')}}#browse-events">Open</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('main.index', status='Cancelled')}}#browse-events">Cancelled</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('main.index', status='Sold Out')}}#browse-events">Sold Out</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('main.index', status='Inactive')}}#browse-events">Inactive</a></li>
               </ul>
             </div>
           </div>
@@ -234,13 +235,13 @@
               <!--list of dropdown items specific to the time of events-->
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <!--shows user all the event cards (locates user to the event cards directly below header)-->
-                <li><a class="dropdown-item" href="#event-all">All</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('main.index')}}#browse-events">All</a></li>
                 <!--shows user events that are held today only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
-                <li><a class="dropdown-item" href="#event-all">Today</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('main.index', time='Today')}}#browse-events">Today</a></li>
                 <!--shows user events that are held this week only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
-                <li><a class="dropdown-item" href="#event-all">This Week</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('main.index', time='This Week')}}#browse-events">This Week</a></li>
                 <!--shows user events that are held this month only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
-                <li><a class="dropdown-item" href="#event-all">This Month</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('main.index', time='This Month')}}#browse-events">This Month</a></li>
               </ul>
             </div>
           </div>
@@ -286,7 +287,15 @@
     <div class="d-flex justify-content-center">
       <div class="row row-cols-md-3 g-4 m-2">
         {% for event in events %}
-           {% if not category or event.STEM_category == category %}
+        {% if
+            (not category or event.STEM_category == category) and
+            (not status or event.event_status == status) and
+            (not time or (
+                     (time == 'Today' and event.start_time.date() == now().date()) or
+                     (time == 'This Week' and event.start_time.isocalendar()[1] == now().isocalendar()[1]) or
+                     (time == 'This Month' and event.start_time.month == now().month)
+        ))
+      %}
         <div class="col">
           <div class="card">
             <img src="{{event.image}}" class="card-img-top img-fluid event-card-img" alt="./static/img/s-l1200.jpg" >
