@@ -437,7 +437,7 @@
       </a>
         </div>
 
-        <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3">
+        <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3 mt-2">
          {% if event.event_status == 'Cancelled' %}
       {%else%}
       <form method="POST" action="{{ url_for('events.cancel_event', id=event.event_id)}}">
