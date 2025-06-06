@@ -145,6 +145,18 @@ def create_comment(id):
 
 
 
+def get_all_events_ordered_by_status():
+    return db.session.scalars(
+        db.select(Event).order_by(
+            db.case(
+                (Event.event_status == 'Open', 1),
+                (Event.event_status == 'Sold Out', 2),
+                (Event.event_status == 'Inactive', 3),
+                (Event.event_status == 'Cancelled', 4),
+            )
+        )
+    ).all()
+
 
 
 
