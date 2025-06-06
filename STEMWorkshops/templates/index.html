@@ -310,6 +310,7 @@
         {% if
             (not category or event.STEM_category == category) and
             (not status or event.event_status == status) and
+            (not event_type or event.event_type == event_type) and
             (not time or (
                      (time == 'Today' and event.start_time.date() == now().date()) or
                      (time == 'This Week' and event.start_time.isocalendar()[1] == now().isocalendar()[1]) or
