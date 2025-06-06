@@ -6,6 +6,7 @@ import os
 from werkzeug.utils import secure_filename
 from flask_login import login_required, current_user
 from datetime import datetime
+from .events import get_all_events_ordered_by_status
 
 main_bp = Blueprint('main', __name__)
 
@@ -15,7 +16,12 @@ def index():
     status = request.args.get('status')
     time = request.args.get('time')
     event_type = request.args.get('event_type')
-    events = db.session.scalars(db.select(Event)).all()
+
+    # If no filters, show all events sorted by status.
+    if not category and not status and not time and not event_type:
+        events = get_all_events_ordered_by_status()
+    else:
+        events = db.session.scalars(db.select(Event)).all()
     return render_template('index.html', events=events, category=category, status=status, time=time, event_type=event_type, now=datetime.now)
 
 
