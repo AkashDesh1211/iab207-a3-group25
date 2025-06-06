@@ -105,11 +105,11 @@
         <div class="col-sm-12 col-md-3 text-center ">
           <!--links event text to home page and category text to their repected events-->
           <ul>
-            <li class="mb-2"><a href="/.#event-browse"><b>Events</b></a></li>
-            <li><a href="/.#event-science">Science</a></li>
-            <li><a href="/.#event_math">Maths</a></li>
-            <li><a href="/.#event-eng">Engineering</a></li>
-            <li><a href="/.#event-it">Information Technology</a></li>
+            <li class="mb-2"><a href="{{ url_for('main.index') }}#browse-events"><b>Events</b></a></li>
+            <li><a href="{{ url_for('main.index', category='Science') }}#browse-events">Science</a></li>
+            <li><a href="{{ url_for('main.index', category='Maths') }}#browse-events">Maths</a></li>
+            <li><a href="{{ url_for('main.index', category='Engineering') }}#browse-events">Engineering</a></li>
+            <li><a href="{{ url_for('main.index', category='Information Technology') }}#browse-events">Information Technology</a></li>
           </ul>
         </div>
         <div class="col-sm-12 col-md-3 text-center ">
