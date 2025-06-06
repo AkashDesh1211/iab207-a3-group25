@@ -168,11 +168,10 @@
                 </div>
                 <div class="book-button col-md-4 col-sm-12 text-start">
                   <!--book now button that opens up the booking ticket modal to allow users to a book ticket/s to an event-->
-                  <button class="btn btn-info mt-sm-2  p-2 " type="button" data-bs-toggle="modal"
-                    data-bs-target="#book-ticket">
-                    Book Now</button>
+                  <a href="{{url_for('events.booking', id=event.event_id)}}"><button class="btn btn-info mt-sm-2  p-2 " type="button" >
+                    Book Now</button></a>
                 </div>
-                <a href="{{url_for('events.booking', id=event.event_id)}}">Book</a>
+                
               </div>
             </div>
           </div>
