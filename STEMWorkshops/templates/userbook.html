@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% from "bootstrap5/form.html" import render_form %}
+
+{% block header %}
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <div class="border-booking mt-3 p-3">
+        <div class="">
+            <!--name of event-->
+            <h4>
+                <!--calendar icon that repsents event-->
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
+                </svg>
+                {{event.event_name}}
+            </h4>
+            <small><!--calendar icon that represents date-->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-calendar3" viewBox="0 0 16 16">
+                    <path
+                        d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z" />
+                    <path
+                        d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                </svg>
+                <!--text displaying date of event-->
+                {{event.start_time.strftime('%d/%m/%Y')}} &nbsp; &nbsp;
+                <!--clock icon that represents time-->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-clock-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
+                </svg>
+                <!--text displaying start and end time of event-->
+                {{event.start_time.strftime('%I:%M %p')}} - {{event.end_time.strftime('%I:%M %p')}}
+            </small>
+        </div>
+
+    </div>
+
+    <!--Heading to book event-->
+    <div class="  p-3 body-booking ">
+        <div class="page-header  mb-3">
+            <h4>{{heading}}</h4>
+            <!--Display ticket price-->
+            <h6><b>Ticket Price: </b>${{event.ticket_price}}</h6>
+        </div>
+
+
+        <div class="row">
+            <!--render orders form for user to input ticket quantity and te submit button to book event-->
+            <!-- Form rendering easy using bootstrap and WTF-Forms -->
+            <div class="col-md-6 col-sm-12 ">
+                {{render_form(form)}}
+            </div>
+
+            <!--Displays total amount of booking-->
+            <div class="col-md-6 col-sm-12">
+                <!-- Total Price Output with Label -->
+                <!-- Output section for total ticket amount -->
+                <form methods='GET, POST'>
+                    <div class="">
+                        <label for="total-amount" class="form-label">Total Amount</label>
+                        <p id="total-amount" class="form-control fw-bold text-success"
+                            style="background-color: #f5f5f5; width:20%;">$0.00</p>
+                    </div>
+                </form>
+                <!--cancell booking button (brings you back to the previous event details page)-->
+                <a href="{{url_for('events.show', id=event.event_id)}}"><button class="btn btn-info">Cancel Booking</button></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<!--JavaScript for total amount shown-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const ticketInput = document.getElementById("ticket_quantity");
+        const totalDisplay = document.getElementById("total-amount");
+
+        const price = parseFloat("{{ event.ticket_price | default('0.00', true) }}");
+
+        if (ticketInput && totalDisplay && !isNaN(price)) {
+            ticketInput.addEventListener("input", function () {
+                const qty = parseInt(this.value);
+                if (!isNaN(qty) && qty > 0) {
+                    const total = qty * price;
+                    totalDisplay.innerText = total === 0 ? "FREE" : "$" + total.toFixed(2);
+                } else {
+                    totalDisplay.innerText = "$0.00";
+                }
+            });
+        }
+    });
+</script>
+
+
+
+{% endblock %}

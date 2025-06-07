@@ -1,3 +1,4 @@
+# Different imports for Flask, SQLAlchemy, and other necessary libraries. 
 from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
 from .models import Event, Comment, Order
 from .forms import EventsForm, CommentsForm, OrdersForm
@@ -6,11 +7,13 @@ import os
 from werkzeug.utils import secure_filename
 from flask_login import login_required, current_user
 from datetime import datetime
+from decimal import Decimal
 
 
 
 events_bp = Blueprint('events', __name__)
 
+# Shows the event details page 
 @events_bp.route('/<id>')
 def show(id):
     event = db.session.scalar(db.select(Event).where(Event.event_id==id))
@@ -22,24 +25,31 @@ def show(id):
     return render_template('event_details.html', event=event, form=form)
 
 
-#cancel an event
+# Cancels an event and updates its status to "Cancelled" in DB 
 @events_bp.route('/<id>/cancel', methods=['POST'])
+#must be logged in in order to cancel event
 @login_required
 def cancel_event(id):
+    #calls upon the specific event the user is wanting to cancel an event for from the DB
     event = db.session.scalar(db.select(Event).where(Event.event_id==id))
-    
+    #changes event status to cancelled
     event.event_status = "Cancelled"
+    #commits change
     db.session.commit()
+    #message to confirm cancellation
     flash('Event has been cancelled')
+    #rredirects the user back to the event details page of the event they just cancelled
     return redirect(url_for('events.show', id=id))
     
   
 
 
-
+# Displays a list of bookings made by the currently logged-in user
 @events_bp.route('/history')
+#must be logged in to see booking history
 @login_required
 def booking_history():
+    #calls upon all order and event info from the DB of the events the user logged in has previously booked
     bookings = db.session.scalars(db.select(Order).join(Event).where(Order.user_id==current_user.user_id)).all()
     
     return render_template('booking_history.html', bookings=bookings)
@@ -47,8 +57,9 @@ def booking_history():
 
 
 
-
+# Allows a logged-in user to create a new event (GET shows form, POST submits)
 @events_bp.route('/create', methods=['GET', 'POST'])
+#must be logged in in order to create an event
 @login_required
 def create_event():
     create_event = EventsForm()
@@ -74,13 +85,15 @@ def create_event():
         db.session.add( new_event )
         # commit to the database
         db.session.commit()
+        #message to confirm that the new event has been created
         flash('Successfully created a new event')
 
-        #Always end with redirect when form is valid
+        #Always end with redirect when form is valid, redirects user to the event details page of the event just created
         return redirect(url_for('events.show', id=new_event.event_id))
 
-    return render_template('create_event.html', form=create_event, heading='Create Event')
+    return render_template('create_event.html', form=create_event, heading='Create Event', submit_label='Create Event')
 
+# Uploads and stores an image file, returning the relative DB path
 def check_upload_file(form):
   # get file data from form  
   fp = form.image.data
@@ -96,48 +109,65 @@ def check_upload_file(form):
   return db_upload_path
 
 
+# Allows a logged-in user to update their own event 
 @events_bp.route('/<id>/update', methods=['GET', 'POST'])  
+# must be logged in in order to update event
 @login_required
 def update_event(id):
+    #gets event details from the DB of the selected event
     update_event = Event.query.get(id)
     form = EventsForm(obj= update_event)
     
     if form.validate_on_submit():
+       #populates the form with the existing event details for the event selected
        form.populate_obj(update_event) 
 
+       #ensures the image is uploaded correctly
        db_file_path = check_upload_file(form)
-       
        update_event.image = db_file_path 
-           
+
+       #commits the updated event details to the DB  
        db.session.commit()
 
+       #message to confirm the success of the update
+       flash('The event has successfully been updated')
+       #sends users back to the event they just updated
        return redirect(url_for('events.show', id=update_event.event_id))
 
-    return render_template('create_event.html', form=form, heading='Update Event Details')
+    return render_template('create_event.html', form=form, heading='Update Event Details', submit_label='Update Event')
 
 
 
 
-
+# Allows logged-in users to book tickets for a selected event
 @events_bp.route('/<id>/booking', methods=['GET', 'POST'])  
 @login_required
 def booking(id):
+   #create the order form to book ticket/s
    booking_form = OrdersForm()
    event = db.session.scalar(db.select(Event).where(Event.event_id==id))
    if(booking_form.validate_on_submit()):
-      ticket_quantity = booking_form.ticket_quantity.data
+      # sets the ticket_quanity to equal the value inputted by user within the form (converts that value to an int)
+      ticket_quantity = int(booking_form.ticket_quantity.data)
+      #calculates the total price by multiplying the number of tickets with the ticket price of that event
+      total_amount = ticket_quantity * int(event.ticket_price)
 
-      new_booking = Order(created_at=datetime.now() ,ticket_quantity=ticket_quantity, user_id=current_user.user_id, event_id=event.event_id)
+      new_booking = Order(created_at=datetime.now() ,ticket_quantity=ticket_quantity, user_id=current_user.user_id, event_id=event.event_id, total_amount=total_amount)
+      
+      #adds booking information to the orders table
       db.session.add(new_booking) 
       db.session.commit()  
 
+      #message to confirm booking success
       flash('Successfully booked event')
+      # redirects the user to the booking history to see the booking they just created as well as their old ones
       return redirect(url_for('events.booking_history')) 
    
-   return render_template('user.html', form=booking_form, id=id, heading='Book Ticket')
+   return render_template('userbook.html', form=booking_form, event=event, id=id, heading='Book Ticket')
 
 
 
+# Handles creation of a new comment on an event 
 @events_bp.route('/<id>/comment', methods=['POST'])
 @login_required
 def create_comment(id):
@@ -167,6 +197,7 @@ def create_comment(id):
 
 
 
+# Returns all events ordered by status (Open > Sold Out > Inactive > Cancelled)
 def get_all_events_ordered_by_status():
     return db.session.scalars(
         db.select(Event).order_by(
