@@ -1,10 +1,11 @@
+# Import required Flaskform tools and validators.
 from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, RadioField, IntegerField, DecimalField, DateField, TimeField, DateTimeLocalField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
 
-
+# Allowed file types for event images
 ALLOWED_FILE = {'PNG', 'JPG', 'JPEG', 'png', 'jpg', 'jpeg'}
 
 # Form for all login information
