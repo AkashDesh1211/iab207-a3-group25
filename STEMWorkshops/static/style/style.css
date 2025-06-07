@@ -1,10 +1,11 @@
+/* Card Styles */
 .frontpage-cards {
     display: flex;
     justify-content: center;
 }
 
 
-
+/* card hover effect */
 .card-body:hover {
     background-color: inherit;
 }
@@ -21,7 +22,7 @@
 .navbar {
     background-color: #e3f2fd;
 }
-
+/* navigation bar links */
 .nav-item {
     border-radius: 25px;
 }
@@ -153,7 +154,7 @@ footer a {
 .workshop-title-width {
     width: 16rem;
 }
-
+/* responsive width adjustments for workshop titles */
 @media (max-width: 1100px) {
     .workshop-title-width {
     width: 10rem; }
@@ -511,7 +512,7 @@ label {
     object-fit: cover;
     border-radius: 10px;
 }
-
+/* Responsive adjustments for event images */
 @media (max-width: 768px) {
   .event-image {
     max-height: 250px;
