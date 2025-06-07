@@ -96,7 +96,7 @@
                     </h3>
                     <p class="ms-4 ">
                       <!--date of event-->
-                      <b>Date:</b> {{event.start_time.strftime('%d/%m/%Y')}}  <br>
+                      <b>Date:</b> {{event.start_time.strftime('%d/%m/%Y')}}-{{event.end_time.strftime('%d/%m/%Y')}}<br>
                       <!--start and end time of event-->
                       <b>Time:</b> {{event.start_time.strftime('%I:%M %p')}} - {{event.end_time.strftime('%I:%M %p')}}<br>
                     </p>
