@@ -107,8 +107,8 @@ def update_event(id):
        form.populate_obj(update_event) 
 
        db_file_path = check_upload_file(form)
-       if  db_file_path:
-             update_event.image = db_file_path 
+       
+       update_event.image = db_file_path 
            
        db.session.commit()
 
