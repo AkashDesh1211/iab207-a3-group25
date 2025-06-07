@@ -210,102 +210,6 @@
 
 
 
-
-
-
-    
-    <!--Modal to book ticket (triggered when the book now button of the event details page is pressed)-->
-    <!--modal comes from bootstrap-->
-    <div class="modal fade" id="book-ticket" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <!--centers modal to the middle of the screen when activiated-->
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <!--contents of the modal where users can see ticket information and booking summary-->
-        <div class="modal-content">
-          <div class="modal-header" id="comment-header">
-            <!--title of modal that also includes the event name the user is booking tickets for-->
-            <h2 class="modal-title" id="exampleModalLabel">Book Ticket: Event </h2>
-            <!--allows users to exit modal and go back to event details page-->
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="comment-modal-body p-4">
-            <div class="row ">
-
-              <!--column for users to see ticket details and select ticket quantity-->
-              <div class="col-lg-7 col-md-12 p-3  mt-3" id="ticket-info">
-                <h3>
-                  <!--ticket icon-->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="currentColor"
-                    class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5m0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5M4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1" />
-                  </svg>
-                  <!--title for book ticket section-->
-                  Book Ticket
-                </h3>
-                <!--information on ticket type-->
-                <p class="mt-3"><b>Ticket Type:</b> General</p>
-                <div class="input-group mt-3 ">
-                  
-                
-                  <!--input that allows users to type/select the number of tickets they want to book-->
-                  
-                </div>
-              </div>
-
-              <!--Column that allows users to  view booking summary based of ticket quantity selected-->
-              <div class="col-lg-5 col-md-12 text-start p-3">
-                <div id="booking-summary" class="p-3">
-                  <!--title for booking summary section-->
-                  <h3 class="mb-4">Booking Summary</h3>
-                  <!--information regarding the ticket type and the ticket quantity selected by the user-->
-                  <p class="summary-details  pb-4"><b>General Ticket:</b> X1</p>
-                  <!--total price of all the tickets selected-->
-                  <h5><b>Total Price:</b> $0</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer" id="comment-footer">
-            <!--close button allows user to exit the modal and go back to event details page-->
-            <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
-            <!--book ticket button that allows the ticket/s to be booked and triggers a modal confirming the success of the ticket booking-->
-
-            <button type="button" class="btn btn-info" data-bs-target="#book-success" data-bs-toggle="modal"
-              data-bs-dismiss="modal">Book Ticket</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-
-
-
-    <!--book ticket success message (modal that confirms the ticket was booked successfully after the user pressed the book ticket button)-->
-    <!--uses a bootstrap modal-->
-    <div class="modal fade" id="book-success" aria-hidden="true" aria-labelledby="book-successLabel2" tabindex="-1"
-      data-bs-backdrop="static">
-      <!--centers modal to middle of the screen when triggered-->
-      <div class="modal-dialog modal-dialog-centered modal-sm">
-        <!--modal contents-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <!--message confirming the the ticket booking was successfu;-->
-            <h4 class="modal-title p-2" id="book-successLabel2">Tickets Booked</h4>
-            <!-- X allows users to exit out of modal and go back to event details page-->
-            <a href="./event_details.html"><button type="button" class="btn-close" data-bs-dismiss="modal"
-                aria-label="Close"></button></a>
-          </div>
-          <div class="modal-footer" id="ticket-footer">
-            <!--button underneath the booking confirmation message that allows users to naviagate to the bookings page to view booking history-->
-            <a href=".//history" class="text-decoration-none"><button type="button"
-                class="btn btn-info">View Bookings</button></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
     <!--Event Description and other event details section-->
     <section class="event-description mt-4">
       <div class="container pt-3 pb-3">
@@ -339,13 +243,7 @@
       <div class="col-4 text-start">
         <h2 class="mb-4">Comments</h2>
       </div>
-      <div class="col-8 text-end">
-        {% if current_user.is_authenticated %}
-          <button type="button" class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#comment-form">Add New Comment</button>
-        {% else %}
-          <a href="{{ url_for('auth.login') }}" class="btn btn-info">Log in to comment</a>
-        {% endif %}
-      </div>
+     
     </div>
 
     <!-- Display Comments as Cards with Read More -->
@@ -353,7 +251,7 @@
       {% for comment in event.comments %}
         <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
           <div class="card h-100">
-            <div class="card-body">
+            <div class="card-body read-more-comment">
               <div class="d-flex align-items-center mb-2">
                 <img src="/static/img/facilitator.png" width="40" height="40" class="me-2 rounded-circle">
                 <div>
@@ -373,11 +271,11 @@
         <div class="modal fade" id="fullCommentModal{{ comment.comment_id }}" tabindex="-1" aria-labelledby="fullCommentLabel{{ comment.comment_id }}" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header comment-background-colour" >
                 <h5 class="modal-title" id="fullCommentLabel{{ comment.comment_id }}">Full Comment</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body read-more-comment ">
                 <div class="d-flex align-items-center mb-3">
                   <img src="/static/img/facilitator.png" width="45" height="45" class="me-3 rounded-circle">
                   <div>
@@ -387,8 +285,8 @@
                 </div>
                 <p style="word-wrap: break-word; white-space: pre-wrap; overflow-wrap: break-word;">{{ comment.text }}</p>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <div class="modal-footer " >
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
@@ -396,7 +294,23 @@
       {% else %}
         <p>No comments yet.</p>
       {% endfor %}
+
+
+      <!--button to add new comment-->
+      <div class="row text-end mt-3">
+        <div class="col-6 d-flex justify-content-start">
+        {% if current_user.is_authenticated %}
+          <button type="button" class="btn btn-info " data-bs-toggle="collapse" data-bs-target="#comment-form">Add New Comment</button>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}" class="btn btn-info">Log in to comment</a>
+        {% endif %}
+        </div>
+      </div>
+
     </div>
+
+
+     
 
     <!-- Collapsible Comment Form -->
     {% if current_user.is_authenticated %}
