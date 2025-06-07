@@ -222,32 +222,10 @@
             </div>
           </div>
 
-
-          <!--Time dropdown-->
-          <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
-            <div class="dropdown mb-1">
-              <!--allows a list of dropdown items to appear when user clicks on the dropdown-->
-              <a class="btn btn-info dropdown-toggle w-75" href="#" role="button" id="dropdownMenuLink"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <!--name of dropdown-->
-                Time
-              </a>
-              <!--list of dropdown items specific to the time of events-->
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <!--shows user all the event cards (locates user to the event cards directly below header)-->
-                <li><a class="dropdown-item" href="{{ url_for('main.index')}}#browse-events">All</a></li>
-                <!--shows user events that are held today only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
-                <li><a class="dropdown-item" href="{{ url_for('main.index', time='Today')}}#browse-events">Today</a></li>
-                <!--shows user events that are held this week only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
-                <li><a class="dropdown-item" href="{{ url_for('main.index', time='This Week')}}#browse-events">This Week</a></li>
-                <!--shows user events that are held this month only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
-                <li><a class="dropdown-item" href="{{ url_for('main.index', time='This Month')}}#browse-events">This Month</a></li>
-              </ul>
-            </div>
-          </div>
+  
 
           <!--search bar-->
-          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <!--Search bar to find events (located to the right of the dropdowns)-->
             <form class=" d-flex justify-content-start align-items-start mb-2">
               <!--input that users can type in to find specific events-->
@@ -262,14 +240,13 @@
     </div>
 
 
-    <!--creates space between browse events heading and event cards-->
-    <div class="mb-4"></div>
+    
 
 
     <!--title telling the user the type of events located underneath 
     - title changes depending on what dropdown item was selected or what was typed into the searchbar
     - title intially says all events with all the events being located underneath it-->
-    <div id="event-all" class="all-event-heading mt-3 mb-5">
+    <div id="event-all" class="all-event-heading mt-5 mb-3">
       <h3 class=" d-flex justify-content-center">
       {# Start the heading with Category if selected #}
       {% if category %}{{ category}}{% endif %}

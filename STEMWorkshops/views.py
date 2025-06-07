@@ -26,9 +26,6 @@ def index():
     return render_template('index.html', events=events, category=category, status=status, time=time, event_type=event_type, now=datetime.now)
 
 
-# Route for event categories page
-@main_bp.route('/events')
-def events():
-    return render_template('event_category.html')
+
 
 
