@@ -1,9 +1,9 @@
 <html>
 
 <head>
-   <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet", type="text/css", href="../static/style/style.css">
+  <link rel="stylesheet" , type="text/css" , href="../static/style/style.css">
   <title>Home</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -14,9 +14,9 @@
 <body>
 
 
-    <!-- Header -->
-    <header>
-         <!--top nav where logo and profile icon are located-->
+  <!-- Header -->
+  <header>
+    <!--top nav where logo and profile icon are located-->
     <div class=" d-flex justify-content-between  ms-2 me-2 mb-2" id="topnav">
       <!--clicking on the logo navigates user back to home page-->
       <a href="/">
@@ -25,16 +25,16 @@
       </a>
       <!--profile picture of the account logged in-->
       <div>
-      <a href="/login">
-        <img src="./static/img/profile.png" id="profile-icon" class="img-fluid" width="45px" height="45px">
-      </a>
-      <a type="submit" href="/logout" class="btn btn-primary w-10 h-75 me-2 mt-2">Logout</a>
+        <a href="/login">
+          <img src="./static/img/profile.png" id="profile-icon" class="img-fluid" width="45px" height="45px">
+        </a>
+        <a type="submit" href="/logout" class="btn btn-primary w-10 h-75 me-2 mt-2">Logout</a>
       </div>
     </div>
 
 
-        <!-- Navbar -->
-        <!--navbar that allows users to go between pages (events, create events and bookings) (bootstrap navbar used)-->
+    <!-- Navbar -->
+    <!--navbar that allows users to go between pages (events, create events and bookings) (bootstrap navbar used)-->
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid m-0">
         <!--allows navbar to be collapsed within a hamburger icon when screen size is reduced-->
@@ -67,40 +67,40 @@
       </div>
     </nav>
 
-        <!-- Code for using Flask flash -->
-        <div class="container-fluid">
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            {% for message in get_flashed_messages() %}
-            <div class="alert alert-warning">
-                <button type="button" class="close" data-dismiss="alert" aria-label="close">x</button>
-                {{message}}
-            </div>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
-        </div>
-        {% block header %}
+    <!-- Code for using Flask flash -->
+    <div class="container-fluid">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">x</button>
+        {{message}}
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </div>
+    {% block header %}
 
-        {% endblock %}
+    {% endblock %}
 
-    </header>
+  </header>
 
-    <main>
+  <main>
     {% block content %}
 
     {% endblock %}
 
-    </main>
+  </main>
 
-    
-   
-     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
 
- 
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+
 </body>
 
 </html>
