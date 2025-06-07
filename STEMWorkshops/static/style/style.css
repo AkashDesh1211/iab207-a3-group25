@@ -45,6 +45,24 @@ header {
     float: right;
 }
 
+/* user booking page */
+.header-booking {
+    background-color: #bedded;
+}
+
+
+.body-booking {
+    background-color: #e3f2fd;
+     border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.border-booking {
+     border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    background-color: #bedded;
+}
+
 
 /* event Status button */
 .status-button {
