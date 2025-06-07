@@ -6,6 +6,7 @@ import os
 from werkzeug.utils import secure_filename
 from flask_login import login_required, current_user
 from datetime import datetime
+from decimal import Decimal
 
 
 
@@ -128,9 +129,10 @@ def booking(id):
    booking_form = OrdersForm()
    event = db.session.scalar(db.select(Event).where(Event.event_id==id))
    if(booking_form.validate_on_submit()):
-      ticket_quantity = booking_form.ticket_quantity.data
+      ticket_quantity = int(booking_form.ticket_quantity.data)
+      total_amount = ticket_quantity * int(event.ticket_price)
 
-      new_booking = Order(created_at=datetime.now() ,ticket_quantity=ticket_quantity, user_id=current_user.user_id, event_id=event.event_id)
+      new_booking = Order(created_at=datetime.now() ,ticket_quantity=ticket_quantity, user_id=current_user.user_id, event_id=event.event_id, total_amount=total_amount)
       db.session.add(new_booking) 
       db.session.commit()  
 
