@@ -3,30 +3,30 @@
 {% from "bootstrap5/form.html" import render_field %}
 
 {% block header %}
-    
+
 {% endblock %}
 
 
 {% block content %}
-  
 
-    <!--Event title-->
-    <section class="event-heading mt-4  p-1">
-      <div class="container mt-1  mb-2">
-        <div class="row ">
-          <div class="d-flex justify-content-start col-2 p-2 ">
-            <!--back arrow that allows users to return back to the home page if the wrong event was selected-->
-            <a href=".//">
-              <img src="./static/img/backarrowBlue.png" class="back-arrow " width="50px" height="50px">
-            </a>
-          </div>
 
-          <div class="heading col-8 ">
-           
-            <!--name of the event selected-->
-            <h1>{{ event.event_name }}</h1> &nbsp;  &nbsp;
-            <!--signals the status of the event-->
-            <button type="button" class=" btn btn-lg rounded-pill status-button
+<!--Event title-->
+<section class="event-heading mt-4  p-1">
+  <div class="container mt-1  mb-2">
+    <div class="row ">
+      <div class="d-flex justify-content-start col-2 p-2 ">
+        <!--back arrow that allows users to return back to the home page if the wrong event was selected-->
+        <a href=".//">
+          <img src="./static/img/backarrowBlue.png" class="back-arrow " width="50px" height="50px">
+        </a>
+      </div>
+
+      <div class="heading col-8 ">
+
+        <!--name of the event selected-->
+        <h1>{{ event.event_name }}</h1> &nbsp; &nbsp;
+        <!--signals the status of the event-->
+        <button type="button" class=" btn btn-lg rounded-pill status-button
              {% if event.event_status == 'Open' %}
              btn-success
              {% elif event.event_status == 'Inactive' %}
@@ -34,163 +34,164 @@
              {% else %}
             btn-danger
             {% endif %}
-             " >{{ event.event_status }}</button>
-          </div>
-          <div class="col-2">
-
-          </div>
-        </div>
+             ">{{ event.event_status }}</button>
       </div>
-    </section>
+      <div class="col-2">
+
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
-    <!--image and summary of event information-->
-    <section class="event-summary  mb-2 p-4">
-      <div class="container">
-        <!--row that displays event images and an overview of important event details-->
-        <div class="row">
+<!--image and summary of event information-->
+<section class="event-summary  mb-2 p-4">
+  <div class="container">
+    <!--row that displays event images and an overview of important event details-->
+    <div class="row">
 
-          <!--event images-->
-          <div class="event-img col-lg-7 col-md-12 mt-4 mb-2">
-            <img src="{{ event.image }}" class="img-fluid event-image details-img" alt="...">
-           
-          </div>
+      <!--event images-->
+      <div class="event-img col-lg-7 col-md-12 mt-4 mb-2">
+        <img src="{{ event.image }}" class="img-fluid event-image details-img" alt="...">
 
-          <!--Quick summary of important event details-->
-          <div class="col-lg-5 col-md-12">
-            <div class="event-details">
+      </div>
 
-              <!--heading for event information section-->
-              <div class="event-info">
-                <div class=" d-flex justify-content-center">
-                  <h2 class=" p-3">
-                    <!--calendar icon to represent event-->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                      class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
-                      <path
-                        d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
-                    </svg>
-                    <!--title for event information section-->
-                    Event Information
-                  </h2>
-                </div>
-              </div>
+      <!--Quick summary of important event details-->
+      <div class="col-lg-5 col-md-12">
+        <div class="event-details">
 
-              <!--summary of event infromation-->
-              <div class="summary">
-                <!--row that displays date/time and location details-->
-                <div class="row">
-
-                  <!--date/time details for the event-->
-                  <div class="col-md-6 col-sm-12">
-                    <h3 class="text-start pt-2 ms-4 ">
-                      <!--clock icon to represent date/time-->
-                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                        class="bi bi-clock-fill" viewBox="0 0 16 16">
-                        <path
-                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
-                      </svg>
-                      <!--title to represent date/time section-->
-                      Date/ Time
-                    </h3>
-                    <p class="ms-4 ">
-                      <!--date of event-->
-                      <b>Date:</b> {{event.start_time.strftime('%d/%m/%Y')}}-{{event.end_time.strftime('%d/%m/%Y')}}<br>
-                      <!--start and end time of event-->
-                      <b>Time:</b> {{event.start_time.strftime('%I:%M %p')}} - {{event.end_time.strftime('%I:%M %p')}}<br>
-                    </p>
-                  </div>
-
-                  <!--event location deatils-->
-                  <div class="col-md-6 col-sm-12">
-                    <div>
-                      <h3 class="text-start ms-4 pt-2 me-sm-2">
-                        <!--location icon-->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                          class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                          <path
-                            d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                        </svg>
-                        <!--title for the location section-->
-                        Location
-                      </h3>
-                      <p class="ms-4 ">
-                        <!--venue name of event-->
-                        <b>Venue:</b> {{ event.event_venue }} <br>
-                        <!--address of the venue that event is being held at-->
-                        <b>Address:</b> {{ event.event_address }} <br>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <!-- STEM category and event type details-->
-              <div class="summary">
-                <p class=" ms-4 pt-3">
-                  <!--category of the event-->
-                  <b>STEM Category:</b> {{ event.STEM_category }} <br>
-                  <!--type of event-->
-                  <b>Event Type:</b> {{ event.event_type }} <br>
-                </p>
-              </div>
-
-              <!--row that displays ticket information-->
-              <div class="row ">
-                <!--column has ticket infromation and button to book tickets to the event-->
-                <div class="col-md-8 col-sm-12">
-                  <h3 class="text-start ms-4 mt-2 pt-1 ">
-                    <!--ticket icon-->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-                      class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
-                      <path
-                        d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5m0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5M4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1" />
-                    </svg>
-                    <!--title for ticket information section-->
-                    Ticket
-                  </h3>
-                  <p class="ticket ms-4">
-                    <!--price of ticket for the event selected-->
-                    <b>Ticket Pricing: </b> &nbsp; <span class="ticket-price ">
-                      {% if event.ticket_price == '00.00' %}
-                      FREE
-                      {% else %}
-                      ${{ event.ticket_price }}
-                      {% endif %}
-                    </span>
-                  </p>
-                  <p class="refund ms-4">
-                    <!--ticket refund details-->
-                    <b>Refund Policy: </b> {{ event.ticket_policy }}
-                  </p>
-                </div>
-                <div class="book-button col-md-4 col-sm-12 text-start">
-                  {% if not current_user.is_authenticated %}
-                   <a href="{{ url_for('auth.login') }}"><button class="btn btn-info mt-sm-2  p-2 " type="button" >
-                    Login to book </button></a>
-                  
-                   {%elif event.event_status == 'Open' and current_user.is_authenticated  %}
-                   <a href="{{url_for('events.booking', id=event.event_id)}}"><button class="btn btn-info mt-sm-2  p-2 " type="button" >
-                      Book Now</button></a>
-
-                    {%elif not event.event_status == 'Open' and current_user.is_authenticated  %}
-
-                    <button class="btn btn-info mt-sm-2  p-2 " type="button" data-bs-toggle="modal" data-bs-target="#cannot-book" >Book Event</button>
-
-                   {% endif %}
-                 
-                </div>
-                
-              </div>
+          <!--heading for event information section-->
+          <div class="event-info">
+            <div class=" d-flex justify-content-center">
+              <h2 class=" p-3">
+                <!--calendar icon to represent event-->
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                  class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
+                </svg>
+                <!--title for event information section-->
+                Event Information
+              </h2>
             </div>
           </div>
 
+          <!--summary of event infromation-->
+          <div class="summary">
+            <!--row that displays date/time and location details-->
+            <div class="row">
+
+              <!--date/time details for the event-->
+              <div class="col-md-6 col-sm-12">
+                <h3 class="text-start pt-2 ms-4 ">
+                  <!--clock icon to represent date/time-->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-clock-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
+                  </svg>
+                  <!--title to represent date/time section-->
+                  Date/ Time
+                </h3>
+                <p class="ms-4 ">
+                  <!--date of event-->
+                  <b>Date:</b> {{event.start_time.strftime('%d/%m/%Y')}}-{{event.end_time.strftime('%d/%m/%Y')}}<br>
+                  <!--start and end time of event-->
+                  <b>Time:</b> {{event.start_time.strftime('%I:%M %p')}} - {{event.end_time.strftime('%I:%M %p')}}<br>
+                </p>
+              </div>
+
+              <!--event location deatils-->
+              <div class="col-md-6 col-sm-12">
+                <div>
+                  <h3 class="text-start ms-4 pt-2 me-sm-2">
+                    <!--location icon-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                      class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                      <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                    </svg>
+                    <!--title for the location section-->
+                    Location
+                  </h3>
+                  <p class="ms-4 ">
+                    <!--venue name of event-->
+                    <b>Venue:</b> {{ event.event_venue }} <br>
+                    <!--address of the venue that event is being held at-->
+                    <b>Address:</b> {{ event.event_address }} <br>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- STEM category and event type details-->
+          <div class="summary">
+            <p class=" ms-4 pt-3">
+              <!--category of the event-->
+              <b>STEM Category:</b> {{ event.STEM_category }} <br>
+              <!--type of event-->
+              <b>Event Type:</b> {{ event.event_type }} <br>
+            </p>
+          </div>
+
+          <!--row that displays ticket information-->
+          <div class="row ">
+            <!--column has ticket infromation and button to book tickets to the event-->
+            <div class="col-md-8 col-sm-12">
+              <h3 class="text-start ms-4 mt-2 pt-1 ">
+                <!--ticket icon-->
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                  class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5m0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5M4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1" />
+                </svg>
+                <!--title for ticket information section-->
+                Ticket
+              </h3>
+              <p class="ticket ms-4">
+                <!--price of ticket for the event selected-->
+                <b>Ticket Pricing: </b> &nbsp; <span class="ticket-price ">
+                  {% if event.ticket_price == '00.00' %}
+                  FREE
+                  {% else %}
+                  ${{ event.ticket_price }}
+                  {% endif %}
+                </span>
+              </p>
+              <p class="refund ms-4">
+                <!--ticket refund details-->
+                <b>Refund Policy: </b> {{ event.ticket_policy }}
+              </p>
+            </div>
+            <div class="book-button col-md-4 col-sm-12 text-start">
+              {% if not current_user.is_authenticated %}
+              <a href="{{ url_for('auth.login') }}"><button class="btn btn-info mt-sm-2  p-2 " type="button">
+                  Login to book </button></a>
+
+              {%elif event.event_status == 'Open' and current_user.is_authenticated %}
+              <a href="{{url_for('events.booking', id=event.event_id)}}"><button class="btn btn-info mt-sm-2  p-2 "
+                  type="button">
+                  Book Now</button></a>
+
+              {%elif not event.event_status == 'Open' and current_user.is_authenticated %}
+
+              <button class="btn btn-info mt-sm-2  p-2 " type="button" data-bs-toggle="modal"
+                data-bs-target="#cannot-book">Book Event</button>
+
+              {% endif %}
+
+            </div>
+
+          </div>
         </div>
       </div>
 
-    </section>
+    </div>
+  </div>
+
+</section>
 
 
 <!-- Modal for not booking tickets if the event status is something other than open-->
@@ -201,7 +202,7 @@
         <h5 class="modal-title" id="exampleModalLabel">Cannot Book Tickets For This Event</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-     
+
     </div>
   </div>
 </div>
@@ -210,31 +211,31 @@
 
 
 
-    <!--Event Description and other event details section-->
-    <section class="event-description mt-4">
-      <div class="container pt-3 pb-3">
-        <div class="row ">
-          <!--event description column-->
-          <div class="col-lg-12 col-sm-12 col-md-12  ">
-            <!--title of event description section-->
-            <h2>
-              Event Description
-            </h2>
-            <!--description of the event-->
-            <p>
-              {{ event.description }}
-            </p>
-          </div>
-
-        </div>
+<!--Event Description and other event details section-->
+<section class="event-description mt-4">
+  <div class="container pt-3 pb-3">
+    <div class="row ">
+      <!--event description column-->
+      <div class="col-lg-12 col-sm-12 col-md-12  ">
+        <!--title of event description section-->
+        <h2>
+          Event Description
+        </h2>
+        <!--description of the event-->
+        <p>
+          {{ event.description }}
+        </p>
       </div>
 
-    </section>
+    </div>
+  </div>
+
+</section>
 
 
 
 
-    
+
 
 <!-- Comments Section With Styled Cards and Full Comment Modal -->
 <section class="event-description mt-3">
@@ -243,74 +244,77 @@
       <div class="col-4 text-start">
         <h2 class="mb-4">Comments</h2>
       </div>
-     
+
     </div>
 
     <!-- Display Comments as Cards with Read More -->
     <div class="row mt-4">
       {% for comment in event.comments %}
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body read-more-comment">
-              <div class="d-flex align-items-center mb-2">
-                <img src="/static/img/facilitator.png" width="40" height="40" class="me-2 rounded-circle">
-                <div>
-                  <strong>{{ comment.user.name }}</strong>
-                  <div class="text-muted small">{{ comment.created_at.strftime('%d %B %Y') }}</div>
-                </div>
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body read-more-comment">
+            <div class="d-flex align-items-center mb-2">
+              <img src="/static/img/facilitator.png" width="40" height="40" class="me-2 rounded-circle">
+              <div>
+                <strong>{{ comment.user.name }}</strong>
+                <div class="text-muted small">{{ comment.created_at.strftime('%d %B %Y') }}</div>
               </div>
-              <p class="card-text">{{ comment.text[:140] }}{% if comment.text|length > 140 %}...{% endif %}</p>
-              {% if comment.text|length > 140 %}
-              <a href="#" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#fullCommentModal{{ comment.comment_id }}">Read More</a>
-              {% endif %}
             </div>
+            <p class="card-text">{{ comment.text[:140] }}{% if comment.text|length > 140 %}...{% endif %}</p>
+            {% if comment.text|length > 140 %}
+            <a href="#" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+              data-bs-target="#fullCommentModal{{ comment.comment_id }}">Read More</a>
+            {% endif %}
           </div>
         </div>
+      </div>
 
-        <!-- Modal for Full Comment -->
-        <div class="modal fade" id="fullCommentModal{{ comment.comment_id }}" tabindex="-1" aria-labelledby="fullCommentLabel{{ comment.comment_id }}" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-              <div class="modal-header comment-background-colour" >
-                <h5 class="modal-title" id="fullCommentLabel{{ comment.comment_id }}">Full Comment</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body read-more-comment ">
-                <div class="d-flex align-items-center mb-3">
-                  <img src="/static/img/facilitator.png" width="45" height="45" class="me-3 rounded-circle">
-                  <div>
-                    <h6 class="mb-0">{{ comment.user.name }}</h6>
-                    <small class="text-muted">{{ comment.created_at.strftime('%d %B %Y') }}</small>
-                  </div>
+      <!-- Modal for Full Comment -->
+      <div class="modal fade" id="fullCommentModal{{ comment.comment_id }}" tabindex="-1"
+        aria-labelledby="fullCommentLabel{{ comment.comment_id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header comment-background-colour">
+              <h5 class="modal-title" id="fullCommentLabel{{ comment.comment_id }}">Full Comment</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body read-more-comment ">
+              <div class="d-flex align-items-center mb-3">
+                <img src="/static/img/facilitator.png" width="45" height="45" class="me-3 rounded-circle">
+                <div>
+                  <h6 class="mb-0">{{ comment.user.name }}</h6>
+                  <small class="text-muted">{{ comment.created_at.strftime('%d %B %Y') }}</small>
                 </div>
-                <p style="word-wrap: break-word; white-space: pre-wrap; overflow-wrap: break-word;">{{ comment.text }}</p>
               </div>
-              <div class="modal-footer " >
-                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
-              </div>
+              <p style="word-wrap: break-word; white-space: pre-wrap; overflow-wrap: break-word;">{{ comment.text }}</p>
+            </div>
+            <div class="modal-footer ">
+              <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
+      </div>
       {% else %}
-        <p>No comments yet.</p>
+      <p>No comments yet.</p>
       {% endfor %}
 
 
       <!--button to add new comment-->
       <div class="row text-end mt-3">
         <div class="col-6 d-flex justify-content-start">
-        {% if current_user.is_authenticated %}
-          <button type="button" class="btn btn-info " data-bs-toggle="collapse" data-bs-target="#comment-form">Add New Comment</button>
-        {% else %}
+          {% if current_user.is_authenticated %}
+          <button type="button" class="btn btn-info " data-bs-toggle="collapse" data-bs-target="#comment-form">Add New
+            Comment</button>
+          {% else %}
           <a href="{{ url_for('auth.login') }}" class="btn btn-info">Log in to comment</a>
-        {% endif %}
+          {% endif %}
         </div>
       </div>
 
     </div>
 
 
-     
+
 
     <!-- Collapsible Comment Form -->
     {% if current_user.is_authenticated %}
@@ -333,18 +337,19 @@
 
 
 <!--button that allows users to edit event details if they are in the same account the event was created on-->
-    {% if event.user_id == current_user.user_id %}
-    <div class="container pt-3 pb-3 ">
-      <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3" id="edit-event">
-          <h2>
-          Edit Event
-        </h2>
-        </div>
+{% if event.user_id == current_user.user_id %}
+<div class="container pt-3 pb-3 ">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3" id="edit-event">
+      <h2>
+        Edit Event
+      </h2>
+    </div>
 
-        <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3">
-          <!--button links user to create events page so that they can edit event details-->
-      <a href="{{ url_for('events.update_event', id=event.event_id)}}" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
+    <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3">
+      <!--button links user to create events page so that they can edit event details-->
+      <a href="{{ url_for('events.update_event', id=event.event_id)}}" class="text-decoration-none"><button
+          class="btn btn-info mt-sm-2 p-2 " type="button">
           <!--pencil in square icon that represents editting event detail-->
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square"
             viewBox="0 0 16 16">
@@ -356,51 +361,52 @@
           <!--text on update event details button-->
           Update Event Details</button>
       </a>
-        </div>
+    </div>
 
-        <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3 mt-2">
-         {% if event.event_status == 'Cancelled' %}
+    <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3 mt-2">
+      {% if event.event_status == 'Cancelled' %}
       {%else%}
-        <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancel-confirmation">Cancel Event</button>
-      
+      <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancel-confirmation">Cancel
+        Event</button>
+
       <!-- Modal for not booking tickets if the event status is something other than open-->
-<div class="modal fade" id="cancel-confirmation" tabindex="-1" aria-labelledby="cancel-confirmation" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to cancel this event?</h5>
-            
-      </div>
-     <div class="modal-footer justify-content-between">
-       <a href="{{ url_for('events.show', id=event.event_id)}}">
-      <button type="button" class="btn btn-info " >No</button>
-        </a>
-      <form method="POST" action="{{ url_for('events.cancel_event', id=event.event_id)}}">
-      <button type="submit" class="btn btn-danger ">Yes, Cancel Event</button>
-      </form>
+      <div class="modal fade" id="cancel-confirmation" tabindex="-1" aria-labelledby="cancel-confirmation"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to cancel this event?</h5>
 
-      </div>
-     </div>
-    </div>
-  </div>
-</div>
-      {%endif%}
+            </div>
+            <div class="modal-footer justify-content-between">
+              <a href="{{ url_for('events.show', id=event.event_id)}}">
+                <button type="button" class="btn btn-info ">No</button>
+              </a>
+              <form method="POST" action="{{ url_for('events.cancel_event', id=event.event_id)}}">
+                <button type="submit" class="btn btn-danger ">Yes, Cancel Event</button>
+              </form>
+
+            </div>
+          </div>
         </div>
-
-
       </div>
-       
-
     </div>
-     {% else %}
-    {% endif %}
+    {%endif%}
+  </div>
 
 
-   
-      
-
-    </section>
+</div>
 
 
-  {% endblock %}
-  
+</div>
+{% else %}
+{% endif %}
+
+
+
+
+
+</section>
+
+
+{% endblock %}

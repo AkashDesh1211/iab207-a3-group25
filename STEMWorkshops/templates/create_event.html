@@ -2,322 +2,323 @@
 {% from "bootstrap5/form.html" import render_form %}
 {% from "bootstrap5/form.html" import render_field %}
 
-  
+
 {% block header %}
-    
+
 {% endblock %}
 
 
 {% block content %}
-  <form method="post" action="" enctype="multipart/form-data">
-    {{ form.hidden_tag() }}
+<form method="post" action="" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
 
-    <!--Create events heading-->
-    <section class=" mt-4  ">
-      <div class="create-events-header container  text-center pt-3 pb-3">
-        <h1>
-          <!--pencil in square icon to represent creating/editting event details-->
-          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-pencil-square"
-            viewBox="0 0 16 16">
-            <path
-              d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-            <path fill-rule="evenodd"
-              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-          </svg>
-          <!--title of the create new event section containing the form where users can enter event details-->
-          {{heading}}
-        </h1>
-      </div>
-    </section>
-
-
-
-    <!--form containing inputs users can fill out in order to add details about an event (cannot submmit the form unless required fields have been filled out)-->
-    <!--form template comes from bootstrap - create event button submits the form-->
-      <!--Add General event information-->
-      <section>
-        <!--creates an area where all event detail input boxes and headings/labels are located-->
-        <div class="background-colour container p-5 ">
-          <div class="row">
-
-            <!--column where general event details are located-->
-            <div class=" col-md-6 col-sm-12">
-              <!--deneral event details section-->
-              <div class="border-info ">
-                <!--heading for general event details-->
-                <h2 class="heading-info text-center ">
-                  <!--calendar icon that represents event-->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                    class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
-                  </svg>
-                  <!--title for the deneral event details section-->
-                  General Event Details
-                </h2>
+  <!--Create events heading-->
+  <section class=" mt-4  ">
+    <div class="create-events-header container  text-center pt-3 pb-3">
+      <h1>
+        <!--pencil in square icon to represent creating/editting event details-->
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-pencil-square"
+          viewBox="0 0 16 16">
+          <path
+            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+          <path fill-rule="evenodd"
+            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+        </svg>
+        <!--title of the create new event section containing the form where users can enter event details-->
+        {{heading}}
+      </h1>
+    </div>
+  </section>
 
 
-                <!--start of the input/text areas where users can add event details-->
-                <!--Event Name input-->
-                <div class="p-3 ">
-                  <!--label naming the input event name (located above input area)-->
-                  <!--input where users can type event name-->
-                  {{render_field(form.event_name, class="form-control")}}
-                </div>
 
-                <!--STEM Field dropdown-->
-                <div class="p-3">
-                  <!--label naming the dropdown STEM Category (located above dropdown)-->
-                  <!--dropdown where users can select STEM category (either science, IT, engineering or maths)-->
-                  {{render_field(form.STEM_category, class="form")}}
-                    <!--dropdown form has the word choose within it before an option is chosen (initial value)-->
-                </div>
+  <!--form containing inputs users can fill out in order to add details about an event (cannot submmit the form unless required fields have been filled out)-->
+  <!--form template comes from bootstrap - create event button submits the form-->
+  <!--Add General event information-->
+  <section>
+    <!--creates an area where all event detail input boxes and headings/labels are located-->
+    <div class="background-colour container p-5 ">
+      <div class="row">
 
-                <!--Event Type dropdown-->
-                <div class="p-3">
-                  <!--label naming the dropdown Event type (located above dropdown)-->
-                  <!--dropdown where users can select event type (either in-person or online)-->
-                  {{render_field(form.event_type, class="form")}}
-                    <!--dropdown form has the word choose within it before an option is chosen (initial value)-->
-                </div>
+        <!--column where general event details are located-->
+        <div class=" col-md-6 col-sm-12">
+          <!--deneral event details section-->
+          <div class="border-info ">
+            <!--heading for general event details-->
+            <h2 class="heading-info text-center ">
+              <!--calendar icon that represents event-->
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
+                <path
+                  d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
+              </svg>
+              <!--title for the deneral event details section-->
+              General Event Details
+            </h2>
 
-                
-                
-              </div>
+
+            <!--start of the input/text areas where users can add event details-->
+            <!--Event Name input-->
+            <div class="p-3 ">
+              <!--label naming the input event name (located above input area)-->
+              <!--input where users can type event name-->
+              {{render_field(form.event_name, class="form-control")}}
+            </div>
+
+            <!--STEM Field dropdown-->
+            <div class="p-3">
+              <!--label naming the dropdown STEM Category (located above dropdown)-->
+              <!--dropdown where users can select STEM category (either science, IT, engineering or maths)-->
+              {{render_field(form.STEM_category, class="form")}}
+              <!--dropdown form has the word choose within it before an option is chosen (initial value)-->
+            </div>
+
+            <!--Event Type dropdown-->
+            <div class="p-3">
+              <!--label naming the dropdown Event type (located above dropdown)-->
+              <!--dropdown where users can select event type (either in-person or online)-->
+              {{render_field(form.event_type, class="form")}}
+              <!--dropdown form has the word choose within it before an option is chosen (initial value)-->
             </div>
 
 
-            <!--column containing the sections where users can add event image and add date and time event details (located to the right of the general event details section)-->
-            <div class=" col-md-6 col-sm-12  ">
+
+          </div>
+        </div>
 
 
-              <!--start of the input/text areas where users can add event details-->
-              <!--event image details section -->
-              <div class="p-3  ">
-                <div class="border-info">
-                  <!--heading for image detail section-->
-                  <h2 class="heading-info text-center">
-                    <!--image icon -->
+        <!--column containing the sections where users can add event image and add date and time event details (located to the right of the general event details section)-->
+        <div class=" col-md-6 col-sm-12  ">
+
+
+          <!--start of the input/text areas where users can add event details-->
+          <!--event image details section -->
+          <div class="p-3  ">
+            <div class="border-info">
+              <!--heading for image detail section-->
+              <h2 class="heading-info text-center">
+                <!--image icon -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                   class="bi bi-card-image" viewBox="0 0 16 16">
                   <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                   <path
                     d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z" />
                 </svg>
-                    <!--title of image section-->
-                    Event Image
-                  </h2>
-                  <div class="row p-3">
-                  {{render_field(form.image, class="form-control-file")}}
+                <!--title of image section-->
+                Event Image
+              </h2>
+              <div class="row p-3">
+                {{render_field(form.image, class="form-control-file")}}
+              </div>
+            </div>
+
+
+
+
+
+
+            <!--start of the input/text areas where users can add event details-->
+            <!--event date and time details section (located below the upload image section)-->
+            <div class="p-3  mt-2">
+              <div class="border-info">
+                <!--heading for date/time detail section-->
+                <h2 class="heading-info text-center">
+                  <!--clock icon that represents date/time event section-->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                    class="bi bi-clock-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
+                  </svg>
+                  <!--title of date/time section-->
+                  Date and Time Details
+                </h2>
+
+
+
+
+                <!--time type input for users to select the start and end time of the event-->
+                <!--start and end time inputs are placed within the same row so that they appear next to each other-->
+                <div class="row p-3">
+                  <!--column for start time input-->
+                  <div class="col-6">
+                    <div class="mt-3 mb-4">
+                      <!--label naming the time input Start time (located above input)-->
+                      <!--input where users can select the start time of the event-->
+                      {{render_field(form.start_time, class="form", type="datetime-local")}}
+                    </div>
+                  </div>
+
+                  <!--column for end time input-->
+                  <div class="col-6">
+                    <div class="mt-3 mb-4">
+                      <!--label naming the time input end time (located above input)-->
+                      <!--input where users can select the end time of the event-->
+                      {{render_field(form.end_time, class="form", type="datetime-local")}}
+                    </div>
+                  </div>
                 </div>
               </div>
 
+            </div>
+          </div>
+
+        </div>
 
 
 
+        <!--row where users can enter location and ticket details-->
+        <div class="row ">
 
+          <!--Event Location  Details section-->
+          <div class=" col-md-6 col-sm-12  mt-4 ">
+            <div class=" p-2 ">
+              <div class="border-info ">
 
-              <!--start of the input/text areas where users can add event details-->
-              <!--event date and time details section (located below the upload image section)-->
-              <div class="p-3  mt-2">
-                <div class="border-info">
-                  <!--heading for date/time detail section-->
-                  <h2 class="heading-info text-center">
-                    <!--clock icon that represents date/time event section-->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                      class="bi bi-clock-fill" viewBox="0 0 16 16">
-                      <path
-                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
-                    </svg>
-                    <!--title of date/time section-->
-                    Date and Time Details
-                  </h2>
+                <!--heading for location details section-->
+                <h2 class="heading-info text-center">
+                  <!--location icon located beside section title -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                    class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                  </svg>
+                  <!--title of location and transport details section-->
+                  Location Details
+                </h2>
 
-                 
-
-
-                  <!--time type input for users to select the start and end time of the event-->
-                  <!--start and end time inputs are placed within the same row so that they appear next to each other-->
-                  <div class="row p-3">
-                    <!--column for start time input-->
-                    <div class="col-6">
-                      <div class="mt-3 mb-4">
-                        <!--label naming the time input Start time (located above input)-->
-                        <!--input where users can select the start time of the event-->
-                        {{render_field(form.start_time, class="form", type="datetime-local")}}
-                      </div>
+                <!--start of the input/text areas where users can add event details-->
+                <!--row where users can enter event address and venue (both inputs are located next to one another)-->
+                <div class="row p-3">
+                  <!--column for Event Address-->
+                  <div class="col-md-6 col-sm-12 ">
+                    <!--event address-->
+                    <div>
+                      <!--input where users can type event address-->
+                      {{render_field(form.event_address, class="form-control")}}
                     </div>
-
-                    <!--column for end time input-->
-                    <div class="col-6">
-                      <div class="mt-3 mb-4">
-                        <!--label naming the time input end time (located above input)-->
-                        <!--input where users can select the end time of the event-->
-                        {{render_field(form.end_time, class="form", type="datetime-local")}}
-                      </div>
+                  </div>
+                  <!--column for Event venue-->
+                  <div class="col-md-6 col-sm-12 ">
+                    <!--event venue-->
+                    <div>
+                      <!--label naming the input event venue (located above input)-->
+                      <!--input where users can type event venue-->
+                      {{render_field(form.event_venue, class="form-control")}}
                     </div>
                   </div>
                 </div>
 
               </div>
             </div>
-
           </div>
 
 
 
-          <!--row where users can enter location and ticket details-->
-          <div class="row ">
+          <!--column for the ticket details section-->
+          <div class=" col-md-6 col-sm-12 ">
+            <div class=" p-2 mt-4 ">
+              <div class="border-info">
 
-            <!--Event Location  Details section-->
-            <div class=" col-md-6 col-sm-12  mt-4 ">
-              <div class=" p-2 ">
-                <div class="border-info ">
+                <!--heading for ticket details section-->
+                <h2 class="heading-info text-center ">
+                  <!--ticket icon to go along with section title-->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                    class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5m0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5M4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1" />
+                  </svg>
+                  <!--title of ticket detail section-->
+                  Ticket Details
+                </h2>
 
-                  <!--heading for location details section-->
-                  <h2 class="heading-info text-center">
-                    <!--location icon located beside section title -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                      class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                      <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                    </svg>
-                    <!--title of location and transport details section-->
-                    Location Details
-                  </h2>
-
-                  <!--start of the input/text areas where users can add event details-->
-                  <!--row where users can enter event address and venue (both inputs are located next to one another)-->
-                  <div class="row p-3">
-                    <!--column for Event Address-->
-                    <div class="col-md-6 col-sm-12 ">
-                      <!--event address-->
-                      <div>
-                        <!--input where users can type event address-->
-                        {{render_field(form.event_address, class="form-control")}}
-                      </div>
-                    </div>
-                    <!--column for Event venue-->
-                    <div class="col-md-6 col-sm-12 ">
-                      <!--event venue-->
-                      <div>
-                        <!--label naming the input event venue (located above input)-->
-                        <!--input where users can type event venue-->
-                        {{render_field(form.event_venue, class="form-control")}}
-                      </div>
-                    </div>
-                  </div>  
-
-                </div>
-              </div>
-            </div>
+                <!--start of the input/text areas where users can add event details-->
 
 
 
-            <!--column for the ticket details section-->
-            <div class=" col-md-6 col-sm-12 ">
-              <div class=" p-2 mt-4 ">
-                <div class="border-info">
+                <div class="row p-3">
 
-                  <!--heading for ticket details section-->
-                  <h2 class="heading-info text-center ">
-                    <!--ticket icon to go along with section title-->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                      class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
-                      <path
-                        d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5m0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5M4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1" />
-                    </svg>
-                    <!--title of ticket detail section-->
-                    Ticket Details
-                  </h2>
+                  <div class="col-md-6 col-sm-12 ">
+                    <!--ticket price-->
 
-                  <!--start of the input/text areas where users can add event details-->
-                  
-
-
-                  <div class="row p-3">
-
-                    <div class="col-md-6 col-sm-12 ">
-                  <!--ticket price-->
-                  
                     <!--label naming the number input ticket price (located about input)-->
                     <div class="input-group">
                       <!--input where users can select/type the ticket price
                         - number within input increases or decreases by 1 whenever the up/down arrow is clicked on-->
-                      {{render_field(form.ticket_price, class="form-control", id="ticket-price", type="number", step="0.01", min="0")}}
+                      {{render_field(form.ticket_price, class="form-control", id="ticket-price", type="number",
+                      step="0.01", min="0")}}
                     </div>
-                  
+
                   </div>
 
 
                   <div class="col-md-6 col-sm-12 ">
-                  <!--maximun number of tickets-->
-                  
+                    <!--maximun number of tickets-->
+
                     <!--label naming the number input Maximum Number of Tickets (located about input) -->
                     <div class="input-group">
                       <!--input where users can select/type the max number of tickets
                         - number within input increases or decreases by 1 whenever the up/down arrow is clicked on-->
-                      {{render_field(form.max_num_tickets, class="form-control", id="ticket-max", type="number", step="1", min="0")}}
+                      {{render_field(form.max_num_tickets, class="form-control", id="ticket-max", type="number",
+                      step="1", min="0")}}
                     </div>
-                  
-                  </div>
-                  </div>
 
-                  <!--ticket refund policy-->
-                  <div class="row  mb-4 p-3 pb-4">
-                    <!--label naming the text area ticket refund policy (located about text area)-->
-                    <!--text area where users can type the ticket refund details-->
-                    {{render_field(form.ticket_policy, class="form", id="refund-ticket", rows="2")}}
                   </div>
+                </div>
+
+                <!--ticket refund policy-->
+                <div class="row  mb-4 p-3 pb-4">
+                  <!--label naming the text area ticket refund policy (located about text area)-->
+                  <!--text area where users can type the ticket refund details-->
+                  {{render_field(form.ticket_policy, class="form", id="refund-ticket", rows="2")}}
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
 
-          <!--Event Description section (located below location/transport and ticket detail sections)-->
-          <div class="row mt-2">
-            <div class=" col-12  p-3 ">
-              <div class="border-info ">
-                <!--heading for event description section-->
-                <h2 class="heading-info text-center">
-                  <!--card-text icon to represent event description-->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                    class="bi bi-card-text" viewBox="0 0 16 16">
-                    <path
-                      d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
-                    <path
-                      d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5" />
-                  </svg>
-                  <!--title of event description section-->
-                  Event Description
-                </h2>
+        <!--Event Description section (located below location/transport and ticket detail sections)-->
+        <div class="row mt-2">
+          <div class=" col-12  p-3 ">
+            <div class="border-info ">
+              <!--heading for event description section-->
+              <h2 class="heading-info text-center">
+                <!--card-text icon to represent event description-->
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                  class="bi bi-card-text" viewBox="0 0 16 16">
+                  <path
+                    d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                  <path
+                    d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5" />
+                </svg>
+                <!--title of event description section-->
+                Event Description
+              </h2>
 
-                <!--start of the input/text areas where users can add event details-->
-                <div>
-                  <div class="p-3 pb-4">
-                    <!--label naming the text area description (located above text area)-->
-                    <!--text area where users can type the descrition of the event
+              <!--start of the input/text areas where users can add event details-->
+              <div>
+                <div class="p-3 pb-4">
+                  <!--label naming the text area description (located above text area)-->
+                  <!--text area where users can type the descrition of the event
                       - text area covers six rows to increase the size of it to support long event descriptions-->
-                    {{render_field(form.description, class="form", id="description", rows="6")}}
-                  </div>
+                  {{render_field(form.description, class="form", id="description", rows="6")}}
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
 
-          <!--button to create Event (submits the form once the event details have been filled out and creates/updates an event)-->
-          <div class="col-12 mt-3">
-             {{render_field(form.submit, class="btn btn-info", value=submit_label)}}
-          </div>
+        <!--button to create Event (submits the form once the event details have been filled out and creates/updates an event)-->
+        <div class="col-12 mt-3">
+          {{render_field(form.submit, class="btn btn-info", value=submit_label)}}
+        </div>
 
 
 
-      </section>
-    </form>
-    
-    
+  </section>
+</form>
+
+
 
 
 {% endblock %}
-  
