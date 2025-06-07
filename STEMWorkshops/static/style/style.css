@@ -145,6 +145,15 @@ footer a {
     display: block;
 }
 
+.details-img {
+    width: 100% !important;          /* Fills full width of card */
+    height: 425px !important;        /* Fixed image height for consistency */
+    object-fit: contain !important; 
+    border-top-left-radius: 12px; 
+    border-top-right-radius: 12px;
+    display: block;
+}
+
 /* On desktop screens, force 3 cards per row with clean spacing */
 @media (min-width: 992px) {
     .row.row-cols-md-3 > * {
