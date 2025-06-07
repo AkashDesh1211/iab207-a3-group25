@@ -44,37 +44,37 @@
         </div>
 
     </div>
-    
-        <!--Heading to book event-->
-        <div class="  p-3 body-booking ">
-            <div class="page-header  mb-3">
-                <h4>{{heading}}</h4>
-                <!--Display ticket price-->
-                <h6><b>Ticket Price: </b>${{event.ticket_price}}</h6>
+
+    <!--Heading to book event-->
+    <div class="  p-3 body-booking ">
+        <div class="page-header  mb-3">
+            <h4>{{heading}}</h4>
+            <!--Display ticket price-->
+            <h6><b>Ticket Price: </b>${{event.ticket_price}}</h6>
+        </div>
+
+
+        <div class="row">
+            <!--render orders form for user to input ticket quantity and te submit button to book event-->
+            <!-- Form rendering easy using bootstrap and WTF-Forms -->
+            <div class="col-md-6 col-sm-12 ">
+                {{render_form(form)}}
             </div>
 
-
-            <div class="row">
-                <!--render orders form for user to input ticket quantity and te submit button to book event-->
-                <!-- Form rendering easy using bootstrap and WTF-Forms -->
-                <div class="col-md-6 col-sm-12 ">
-                    {{render_form(form)}}
-                </div>
-
-                <!--Displays total amount of booking-->
-                <div class="col-md-6 col-sm-12">
-                    <!-- Total Price Output with Label -->
-                    <!-- Output section for total ticket amount -->
-                    <form methods='GET, POST'>
-                        <div class="">
-                            <label for="total-amount" class="form-label">Total Amount</label>
-                            <p id="total-amount" class="form-control fw-bold text-success"
-                                style="background-color: #f5f5f5; width:20%;">$0.00</p>
-                        </div>
-                    </form>
-                </div>
+            <!--Displays total amount of booking-->
+            <div class="col-md-6 col-sm-12">
+                <!-- Total Price Output with Label -->
+                <!-- Output section for total ticket amount -->
+                <form methods='GET, POST'>
+                    <div class="">
+                        <label for="total-amount" class="form-label">Total Amount</label>
+                        <p id="total-amount" class="form-control fw-bold text-success"
+                            style="background-color: #f5f5f5; width:20%;">$0.00</p>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
 
 </div>

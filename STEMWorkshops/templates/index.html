@@ -1,334 +1,344 @@
 {% extends 'base.html' %}
 
-  
+
 {% block header %}
-    
+
 {% endblock %}
-  
-
- {% block content %}
-  
 
 
-    <!--Carousel showing different worshop events (carousel from bootstrap)-->
-    <section class="mt-3 ">
-      <div id="carouselExampleCaptions" class="carousel-home carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
+{% block content %}
+
+
+
+<!--Carousel showing different worshop events (carousel from bootstrap)-->
+<section class="mt-3 ">
+  <div id="carouselExampleCaptions" class="carousel-home carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <!--image of first event-->
+      <div class="carousel-item active ">
+        <img src="./static/img/event1.jpg" class="d-block w-100 img-fluid" alt="...">
+        <!--message located on first carousel slide to welcome the user who has just logged in (acts as a confirmation that the user is logged in)-->
+        <div class="carousel-caption d-block ">
+          {% if current_user.is_authenticated %}
+          <!--dispalys the name of the user logged in (assumed that the user is already logged in within this prototype)-->
+          <h1>Hello, {{current_user.name}}...</h1>
+          {% else %}
+          <h1>Welcome...</h1>
+          {% endif %}
         </div>
-        <div class="carousel-inner">
-          <!--image of first event-->
-          <div class="carousel-item active ">
-            <img src="./static/img/event1.jpg" class="d-block w-100 img-fluid" alt="...">
-            <!--message located on first carousel slide to welcome the user who has just logged in (acts as a confirmation that the user is logged in)-->
-            <div class="carousel-caption d-block ">
-              {% if current_user.is_authenticated %}
-              <!--dispalys the name of the user logged in (assumed that the user is already logged in within this prototype)-->
-              <h1>Hello, {{current_user.name}}...</h1>
-              {% else %}
-              <h1>Welcome...</h1>
-              {% endif %}
-            </div>
-          </div>
-          <!--image of second event-->
-          <div class="carousel-item">
-            <img src="./static/img/event2.jpg" class="d-block w-100 img-fluid" alt="...">
-          </div>
-          <!--image of third event-->
-          <div class="carousel-item">
-            <img src="./static/img/event3.jpg" class="d-block w-100 img-fluid" alt="...">
-          </div>
-        </div>
-        <!--button that allows users to go back to the previous event image-->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <!--button that allows users to go to the next event image-->
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
-    </section>
+      <!--image of second event-->
+      <div class="carousel-item">
+        <img src="./static/img/event2.jpg" class="d-block w-100 img-fluid" alt="...">
+      </div>
+      <!--image of third event-->
+      <div class="carousel-item">
+        <img src="./static/img/event3.jpg" class="d-block w-100 img-fluid" alt="...">
+      </div>
+    </div>
+    <!--button that allows users to go back to the previous event image-->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <!--button that allows users to go to the next event image-->
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
 
 
-    <!--creates space between caroudsel and STEM category section-->
-    <div class="mb-5"></div>
+<!--creates space between caroudsel and STEM category section-->
+<div class="mb-5"></div>
 
 
-    <!--Select STEM Category section (able to view all event categories)-->
-    <div class="container">
+<!--Select STEM Category section (able to view all event categories)-->
+<div class="container">
 
-      <!--heading for STEM Category section-->
-      <div class="category-title ">
-        <!--title of STEM cateogry section-->
-        <h2 class=" text-center">Select STEM Category</h2>
+  <!--heading for STEM Category section-->
+  <div class="category-title ">
+    <!--title of STEM cateogry section-->
+    <h2 class=" text-center">Select STEM Category</h2>
+  </div>
+
+  <!--body of STEM category section-->
+  <div class="select-category">
+    <div class="row text-center p-3">
+      <!--column for Science category-->
+      <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2">
+        <!--links user to the section containing science events (located further down the home page)-->
+        <a href="{{ url_for('main.index', category='Science') }}#browse-events" class="text-decoration-none">
+          <!--area containing category name and image-->
+          <div class="categories  m-2 p-2">
+            <!--image/logo for science category-->
+            <img src="./static/img/science.png" class="logo mt-2">
+            <!--name of category-->
+            <h3>Science</h3>
+          </div>
+        </a>
       </div>
 
-      <!--body of STEM category section-->
-      <div class="select-category">
-        <div class="row text-center p-3">
-          <!--column for Science category-->
-          <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2">
+      <!--column for IT category-->
+      <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
+        <!--links user to the section containing IT events (located further down the home page)-->
+        <a href="{{ url_for('main.index', category='Information Technology') }}#browse-events"
+          class="text-decoration-none">
+          <!--area containing category name and image-->
+          <div class="categories m-2 p-2">
+            <!--image/logo for IT category-->
+            <img src="./static/img/computer.png" class="logo ">
+            <!--name of category-->
+            <h3>Information Technology</h3>
+          </div>
+        </a>
+      </div>
+
+      <!--column for engineering category-->
+      <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
+        <!--links user to the section containing engineering events (located further down the home page)-->
+        <a href="{{ url_for('main.index', category='Engineering') }}#browse-events" class="text-decoration-none">
+          <!--area containing category name and image-->
+          <div class="categories m-2 p-2">
+            <!--image/logo for engineering category-->
+            <img src="./static/img/engineering.png" class="logo mt-2">
+            <!--name of category-->
+            <h3>Engineering</h3>
+          </div>
+        </a>
+      </div>
+
+      <!--column for maths category-->
+      <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
+        <!--links user to the section containing maths events (located further down the home page)-->
+        <a href="{{ url_for('main.index', category='Maths') }}#browse-events" class="text-decoration-none">
+          <!--area containing category name and image-->
+          <div class="categories m-2 p-2">
+            <!--image/logo for maths category-->
+            <img src="./static/img/maths.png" class="logo mt-2">
+            <!--name of category-->
+            <h3>Maths</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!--creates space bewtween STEM category section and browse events section-->
+<div class="mb-5" id="browse-events"></div>
+
+
+<!--browse events header - includes dropdowns to search events in different categories and a search bar -->
+<div class="browse-header sticky-top shadow">
+
+  <!--title of the browse events section-->
+  <div class="browse-title">
+    <h4 class="text-center py-1" id="event-browse">Browse Events</h4>
+  </div>
+
+  <!--section that includes dropdowns and a search bar to narrow down event search (both come from bootstrap)-->
+  <div class="dropdown-section mx-2">
+    <!--aligns all the dropdowns and search bar next to one another so that they are all in one row on a larger screen-->
+    <div class="row text-center">
+
+      <!--STEM category dropdown-->
+      <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+        <div class="dropdown mb-1">
+          <!--allows a list of dropdown items to appear when user clicks on the dropdown-->
+          <a class="btn btn-info dropdown-toggle w-75" href="#" role="button" id="dropdownMenuLink"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <!--name of dropdown-->
+            Category
+          </a>
+          <!--list of dropdown items specific to the category of events-->
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <!--shows user all the event cards (locates user to the event cards directly below header)-->
+            <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index')}}#browse-events">All</a>
+            </li>
             <!--links user to the section containing science events (located further down the home page)-->
-            <a href="{{ url_for('main.index', category='Science') }}#browse-events" class="text-decoration-none">
-              <!--area containing category name and image-->
-              <div class="categories  m-2 p-2">
-                <!--image/logo for science category-->
-                <img src="./static/img/science.png" class="logo mt-2">
-                <!--name of category-->
-                <h3>Science</h3>
-              </div>
-            </a>
-          </div>
-
-          <!--column for IT category-->
-          <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
+            <li><a class="dropdown-item text-decoration-none"
+                href="{{url_for('main.index', category='Science')}}#browse-events">Science</a></li>
             <!--links user to the section containing IT events (located further down the home page)-->
-            <a href="{{ url_for('main.index', category='Information Technology') }}#browse-events" class="text-decoration-none">
-              <!--area containing category name and image-->
-              <div class="categories m-2 p-2">
-                <!--image/logo for IT category-->
-                <img src="./static/img/computer.png" class="logo ">
-                <!--name of category-->
-                <h3>Information Technology</h3>
-              </div>
-            </a>
-          </div>
-
-          <!--column for engineering category-->
-          <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
+            <li><a class="dropdown-item text-decoration-none"
+                href="{{url_for('main.index', category='Information Technology')}}#browse-events">Information
+                Technology</a></li>
             <!--links user to the section containing engineering events (located further down the home page)-->
-            <a href="{{ url_for('main.index', category='Engineering') }}#browse-events" class="text-decoration-none">
-              <!--area containing category name and image-->
-              <div class="categories m-2 p-2">
-                <!--image/logo for engineering category-->
-                <img src="./static/img/engineering.png" class="logo mt-2">
-                <!--name of category-->
-                <h3>Engineering</h3>
-              </div>
-            </a>
-          </div>
-
-          <!--column for maths category-->
-          <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-3 mb-2 ">
+            <li><a class="dropdown-item text-decoration-none"
+                href="{{url_for('main.index', category='Engineering')}}#browse-events">Engineering</a></li>
             <!--links user to the section containing maths events (located further down the home page)-->
-            <a href="{{ url_for('main.index', category='Maths') }}#browse-events" class="text-decoration-none">
-              <!--area containing category name and image-->
-              <div class="categories m-2 p-2">
-                <!--image/logo for maths category-->
-                <img src="./static/img/maths.png" class="logo mt-2">
-                <!--name of category-->
-                <h3>Maths</h3>
-              </div>
-            </a>
-          </div>
+            <li><a class="dropdown-item text-decoration-none"
+                href="{{url_for('main.index', category='Maths')}}#browse-events">Maths</a></li>
+          </ul>
         </div>
       </div>
 
-    </div>
 
-
-    <!--creates space bewtween STEM category section and browse events section-->
-    <div class="mb-5" id="browse-events"></div>
-
-
-    <!--browse events header - includes dropdowns to search events in different categories and a search bar -->
-    <div class="browse-header sticky-top shadow">
-
-      <!--title of the browse events section-->
-      <div class="browse-title">
-        <h4 class="text-center py-1" id="event-browse">Browse Events</h4>
-      </div>
-
-      <!--section that includes dropdowns and a search bar to narrow down event search (both come from bootstrap)-->
-      <div class="dropdown-section mx-2">
-        <!--aligns all the dropdowns and search bar next to one another so that they are all in one row on a larger screen-->
-        <div class="row text-center">
-
-          <!--STEM category dropdown-->
-          <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
-            <div class="dropdown mb-1">
-              <!--allows a list of dropdown items to appear when user clicks on the dropdown-->
-              <a class="btn btn-info dropdown-toggle w-75" href="#" role="button" id="dropdownMenuLink"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <!--name of dropdown-->
-                Category
-              </a>
-              <!--list of dropdown items specific to the category of events-->
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <!--shows user all the event cards (locates user to the event cards directly below header)-->
-                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index')}}#browse-events">All</a></li>
-                <!--links user to the section containing science events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Science')}}#browse-events">Science</a></li>
-                <!--links user to the section containing IT events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Information Technology')}}#browse-events">Information Technology</a></li>
-                <!--links user to the section containing engineering events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Engineering')}}#browse-events">Engineering</a></li>
-                <!--links user to the section containing maths events (located further down the home page)-->
-                <li><a class="dropdown-item text-decoration-none" href="{{url_for('main.index', category='Maths')}}#browse-events">Maths</a></li>
-              </ul>
-            </div>
-          </div>
-
-
-          <!--event type dropdown-->
-          <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
-            <div class="dropdown mb-1">
-              <!--allows a list of dropdown items to appear when user clicks on the dropdown-->
-              <a class="btn btn-info dropdown-toggle w-75" href="#" role="button" id="dropdownMenuLink"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <!--name of dropdown-->
-                Event Type
-              </a>
-              <!--list of dropdown items specific to the type of events-->
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <!--shows user all the event cards (locates user to the event cards directly below header)-->
-                <li><a class="dropdown-item" href="{{url_for('main.index')}}#browse-events">All</a></li>
-                <!--shows user events that are marked as in-person only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
-                <li><a class="dropdown-item" href="{{url_for('main.index', event_type='In-Person')}}#browse-events">In-person</a></li>
-                <!--shows user events that are marked as online only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
-                <li><a class="dropdown-item" href="{{url_for('main.index', event_type='Online')}}#browse-events">Online</a></li>
-              </ul>
-            </div>
-          </div>
-
-
-          <!--status dropdown-->
-          <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
-            <div class="dropdown mb-1">
-              <!--allows a list of dropdown items to appear when user clicks on the dropdown-->
-              <a class="btn btn-info dropdown-toggle w-75" href="#" role="button" id="dropdownMenuLink"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <!--name of dropdown-->
-                Status
-              </a>
-              <!--list of dropdown items specific to the status of events-->
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="{{ url_for('main.index')}}#browse-events">All</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('main.index', status='Open')}}#browse-events">Open</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('main.index', status='Cancelled')}}#browse-events">Cancelled</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('main.index', status='Sold Out')}}#browse-events">Sold Out</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('main.index', status='Inactive')}}#browse-events">Inactive</a></li>
-              </ul>
-            </div>
-          </div>
-
-  
-
-          <!--search bar-->
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <!--Search bar to find events (located to the right of the dropdowns)-->
-            <form class=" d-flex justify-content-start align-items-start mb-2">
-              <!--input that users can type in to find specific events-->
-              <input class="form-control me-2 w-75" type="search" placeholder="Search" aria-label="Search">
-              <!--button that allows users to search for events based on what they typed in the input-->
-              <button class="btn btn-info" type="submit">Search</button>
-            </form>
-          </div>
+      <!--event type dropdown-->
+      <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+        <div class="dropdown mb-1">
+          <!--allows a list of dropdown items to appear when user clicks on the dropdown-->
+          <a class="btn btn-info dropdown-toggle w-75" href="#" role="button" id="dropdownMenuLink"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <!--name of dropdown-->
+            Event Type
+          </a>
+          <!--list of dropdown items specific to the type of events-->
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <!--shows user all the event cards (locates user to the event cards directly below header)-->
+            <li><a class="dropdown-item" href="{{url_for('main.index')}}#browse-events">All</a></li>
+            <!--shows user events that are marked as in-person only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
+            <li><a class="dropdown-item"
+                href="{{url_for('main.index', event_type='In-Person')}}#browse-events">In-person</a></li>
+            <!--shows user events that are marked as online only (locates user to the event cards directly below header that change depending on the dropdown item selected)-->
+            <li><a class="dropdown-item" href="{{url_for('main.index', event_type='Online')}}#browse-events">Online</a>
+            </li>
+          </ul>
         </div>
       </div>
 
+
+      <!--status dropdown-->
+      <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+        <div class="dropdown mb-1">
+          <!--allows a list of dropdown items to appear when user clicks on the dropdown-->
+          <a class="btn btn-info dropdown-toggle w-75" href="#" role="button" id="dropdownMenuLink"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <!--name of dropdown-->
+            Status
+          </a>
+          <!--list of dropdown items specific to the status of events-->
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="{{ url_for('main.index')}}#browse-events">All</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('main.index', status='Open')}}#browse-events">Open</a></li>
+            <li><a class="dropdown-item"
+                href="{{ url_for('main.index', status='Cancelled')}}#browse-events">Cancelled</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('main.index', status='Sold Out')}}#browse-events">Sold Out</a>
+            </li>
+            <li><a class="dropdown-item" href="{{ url_for('main.index', status='Inactive')}}#browse-events">Inactive</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+      <!--search bar-->
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <!--Search bar to find events (located to the right of the dropdowns)-->
+        <form class=" d-flex justify-content-start align-items-start mb-2">
+          <!--input that users can type in to find specific events-->
+          <input class="form-control me-2 w-75" type="search" placeholder="Search" aria-label="Search">
+          <!--button that allows users to search for events based on what they typed in the input-->
+          <button class="btn btn-info" type="submit">Search</button>
+        </form>
+      </div>
     </div>
+  </div>
+
+</div>
 
 
-    
 
 
-    <!--title telling the user the type of events located underneath 
+
+<!--title telling the user the type of events located underneath 
     - title changes depending on what dropdown item was selected or what was typed into the searchbar
     - title intially says all events with all the events being located underneath it-->
-    <div id="event-all" class="all-event-heading mt-5 mb-3">
-      <h3 class=" d-flex justify-content-center">
-      {# Start the heading with Category if selected #}
-      {% if category %}{{ category}}{% endif %}
+<div id="event-all" class="all-event-heading mt-5 mb-3">
+  <h3 class=" d-flex justify-content-center">
+    {# Start the heading with Category if selected #}
+    {% if category %}{{ category}}{% endif %}
 
-      {# Add Event Type if selected #}
-      {% if event_type %}
-          {% if category or status %} - {% endif %}
-          {{ event_type}}
-      {% endif %}
+    {# Add Event Type if selected #}
+    {% if event_type %}
+    {% if category or status %} - {% endif %}
+    {{ event_type}}
+    {% endif %}
 
-      {# Add Status if selected #}
-      {% if status %}
-          {% if category  or event_type %} - {% endif %}
-          {{ status}}
-      {% endif %}
+    {# Add Status if selected #}
+    {% if status %}
+    {% if category or event_type %} - {% endif %}
+    {{ status}}
+    {% endif %}
 
-      {# Add Time if selected #}
-      {% if time %}
-        {% if category or status or event_type %} - {% endif %}
-        Events This {{ time}}
-      {% endif %}
+    {# Add Time if selected #}
+    {% if time %}
+    {% if category or status or event_type %} - {% endif %}
+    Events This {{ time}}
+    {% endif %}
 
-      {# If no filters selected, show default heading #}
-      {% if not category and not status and not time and not event_type %}
-         All Events 
-      {% endif %}
-      </h3>
-    </div>
-
-
+    {# If no filters selected, show default heading #}
+    {% if not category and not status and not time and not event_type %}
+    All Events
+    {% endif %}
+  </h3>
+</div>
 
 
 
 
-    <div class="d-flex justify-content-center">
-      <div class="container-fluid">
-      <div class="row row-cols-lg-3 row-cols-xxl-4 row-cols-md-2 row-cols-sm-1 row-cols-1 g-4 m-2">
-        {% for event in events %}
-        {% if
-            (not category or event.STEM_category == category) and
-            (not status or event.event_status == status) and
-            (not event_type or event.event_type == event_type) and
-            (not time or (
-                     (time == 'Today' and event.start_time.date() == now().date()) or
-                     (time == 'This Week' and event.start_time.isocalendar()[1] == now().isocalendar()[1]) or
-                     (time == 'This Month' and event.start_time.month == now().month)
-        ))
+
+
+<div class="d-flex justify-content-center">
+  <div class="container-fluid">
+    <div class="row row-cols-lg-3 row-cols-xxl-4 row-cols-md-2 row-cols-sm-1 row-cols-1 g-4 m-2">
+      {% for event in events %}
+      {% if
+      (not category or event.STEM_category == category) and
+      (not status or event.event_status == status) and
+      (not event_type or event.event_type == event_type) and
+      (not time or (
+      (time == 'Today' and event.start_time.date() == now().date()) or
+      (time == 'This Week' and event.start_time.isocalendar()[1] == now().isocalendar()[1]) or
+      (time == 'This Month' and event.start_time.month == now().month)
+      ))
       %}
-        <div class="col">
-          <div class="card">
-            <a href="{{url_for('events.show', id=event.event_id)}}">
-              <img src="{{event.image}}" class="card-img-top img-fluid event-card-img" alt="./static/img/s-l1200.jpg" >
-            </a>
-              <div class="card-body">
-              <!--row that displays event name and status next to one another-->
-              <div class="row mb-2">
-                <!--event name-->
-                <div class="col-6 mt-2">
-                  <h5 class="card-title ">
-                    <!--clicking on the event name brings user to the event details page of the event selected--->
-                    <a href="{{url_for('events.show', id=event.event_id)}}" class="text-decoration-none">
-                      <div class="title workshop-title-width">
-                        <!--calendar icon that repsents event-->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                          class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
-                          <path
-                            d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
-                        </svg>
-                        <!--name of event-->
-                        {{event.event_name}}
-                      </div>
-                    </a>
-                  </h5>
-                </div>
+      <div class="col">
+        <div class="card">
+          <a href="{{url_for('events.show', id=event.event_id)}}">
+            <img src="{{event.image}}" class="card-img-top img-fluid event-card-img" alt="./static/img/s-l1200.jpg">
+          </a>
+          <div class="card-body">
+            <!--row that displays event name and status next to one another-->
+            <div class="row mb-2">
+              <!--event name-->
+              <div class="col-6 mt-2">
+                <h5 class="card-title ">
+                  <!--clicking on the event name brings user to the event details page of the event selected--->
+                  <a href="{{url_for('events.show', id=event.event_id)}}" class="text-decoration-none">
+                    <div class="title workshop-title-width">
+                      <!--calendar icon that repsents event-->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
+                        <path
+                          d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
+                      </svg>
+                      <!--name of event-->
+                      {{event.event_name}}
+                    </div>
+                  </a>
+                </h5>
+              </div>
 
-                <!--event status-->
-                <div class="col-6 text-end">
-                  <!--clicking on the event status button brings user to the event details page of the event selected--->
-                  <a href="{{url_for('events.show', id=events.id)}}" class="text-decoration-none">
-                    <!--event status text - located within a button coloured in a way that reflects the status (e.g green to represent open)-->
-                    <!--signals the status of the event-->
-            <button type="button" class=" btn btn-md rounded-pill
+              <!--event status-->
+              <div class="col-6 text-end">
+                <!--clicking on the event status button brings user to the event details page of the event selected--->
+                <a href="{{url_for('events.show', id=events.id)}}" class="text-decoration-none">
+                  <!--event status text - located within a button coloured in a way that reflects the status (e.g green to represent open)-->
+                  <!--signals the status of the event-->
+                  <button type="button" class=" btn btn-md rounded-pill
              {% if event.event_status == 'Open' %}
              btn-success
              {% elif event.event_status == 'Inactive' %}
@@ -339,96 +349,95 @@
             btn-danger
             {% endif %}
              ">{{ event.event_status }}</button>
-                  </a>
+                </a>
+              </div>
+            </div>
+
+            <!--event time and date-->
+            <!--clicking on the event date/time brings user to the event details page of the event selected--->
+            <a href="{{url_for('events.show', id=event.event_id)}}" class="text-decoration-none">
+              <!--row allows event date and time to be located next to each other-->
+              <div class="row mb-1 ">
+
+                <!--event date-->
+                <div class="col-5 ">
+                  <p class="datetime">
+                    <!--calendar icon that represents date-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-calendar3" viewBox="0 0 16 16">
+                      <path
+                        d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z" />
+                      <path
+                        d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                    </svg>
+                    <!--text displaying date of event-->
+                    <b>{{event.start_time.strftime('%d/%m/%Y')}} </b>
+                  </p>
+                </div>
+
+                <!--event time-->
+                <div class="col-7 ">
+                  <p class="datetime">
+                    <!--clock icon that represents time-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-clock-fill" viewBox="0 0 16 16">
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
+                    </svg>
+                    <!--text displaying start and end time of event-->
+                    <b>{{event.start_time.strftime('%I:%M %p')}} - {{event.end_time.strftime('%I:%M %p')}}</b>
+                  </p>
                 </div>
               </div>
-
-              <!--event time and date-->
-              <!--clicking on the event date/time brings user to the event details page of the event selected--->
-              <a href="{{url_for('events.show', id=event.event_id)}}" class="text-decoration-none">
-                <!--row allows event date and time to be located next to each other-->
-                <div class="row mb-1 ">
-
-                  <!--event date-->
-                  <div class="col-5 ">
-                    <p class="datetime">
-                      <!--calendar icon that represents date-->
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-calendar3" viewBox="0 0 16 16">
-                        <path
-                          d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z" />
-                        <path
-                          d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
-                      </svg>
-                      <!--text displaying date of event-->
-                      <b>{{event.start_time.strftime('%d/%m/%Y')}} </b>
-                    </p>
-                  </div>
-
-                  <!--event time-->
-                  <div class="col-7 ">
-                    <p class="datetime">
-                      <!--clock icon that represents time-->
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-clock-fill" viewBox="0 0 16 16">
-                        <path
-                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
-                      </svg>
-                      <!--text displaying start and end time of event-->
-                      <b>{{event.start_time.strftime('%I:%M %p')}} - {{event.end_time.strftime('%I:%M %p')}}</b>
-                    </p>
-                  </div>
-                </div>
-              </a>
+            </a>
 
 
-              <!--location and event type details-->
-              <!--clicking on the event location/type brings user to the event details page of the event selected--->
-              <a href="{{url_for('events.show', id=event.event_id)}}" class="text-decoration-none">
-                <div class="card-text">
-                  <!--location details-->
-                  <p class="detail mb-1">
-                    <!--pin incon that represents location-->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                      class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                      <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                    </svg>
-                    <!--name of event's location-->
-                    <b>-</b> {{event.event_venue}}, {{event.event_address}}
-                  </p>
-                  <!--event type details-->
-                  <p class="detail mb-1">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
-                      <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
-                      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                    </svg>
-                    <!--name of event type-->
-                    <b>-</b> {{event.event_type}}
-                  </p>
-                   <!--Event category-->
-                   <p class="detail mb-1">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
-                      <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2"/>
-                      <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0"/>
-                    </svg>
-                    <!--name of event type-->
-                    <b>-</b> {{event.STEM_category}}
-                  </p>
-                </div>
-              </a>
-            </div>
-            <div class="card-footer">
-              <small class="text-body-secondary">STEMWorkshops</small>
-            </div>
+            <!--location and event type details-->
+            <!--clicking on the event location/type brings user to the event details page of the event selected--->
+            <a href="{{url_for('events.show', id=event.event_id)}}" class="text-decoration-none">
+              <div class="card-text">
+                <!--location details-->
+                <p class="detail mb-1">
+                  <!--pin incon that represents location-->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                  </svg>
+                  <!--name of event's location-->
+                  <b>-</b> {{event.event_venue}}, {{event.event_address}}
+                </p>
+                <!--event type details-->
+                <p class="detail mb-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+                    <path
+                      d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5" />
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                  </svg>
+                  <!--name of event type-->
+                  <b>-</b> {{event.event_type}}
+                </p>
+                <!--Event category-->
+                <p class="detail mb-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-journals" viewBox="0 0 16 16">
+                    <path
+                      d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2" />
+                    <path
+                      d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0" />
+                  </svg>
+                  <!--name of event type-->
+                  <b>-</b> {{event.STEM_category}}
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="card-footer">
+            <small class="text-body-secondary">STEMWorkshops</small>
           </div>
         </div>
-        {%endif %}
-      {% endfor %}
       </div>
-  {% endblock %}
-
-
-
-
-  
-
+      {%endif %}
+      {% endfor %}
+    </div>
+    {% endblock %}
