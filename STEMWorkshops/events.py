@@ -134,7 +134,7 @@ def booking(id):
       flash('Successfully booked event')
       return redirect(url_for('events.booking_history')) 
    
-   return render_template('user.html', form=booking_form, id=id, heading='Book Ticket')
+   return render_template('userbook.html', form=booking_form, event=event, id=id, heading='Book Ticket')
 
 
 
