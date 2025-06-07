@@ -29,7 +29,7 @@
           </div>
           <div class="d-flex justify-content-end col-3 p-2">
             <!--signals the status of the event-->
-            <button type="button" class=" btn btn-lg
+            <button type="button" class=" btn btn-lg rounded-pill
              {% if event.event_status == 'Open' %}
              btn-success
              {% elif event.event_status == 'Inactive' %}
@@ -53,7 +53,7 @@
 
           <!--event images-->
           <div class="event-img col-lg-7 col-md-12 mt-4 mb-2">
-            <img src="{{ event.image }}" class="d-block w-100" alt="...">
+            <img src="{{ event.image }}" class="img-fluid event-image details-img" alt="...">
            
           </div>
 
@@ -168,10 +168,14 @@
                 </div>
                 <div class="book-button col-md-4 col-sm-12 text-start">
                   <!--book now button that opens up the booking ticket modal to allow users to a book ticket/s to an event-->
-                  <button class="btn btn-info mt-sm-2  p-2 " type="button" data-bs-toggle="modal"
-                    data-bs-target="#book-ticket">
-                    Book Now</button>
+                   {% if event.event_status == 'Open' %}
+                  <a href="{{url_for('events.booking', id=event.event_id)}}"><button class="btn btn-info mt-sm-2  p-2 " type="button" >
+                    Book Now</button></a>
+                  {% else %}
+                    <button class="btn btn-info mt-sm-2  p-2 " type="button" data-bs-toggle="modal" data-bs-target="#cannot-book" >Book Now</button>
+                  {% endif %}
                 </div>
+                
               </div>
             </div>
           </div>
@@ -180,6 +184,26 @@
       </div>
 
     </section>
+
+
+<!-- Modal for not booking tickets if the event status is something other than open-->
+<div class="modal fade" id="cannot-book" tabindex="-1" aria-labelledby="cannot-bookLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cannot Book Tickets For This Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 
 
     
@@ -299,11 +323,107 @@
 
 
 
-    <!--button that allows users to edit event details if they are in the same account the event was created on-->
+    
+
+<!-- Comments Section With Styled Cards and Full Comment Modal -->
+<section class="event-description mt-3">
+  <div class="container pt-3 pb-3">
+    <div class="row">
+      <div class="col-4 text-start">
+        <h2 class="mb-4">Comments</h2>
+      </div>
+      <div class="col-8 text-end">
+        {% if current_user.is_authenticated %}
+          <button type="button" class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#comment-form">Add New Comment</button>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}" class="btn btn-info">Log in to comment</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Display Comments as Cards with Read More -->
+    <div class="row mt-4">
+      {% for comment in event.comments %}
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <img src="/static/img/facilitator.png" width="40" height="40" class="me-2 rounded-circle">
+                <div>
+                  <strong>{{ comment.user.name }}</strong>
+                  <div class="text-muted small">{{ comment.created_at.strftime('%d %B %Y') }}</div>
+                </div>
+              </div>
+              <p class="card-text">{{ comment.text[:140] }}{% if comment.text|length > 140 %}...{% endif %}</p>
+              {% if comment.text|length > 140 %}
+              <a href="#" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#fullCommentModal{{ comment.comment_id }}">Read More</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal for Full Comment -->
+        <div class="modal fade" id="fullCommentModal{{ comment.comment_id }}" tabindex="-1" aria-labelledby="fullCommentLabel{{ comment.comment_id }}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="fullCommentLabel{{ comment.comment_id }}">Full Comment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="/static/img/facilitator.png" width="45" height="45" class="me-3 rounded-circle">
+                  <div>
+                    <h6 class="mb-0">{{ comment.user.name }}</h6>
+                    <small class="text-muted">{{ comment.created_at.strftime('%d %B %Y') }}</small>
+                  </div>
+                </div>
+                <p>{{ comment.text }}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <p>No comments yet.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Collapsible Comment Form -->
+    {% if current_user.is_authenticated %}
+    <div id="comment-form" class="collapse mt-4">
+      <form method="POST" action="{{ url_for('events.create_comment', id=event.event_id) }}">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+          {{ form.text.label }}
+          {{ form.text(rows=3, class="form-control") }}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+      </form>
+    </div>
+    {% endif %}
+  </div>
+</section>
+<!-- END -->
+
+
+
+
+<!--button that allows users to edit event details if they are in the same account the event was created on-->
     {% if event.user_id == current_user.user_id %}
-    <div class="d-flex justify-content-center update-button ">
-      <!--button links user to create events page so that they can edit event details-->
-      <a href="/create" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
+    <div class="container pt-3 pb-3 ">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3" id="edit-event">
+          <h2>
+          Edit Event
+        </h2>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3">
+          <!--button links user to create events page so that they can edit event details-->
+      <a href="{{ url_for('events.update_event', id=event.event_id)}}" class="text-decoration-none"><button class="btn btn-info mt-sm-2 p-2 " type="button">
           <!--pencil in square icon that represents editting event detail-->
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square"
             viewBox="0 0 16 16">
@@ -315,699 +435,48 @@
           <!--text on update event details button-->
           Update Event Details</button>
       </a>
-     
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 text-start p-3 mt-2">
+         {% if event.event_status == 'Cancelled' %}
+      {%else%}
+        <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancel-confirmation">Cancel Event</button>
+      
+      <!-- Modal for not booking tickets if the event status is something other than open-->
+<div class="modal fade" id="cancel-confirmation" tabindex="-1" aria-labelledby="cancel-confirmation" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to cancel this event?</h5>
+            
+      </div>
+     <div class="modal-footer justify-content-between">
+       <a href="{{ url_for('events.show', id=event.event_id)}}">
+      <button type="button" class="btn btn-info " >No</button>
+        </a>
+      <form method="POST" action="{{ url_for('events.cancel_event', id=event.event_id)}}">
+      <button type="submit" class="btn btn-danger ">Yes, Cancel Event</button>
+      </form>
+
+      </div>
+     </div>
+    </div>
+  </div>
+</div>
+      {%endif%}
+        </div>
+
+
+      </div>
+       
+
     </div>
      {% else %}
     {% endif %}
 
 
-    <!-- START: Working Comment Display and Form -->
-<div class="mt-5">
-  <h4>Comments</h4>
-  <ul class="list-unstyled">
-    {% for comment in event.comments %}
-      <li class="mb-2">
-        <strong>{{ comment.user.user_name }}</strong> 
-        ({{ comment.created_at.strftime('%d %B %Y') }}): 
-        {{ comment.text }}
-      </li>
-    {% else %}
-      <li>No comments yet.</li>
-    {% endfor %}
-  </ul>
-
-  {% if current_user.is_authenticated %}
-  <form method="POST" action="{{ url_for('events.create_comment', id=event.event_id) }}">
-    {{ form.hidden_tag() }}
-    <div class="mb-3">
-      {{ form.text.label }}
-      {{ form.text(rows=3, class="form-control") }}
-    </div>
-    {{ form.submit(class="btn btn-primary") }}
-  </form>
-  {% else %}
-  <p><a href="{{ url_for('auth.login') }}">Log in</a> to post a comment.</p>
-  {% endif %}
-</div>
-<!-- END -->
-
-
-
-    <!--Comments (allows users to see comments, create and post new comments or reply to existing ones)-->
-    <section class="event-description mt-3">
-      <div class="container pt-3 pb-3 ">
-        <div class="row">
-          <div class="col-4 text-start">
-            <!--title of the comments section of the event details page-->
-            <h2 class="mb-4">Comments</h2>
-          </div>
-          <div class="col-8">
-            <div class="text-end">
-               {% if current_user.is_authenticated %}
-              <!--add new comment button that opens up a modal where users can type a new comment they want to post about an event-->
-              <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#post-commment"> <span
-                  id="plus-comment">
-                  <!--plus icon-->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                    class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
-                  </svg> &nbsp;
-                  <!--text on addd new comment button-->
-                </span> Add New Comment</button>
-                 {% else %}
-                 <a href="/login">
-                  <button type="button" class="btn btn-info" > 
-                    <span id="plus-comment">
-                  <!--plus icon-->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                    class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
-                  </svg> &nbsp;
-                  <!--text on addd new comment button-->
-                </span> Add New Comment</button>
-                </a>
-                {% endif %}
-            </div>
-          </div>
-        </div>
-
-
-        <!--Modal to create new comment and post it (triggered when add new comment button is pressed)-->
-        <!--modal from bootstrap-->
-        <div class="modal fade" id="post-commment" tabindex="-1" aria-labelledby="post-commmentLabel"
-          aria-hidden="true">
-          <!--centers modal to the middle of the screen-->
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header" id="comment-header">
-                <!--title of the modal-->
-                <h2 class="modal-title" id="exampleModalLabel">New Coment</h2>
-                <!--allows users to exit out of the modal and go back to event details page-->
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <!--contents within the modal-->
-              <div class="comment-modal-body p-4">
-                <div class="event-creator-name mb-3">
-                  <!--profile picture of the current user logged in-->
-                  <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px">
-                  <!--account name of the current user logged in so they know which account they are posting the comment under-->
-                  <p class=" facilitator-name m-2">Alicia Larme</p>
-                </div>
-                <div class="form-floating">
-                  <!--area where user can type in the new comment they want to post-->
-                  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                    style="height: 200px"></textarea>
-                  <!--label for the area where users can type in their new comment-->
-                  <label for="floatingTextarea2">Write Comment</label>
-                </div>
-              </div>
-              <div class="modal-footer" id="comment-footer">
-                <!--close button that allows users to exit out of the modal and go back to event details page-->
-                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
-                <!--post comment button that posts the comment for the user and opens up post confirmation modal-->
-                <button type="button" class="btn btn-info" data-bs-target="#post-success" data-bs-toggle="modal"
-                  data-bs-dismiss="modal">Post Comment</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <!--post comment/reply suceess (triggered when a user posts a comment or a reply to a comment)-->
-        <!--uses modal from bootstrap-->
-        <div class="modal fade" id="post-success" aria-hidden="true" aria-labelledby="post-successLabel2" tabindex="-1"
-          data-bs-backdrop="static">
-          <!--centers modal to the middle of the screen-->
-          <div class="modal-dialog modal-dialog-centered modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <!--message confirming that the comments/replies has been successfully posted-->
-                <h5 class="modal-title" id="exampleModalToggleLabel2">Post Successful</h5>
-                <!-- X that allows the modal to be closed so the user can return back to event details page-->
-                <a href="./event_details.html"><button type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <!--Read full contents of comment (modal that allows users to see the complete contents of a comment when the read more text on the comment card is pressed)-->
-        <!--A bootstrap modal is used-->
-        <div class="modal fade" id="read-more-commment" tabindex="-1" aria-labelledby="read-more-commmentLabel"
-          aria-hidden="true">
-          <!--centers modal to the middle of the screen when triggered-->
-          <div class="modal-dialog modal-dialog-centered  modal-lg">
-            <div class="modal-content">
-              <div class="modal-header" id="comment-header">
-                <!--title of the modal (called full comment)-->
-                <h2 class="modal-title" id="read-more-commmentLabel">Full Comment</h2>
-                <!--allows the user to exit out of the modal-->
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="comment-modal-body p-4">
-                <!--full comment details-->
-                <div class="reply-comment-row p-2 mb-4  ">
-                  <div class="d-flex justify-content-start  ">
-                    <div class="d-flex  p-2 d-flex justify-content-center">
-                      <!--profile picture of the user who posted the comment-->
-                      <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
-                        class=" ms-1">
-                    </div>
-                    <div class=" mt-2  d-flex justify-content-center">
-                      <div class="title">
-                        <!--name of the user who posted the comment-->
-                        <h6>Sam Jones</h6>
-                        <!--date the comment was posted-->
-                        <p class="comment-date"> 20th June 2025 </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-text px-4">
-                    <!--comment body/contents-->
-                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                      incididunt
-                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                      tempor incididunt
-                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                      tempor incididunt
-                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                      tempor incididunt
-                      ut labore et dolore magna aliqua.
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer" id="comment-footer">
-                <!--close button that allows users to close the modal and go back onto the event details page-->
-                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
-                <!--reply button to post a reply to a specific comment-->
-                <button type="button" class="btn btn-info" data-bs-target="#reply-commment" data-bs-toggle="modal"
-                  data-bs-dismiss="modal">
-                  <!--reply icon-->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
-                    class="bi bi-reply-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
-                  </svg>
-                  <!--button text-->
-                  Reply</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <!--write reply to comment (a modal that is activated when the reply text on the comment card is pressed or the reply button within the full comment modal is pressed)-->
-        <!--A bootstrap modal is used-->
-        <div class="modal fade" id="reply-commment" tabindex="-1" aria-labelledby="reply-commmentLabel"
-          aria-hidden="true" data-bs-backdrop="static">
-          <!--allows modal to appear in the center of the screen when triggered-->
-          <div class="modal-dialog modal-dialog-centered  modal-lg">
-            <div class="modal-content">
-              <div class="modal-header" id="comment-header">
-                <!--title of modal-->
-                <h2 class="modal-title" id="reply-commentLabel">Reply to comment</h2>
-                <!--allows the user to exit out of the modal-->
-                <a href="./event_details.html"><button type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button></a>
-              </div>
-              <div class="comment-modal-body p-4">
-                <!--title telling user that the comment below is the one they have chosen to reply to-->
-                <h5>Comment you want to reply to:</h5>
-                <!--A preview of the comment they have selected to reply to-->
-                <div class="reply-comment-row p-2 mb-4  ">
-                  <div class="d-flex justify-content-start  ">
-                    <div class="d-flex  p-2 d-flex justify-content-center">
-                      <!--profile picture of the user that posted the comment they want to reply to-->
-                      <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
-                        class=" ms-1">
-                    </div>
-                    <div class=" mt-2  d-flex justify-content-center">
-                      <div class="title ">
-                        <!--name of the person who posted the comment they want to reply to-->
-                        <h6>Sam Jones</h6>
-                        <!--the creation date of the comment they selected-->
-                        <p class="comment-date"> 20th June 2025 </p>
-                      </div>
-                    </div>
-                  </div>
-                  <!--contents of the comment they selected-->
-                  <div class="card-text px-4">
-                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                      incididunt
-                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                      tempor incididunt
-                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                      tempor incididunt
-                      ut labore et dolore magna aliqua. dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                      tempor incididunt
-                      ut labore et dolore magna aliqua.
-                  </div>
-                </div>
-                <div class="event-creator-name mb-3">
-                  <!--title signifying to the user that the input box below is where they type their reply-->
-                  <h5>Write Reply:</h5>
-                </div>
-                <!--form that allows user to type their reply to a comment-->
-                <div class="form-floating">
-                  <!--area in which user can type their reply to a comment-->
-                  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                    style="height: 100px"></textarea>
-                  <!--label for text area so user knows what they have to type inside-->
-                  <label for="floatingTextarea2">Write Reply</label>
-                </div>
-              </div>
-              <div class="modal-footer" id="comment-footer">
-                <!--close button allows user to exit out of the modal and go back to event details page-->
-                <a href="./event_details.html"><button type="button" class="btn btn-secondary "
-                    data-bs-dismiss="modal">Close</button></a>
-                <!--button allows user to post a reply to a comment which then opens a post success modal to confirm that the reply went through-->
-                <button type="button" class="btn btn-info" data-bs-target="#post-success" data-bs-toggle="modal"
-                  data-bs-dismiss="modal">Post Reply</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <!---First row of comments present on event details page-->
-        <div class="row">
-
-          <!--first comment-->
-          <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
-            <!--comment card (from bootstrap)-->
-            <div class="card" style="width: 20rem;">
-              <div class="card-body">
-                <div class="row ">
-                  <!--comment details-->
-                  <h5 class="card-title ">
-                    <div class="comment-row">
-                      <div class="col-3">
-                        <!--profile picture of user who posted comment-->
-                        <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
-                          class=" text-start ms-1">
-                      </div>
-                      <div class="col-9 mt-3">
-                        <!--name of person who posted comment-->
-                        <div class="title">Sam Jones
-                        </div>
-                        <!--Date comment was posted-->
-                        <p class="comment-date"> 20th June 2025 </p>
-                      </div>
-                    </div>
-                  </h5>
-                </div>
-                <div class="card-text">
-                  <!--comment contents (won't display the full comment if it is too long)-->
-                  <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt
-                    ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
-                  <div class="row mt-3">
-                    <div class=" col-6 text-start">
-                      <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
-                      <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
-                    </div>
-                    <div class="col-6 text-end">
-                      {% if current_user.is_authenticated %}
-                      <!--reply text opens a modal where users can then write a reply to the comment they selected-->
-                      <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
-                        {% else %}
-                        <a href="/login">
-                          <!--reply text opens a modal where users can then write a reply to the comment they selected-->
-                      <p class="detail text-end mt-2 mb-1" id="comment-reply" >Reply</p>
-                        </a>
-                         {% endif %}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <!--Second comment-->
-          <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
-            <!--comment card (from bootstrap)-->
-            <div class="card" style="width: 20rem;">
-              <div class="card-body">
-                <div class="row ">
-                  <!--comment details-->
-                  <h5 class="card-title ">
-                    <div class="comment-row">
-                      <div class="col-3">
-                        <!--profile picture of user who posted comment-->
-                        <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
-                          class=" text-start ms-1">
-                      </div>
-                      <div class="col-9 mt-3">
-                        <!--name of person who posted comment-->
-                        <div class="title">Sam Jones
-                        </div>
-                        <!--Date comment was posted-->
-                        <p class="comment-date"> 20th June 2025 </p>
-                      </div>
-                    </div>
-                  </h5>
-                </div>
-                <div class="card-text">
-                  <!--comment contents (won't display the full comment if it is too long)-->
-                  <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt
-                    ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
-                  <div class="row mt-3">
-                    <div class=" col-6 text-start">
-                      <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
-                      <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
-                    </div>
-                    <div class="col-6 text-end">
-                      <!--reply text opens a modal where users can then write a reply to the comment they selected-->
-                      <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <!--third comment-->
-          <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
-            <!--comment card (from bootstrap)-->
-            <div class="card" style="width: 20rem;">
-              <div class="card-body">
-                <div class="row ">
-                  <!--comment details-->
-                  <h5 class="card-title ">
-                    <div class="comment-row">
-                      <div class="col-3">
-                        <!--profile picture of user who posted comment-->
-                        <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
-                          class=" text-start ms-1">
-                      </div>
-                      <div class="col-9 mt-3">
-                        <!--name of person who posted comment-->
-                        <div class="title">Sam Jones
-                        </div>
-                        <!--Date comment was posted-->
-                        <p class="comment-date"> 20th June 2025 </p>
-                      </div>
-                    </div>
-                  </h5>
-                </div>
-                <div class="card-text">
-                  <!--comment contents (won't display the full comment if it is too long)-->
-                  <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt
-                    ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
-                  <div class="row mt-3">
-                    <div class=" col-6 text-start">
-                      <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
-                      <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
-                    </div>
-                    <div class="col-6 text-end">
-                      <!--reply text opens a modal where users can then write a reply to the comment they selected-->
-                      <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!--fourth comment-->
-          <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
-            <!--comment card (from bootstrap)-->
-            <div class="card" style="width: 20rem;">
-              <div class="card-body">
-                <div class="row ">
-                  <!--comment details-->
-                  <h5 class="card-title ">
-                    <div class="comment-row">
-                      <div class="col-3">
-                        <!--profile picture of user who posted comment-->
-                        <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
-                          class=" text-start ms-1">
-                      </div>
-                      <div class="col-9 mt-3">
-                        <!--name of person who posted comment-->
-                        <div class="title">Sam Jones
-                        </div>
-                        <!--Date comment was posted-->
-                        <p class="comment-date"> 20th June 2025 </p>
-                      </div>
-                    </div>
-                  </h5>
-                </div>
-                <div class="card-text">
-                  <!--comment contents (won't display the full comment if it is too long)-->
-                  <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt
-                    ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
-                  <div class="row mt-3">
-                    <div class=" col-6 text-start">
-                      <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
-                      <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
-                    </div>
-                    <div class="col-6 text-end">
-                      <!--reply text opens a modal where users can then write a reply to the comment they selected-->
-                      <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-
-
-        <!--button to load more comments (once pressed another row of comments appears below the button to allow users to see alll the comments under an event)-->
-        <div class="mt-3 mb-4 text-center">
-          <!--view more comments button (triggers a collapse feature to allow users to expand or hide extra comments specific to an event)-->
-          <button type="button" class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#collapse-comment"
-            aria-expanded="false" aria-controls="collapse-comment">
-            <!--down arrow icon to support view more comments text-->
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-              class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
-              <path
-                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" />
-            </svg> &nbsp;
-            <!--text that appears on button-->
-            View More Comments</button>
-        </div>
-
-
-
-        <!--Collapsable comments (these comments appear below once the view more comments button is pressed)-->
-        <div class="collapse" id="collapse-comment">
-          <!--begins a second row of comments-->
-          <div class="row">
-
-            <!--fiffth comment-->
-            <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
-              <!--comment card (from bootstrap)-->
-              <div class="card" style="width: 20rem;">
-                <div class="card-body">
-                  <div class="row ">
-                    <!--comment details-->
-                    <h5 class="card-title ">
-                      <div class="comment-row">
-                        <div class="col-3">
-                          <!--profile picture of user who posted comment-->
-                          <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
-                            class=" text-start ms-1">
-                        </div>
-                        <div class="col-9 mt-3">
-                          <!--name of person who posted comment-->
-                          <div class="title">Sam Jones
-                          </div>
-                          <!--Date comment was posted-->
-                          <p class="comment-date"> 20th June 2025 </p>
-                        </div>
-                      </div>
-                    </h5>
-                  </div>
-                  <div class="card-text">
-                    <!--comment contents (won't display the full comment if it is too long)-->
-                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                      incididunt
-                      ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
-                    <div class="row mt-3">
-                      <div class=" col-6 text-start">
-                        <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
-                        <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
-                          data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
-                      </div>
-                      <div class="col-6 text-end">
-                        <!--reply text opens a modal where users can then write a reply to the comment they selected-->
-                        <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
-                          data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <!--sixth comment-->
-            <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
-              <!--comment card (from bootstrap)-->
-              <div class="card" style="width: 20rem;">
-                <div class="card-body">
-                  <div class="row ">
-                    <!--comment details-->
-                    <h5 class="card-title ">
-                      <div class="comment-row">
-                        <div class="col-3">
-                          <!--profile picture of user who posted comment-->
-                          <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
-                            class=" text-start ms-1">
-                        </div>
-                        <div class="col-9 mt-3">
-                          <!--name of person who posted comment-->
-                          <div class="title">Sam Jones
-                          </div>
-                          <!--Date comment was posted-->
-                          <p class="comment-date"> 20th June 2025 </p>
-                        </div>
-                      </div>
-                    </h5>
-                  </div>
-                  <div class="card-text">
-                    <!--comment contents (won't display the full comment if it is too long)-->
-                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                      incididunt
-                      ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
-                    <div class="row mt-3">
-                      <div class=" col-6 text-start">
-                        <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
-                        <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
-                          data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
-                      </div>
-                      <div class="col-6 text-end">
-                        <!--reply text opens a modal where users can then write a reply to the comment they selected-->
-                        <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
-                          data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <!--Seventh comment-->
-            <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
-              <!--comment card (from bootstrap)-->
-              <div class="card" style="width: 20rem;">
-                <div class="card-body">
-                  <div class="row ">
-                    <!--comment details-->
-                    <h5 class="card-title ">
-                      <div class="comment-row">
-                        <div class="col-3">
-                          <!--profile picture of user who posted comment-->
-                          <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
-                            class=" text-start ms-1">
-                        </div>
-                        <div class="col-9 mt-3">
-                          <!--name of person who posted comment-->
-                          <div class="title">Sam Jones
-                          </div>
-                          <!--Date comment was posted-->
-                          <p class="comment-date"> 20th June 2025 </p>
-                        </div>
-                      </div>
-                    </h5>
-                  </div>
-                  <div class="card-text">
-                    <!--comment contents (won't display the full comment if it is too long)-->
-                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                      incididunt
-                      ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
-                    <div class="row mt-3">
-                      <div class=" col-6 text-start">
-                        <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
-                        <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
-                          data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
-                      </div>
-                      <div class="col-6 text-end">
-                        <!--reply text opens a modal where users can then write a reply to the comment they selected-->
-                        <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
-                          data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <!--eighth comment-->
-            <div class=" comment-col-sm-12 col-md-6  col-lg-3 mb-3">
-              <!--comment card (from bootstrap)-->
-              <div class="card" style="width: 20rem;">
-                <div class="card-body">
-                  <div class="row ">
-                    <!--comment details-->
-                    <h5 class="card-title ">
-                      <div class="comment-row">
-                        <div class="col-3">
-                          <!--profile picture of user who posted comment-->
-                          <img src="./static/img/facilitator.png" id="creator-icon" width="45px" height="45px"
-                            class=" text-start ms-1">
-                        </div>
-                        <div class="col-9 mt-3">
-                          <!--name of person who posted comment-->
-                          <div class="title">Sam Jones
-                          </div>
-                          <!--Date comment was posted-->
-                          <p class="comment-date"> 20th June 2025 </p>
-                        </div>
-                      </div>
-                    </h5>
-                  </div>
-                  <div class="card-text">
-                    <!--comment contents (won't display the full comment if it is too long)-->
-                    <p class="detail mb-1"> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                      incididunt
-                      ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitati</p>
-                    <div class="row mt-3">
-                      <div class=" col-6 text-start">
-                        <!--read more text allows users to view the complete contents of the comment by clicking on it (opens a modal with the full comment)-->
-                        <p class="detail text-start mt-2 mb-1" id="comment-read" data-bs-target="#read-more-commment"
-                          data-bs-toggle="modal" data-bs-dismiss="modal">Read More</p>
-                      </div>
-                      <div class="col-6 text-end">
-                        <!--reply text opens a modal where users can then write a reply to the comment they selected-->
-                        <p class="detail text-end mt-2 mb-1" id="comment-reply" data-bs-target="#reply-commment"
-                          data-bs-toggle="modal" data-bs-dismiss="modal">Reply</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+   
+      
 
     </section>
 

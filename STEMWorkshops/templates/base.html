@@ -16,21 +16,54 @@
 
     <!-- Header -->
     <header>
+      <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Your Account</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex justify-content-center align-items-center my-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                </svg>
+              </div>
+              <div class="d-flex justify-content-center align-items-center mt-1">
+                <h4>
+                  {{current_user.name}}
+                </h4>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-between">
+              <p class="text-secondary">STEMWorkshops</p>
+              <a type="submit" href="/logout" class="btn btn-primary w-10 h-75 me-2 mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                  <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                </svg>
+                Logout
+              </a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
          <!--top nav where logo and profile icon are located-->
     <div class=" d-flex justify-content-between  ms-2 me-2 mb-2" id="topnav">
       <!--clicking on the logo navigates user back to home page-->
       <a href="/">
         <!--image of the logo-->
-        <img src="./static/img/logo2.png" class="img-fluid" width="300px" height="200px">
+        <img src="{{ url_for('static', filename='img/logo2.png') }}" class="img-fluid" width="300px" height="200px">
       </a>
       <!--profile picture of the account logged in-->
       <div>
-      <a href="/login">
-        <img src="./static/img/profile.png" id="profile-icon" class="img-fluid" width="45px" height="45px">
-      </a>
       {% if current_user.is_authenticated %}
-      <a type="submit" href="#" class="btn rounded-pill w-10 h-75 me-2 mt-2">{{current_user.name}}</a>
-      <a type="submit" href="/logout" class="btn btn-primary w-10 h-75 me-2 mt-2">Logout</a>
+      <a type="submit" href="#" data-bs-toggle="modal" data-bs-target="#accountModal" class="btn rounded-pill w-10 h-75 me-2 mt-2">{{current_user.name}}</a>
+      <a href="#" data-bs-toggle="modal" data-bs-target="#accountModal">
+        <img src="{{ url_for('static', filename='img/profile.png') }}" id="profile-icon" class="img-fluid" width="45px" height="45px">
+      </a>
       {% else %}
       <a type="submit" href="/login" class="btn btn-primary w-10 h-75 me-2 mt-2">Login</a>
       {% endif %}
@@ -56,7 +89,7 @@
               <a class="nav-link active full-hover" aria-current="page" href="/">Events</a>
             </li>
             <!--2nd item - create events - navigates users to create event page so users can make a new event-->
-            <li class="nav-item  col-sm-12 col-lg-3 ">
+            <li class="nav-item  col-sm-12 col-lg-3  ">
               <a class="nav-link full-hover" href="/create">Create Events</a>
             </li>
             <!--3rd item - Bookings - navigates users back to booking history page to see previously booked events-->
@@ -105,11 +138,11 @@
         <div class="col-sm-12 col-md-3 text-center ">
           <!--links event text to home page and category text to their repected events-->
           <ul>
-            <li class="mb-2"><a href="/.#event-browse"><b>Events</b></a></li>
-            <li><a href="/.#event-science">Science</a></li>
-            <li><a href="/.#event_math">Maths</a></li>
-            <li><a href="/.#event-eng">Engineering</a></li>
-            <li><a href="/.#event-it">Information Technology</a></li>
+            <li class="mb-2"><a href="{{ url_for('main.index') }}#browse-events"><b>Events</b></a></li>
+            <li><a href="{{ url_for('main.index', category='Science') }}#browse-events">Science</a></li>
+            <li><a href="{{ url_for('main.index', category='Maths') }}#browse-events">Maths</a></li>
+            <li><a href="{{ url_for('main.index', category='Engineering') }}#browse-events">Engineering</a></li>
+            <li><a href="{{ url_for('main.index', category='Information Technology') }}#browse-events">Information Technology</a></li>
           </ul>
         </div>
         <div class="col-sm-12 col-md-3 text-center ">
@@ -140,7 +173,7 @@
       <!--image website logo for footer-->
       <div class="footer-img">
         <a href="index.html">
-          <img src="./static/img/logo2.png" class="img-fluid" width="300px" height="200px" id="logo">
+          <img src="{{ url_for('static', filename='img/logo2.png') }}" class="img-fluid" width="300px" height="200px" id="logo">
         </a>
       </div>
       <div>

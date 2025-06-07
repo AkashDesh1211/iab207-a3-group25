@@ -21,6 +21,33 @@ def show(id):
        abort(404)
     return render_template('event_details.html', event=event, form=form)
 
+
+#cancel an event
+@events_bp.route('/<id>/cancel', methods=['POST'])
+@login_required
+def cancel_event(id):
+    event = db.session.scalar(db.select(Event).where(Event.event_id==id))
+    
+    event.event_status = "Cancelled"
+    db.session.commit()
+    flash('Event has been cancelled')
+    return redirect(url_for('events.show', id=id))
+    
+  
+
+
+
+@events_bp.route('/history')
+@login_required
+def booking_history():
+    bookings = db.session.scalars(db.select(Order).join(Event).where(Order.user_id==current_user.user_id)).all()
+    
+    return render_template('booking_history.html', bookings=bookings)
+
+
+
+
+
 @events_bp.route('/create', methods=['GET', 'POST'])
 @login_required
 def create_event():
@@ -50,9 +77,9 @@ def create_event():
         flash('Successfully created a new event')
 
         #Always end with redirect when form is valid
-        return redirect(url_for('main.index'))
+        return redirect(url_for('events.show', id=new_event.event_id))
 
-    return render_template('create_event.html', form=create_event)
+    return render_template('create_event.html', form=create_event, heading='Create Event')
 
 def check_upload_file(form):
   # get file data from form  
@@ -69,6 +96,29 @@ def check_upload_file(form):
   return db_upload_path
 
 
+@events_bp.route('/<id>/update', methods=['GET', 'POST'])  
+@login_required
+def update_event(id):
+    update_event = Event.query.get(id)
+    form = EventsForm(obj= update_event)
+    
+    if form.validate_on_submit():
+       form.populate_obj(update_event) 
+
+       db_file_path = check_upload_file(form)
+       
+       update_event.image = db_file_path 
+           
+       db.session.commit()
+
+       return redirect(url_for('events.show', id=update_event.event_id))
+
+    return render_template('create_event.html', form=form, heading='Update Event Details')
+
+
+
+
+
 @events_bp.route('/<id>/booking', methods=['GET', 'POST'])  
 @login_required
 def booking(id):
@@ -82,9 +132,9 @@ def booking(id):
       db.session.commit()  
 
       flash('Successfully booked event')
-      return redirect(url_for('main.history'))  # Correct indentation
+      return redirect(url_for('events.booking_history')) 
    
-   return render_template('event_details.html', booking_form=booking_form, id=id)
+   return render_template('user.html', form=booking_form, id=id, heading='Book Ticket')
 
 
 
@@ -116,6 +166,18 @@ def create_comment(id):
     return render_template('event_details.html', event=event, form=form)
 
 
+
+def get_all_events_ordered_by_status():
+    return db.session.scalars(
+        db.select(Event).order_by(
+            db.case(
+                (Event.event_status == 'Open', 1),
+                (Event.event_status == 'Sold Out', 2),
+                (Event.event_status == 'Inactive', 3),
+                (Event.event_status == 'Cancelled', 4),
+            )
+        )
+    ).all()
 
 
 
