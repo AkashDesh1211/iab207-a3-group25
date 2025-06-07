@@ -72,6 +72,8 @@
                             style="background-color: #f5f5f5; width:20%;">$0.00</p>
                     </div>
                 </form>
+                <!--cancell booking button (brings you back to the previous event details page)-->
+                <a href="{{url_for('events.show', id=event.event_id)}}"><button class="btn btn-info">Cancel Booking</button></a>
             </div>
         </div>
     </div>
