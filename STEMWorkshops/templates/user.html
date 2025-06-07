@@ -22,10 +22,4 @@
     <p>New user? <a href="{{url_for('auth.register')}}">Click here</a> to register.</p>
 </div>
 
-{% if heading == 'Book Tickets' %}
-<div class="col-md-4 ms-2">
-    <p>{{event.max_num_tickets}}</p>
-</div>
-{% endif %}
-
 {% endblock %}
