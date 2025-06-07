@@ -79,7 +79,7 @@ def create_event():
         #Always end with redirect when form is valid
         return redirect(url_for('events.show', id=new_event.event_id))
 
-    return render_template('create_event.html', form=create_event, heading='Create Event')
+    return render_template('create_event.html', form=create_event, heading='Create Event', submit_label='Create Event')
 
 def check_upload_file(form):
   # get file data from form  
@@ -113,7 +113,7 @@ def update_event(id):
 
        return redirect(url_for('events.show', id=update_event.event_id))
 
-    return render_template('create_event.html', form=form, heading='Update Event Details')
+    return render_template('create_event.html', form=form, heading='Update Event Details', submit_label='Update Event')
 
 
 
