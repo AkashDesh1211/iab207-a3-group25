@@ -1,3 +1,4 @@
+# Different imports for Flask, SQLAlchemy, and other necessary libraries. 
 from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
 from .models import Event, Comment, Order
 from .forms import EventsForm, CommentsForm, OrdersForm
