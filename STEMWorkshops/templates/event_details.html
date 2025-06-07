@@ -385,7 +385,7 @@
                     <small class="text-muted">{{ comment.created_at.strftime('%d %B %Y') }}</small>
                   </div>
                 </div>
-                <p>{{ comment.text }}</p>
+                <p style="word-wrap: break-word; white-space: pre-wrap; overflow-wrap: break-word;">{{ comment.text }}</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
