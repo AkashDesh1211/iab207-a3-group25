@@ -9,13 +9,3 @@ If you think your changes might conflict with other users, please make a pull re
 Commit functionality online!
 
 This is alicia here
-
-Prish
-
- hi Kiara here!
-  can you see this! 
-  Yes I Can!
-  will this change sync
-  akash test
-  Alicia Larme
-  test
