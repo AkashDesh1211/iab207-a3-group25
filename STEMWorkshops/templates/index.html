@@ -320,8 +320,10 @@
       %}
         <div class="col">
           <div class="card">
-            <img src="{{event.image}}" class="card-img-top img-fluid event-card-img" alt="./static/img/s-l1200.jpg" >
-            <div class="card-body">
+            <a href="{{url_for('events.show', id=event.event_id)}}">
+              <img src="{{event.image}}" class="card-img-top img-fluid event-card-img" alt="./static/img/s-l1200.jpg" >
+            </a>
+              <div class="card-body">
               <!--row that displays event name and status next to one another-->
               <div class="row mb-2">
                 <!--event name-->
