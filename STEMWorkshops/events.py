@@ -27,14 +27,13 @@ def show(id):
 @login_required
 def cancel_event(id):
     event = db.session.scalar(db.select(Event).where(Event.event_id==id))
-
-    if event:
-        event.event_status = "Cancelled"
-        db.session.commit()
-        flash('Event has been cancelled')
-        return redirect(url_for('events.show', id=id))
     
-    return render_template('event_details.html', event=event)
+    event.event_status = "Cancelled"
+    db.session.commit()
+    flash('Event has been cancelled')
+    return redirect(url_for('events.show', id=id))
+    
+  
 
 
 
