@@ -9,6 +9,7 @@
 {% block content %}
 <div class="page-header ms-2 mt-2">
     <h4>{{heading}}</h4>
+    <h5>Max Tickets: {{event.max_num_tickets}}</h5>
 </div>
 
 <!-- Form rendering is simple and easy if using WTForms and Bootstrap -->
@@ -20,11 +21,6 @@
 {% if heading == 'Login' %}
 <div class="col-md-4 ms-2">
     <p>New user? <a href="{{url_for('auth.register')}}">Click here</a> to register.</p>
-</div>
-
-{% if heading == 'Book Tickets' %}
-<div class="col-md-4 ms-2">
-    <p>{{event.max_num_tickets}}</p>
 </div>
 {% endif %}
 
