@@ -9,7 +9,7 @@
 {% block content %}
 <div class="page-header ms-2 mt-2">
     <h4>{{heading}}</h4>
-    <h5>Ticket Price: {{event.ticket_price}}</h5>
+    <h5>Ticket Price: ${{event.ticket_price}}</h5>
 </div>
 
 <!-- Form rendering easy using bootstrap and WTF-Forms -->
@@ -17,19 +17,20 @@
     {{render_form(form)}}
 </div>
 
-<!-- Total Price Output with Label -->
+<!-- Total Price Output with Label -->\
+ <form methods='GET, POST'>
 <div class="mt-3">
   <label for="total-amount" class="form-label">Total Amount</label>
   <p id="total-amount" class="form-control fw-bold text-success" style="background-color: #f5f5f5;">$0.00</p>
 </div>
+</form>
 
 
-<!--  When login form is shown, show a link for user to register -->
-{% if heading == 'Login' %}
-<div class="col-md-4 ms-2">
-    <p>New user? <a href="{{url_for('auth.register')}}">Click here</a> to register.</p>
-</div>
-{% endif %}
+
+
+
+
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const ticketInput = document.getElementById("ticket_quantity");
@@ -50,4 +51,7 @@
     }
   });
 </script>
+
+
+
 {% endblock %}
