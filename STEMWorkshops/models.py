@@ -4,6 +4,7 @@ from flask_login import UserMixin
 from datetime import datetime
 
 
+# User model - stores info about each registered user
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     user_id = db.Column(db.Integer, primary_key=True)
@@ -17,13 +18,16 @@ class User(db.Model, UserMixin):
     def get_id(self):
         return (self.user_id)
 
+# Event model - used to store all event information
 class Event(db.Model):
     __tablename__ = 'events'
     event_id = db.Column(db.Integer, primary_key=True)
     event_name = db.Column(db.String(80), nullable=False)
     start_time = db.Column(db.DateTime, nullable=False)
     end_time = db.Column(db.DateTime, nullable=False)
+    # STEM category dropdown options
     STEM_category = db.Column(db.Enum("Science", "Information Technology", "Maths", "Engineering"), nullable=False)
+    # Event type dropdown options
     event_type = db.Column(db.Enum("Online", "In-Person"), nullable=False)
     event_address = db.Column(db.String(80))
     event_venue = db.Column(db.String(80))
@@ -34,12 +38,14 @@ class Event(db.Model):
     image = db.Column(db.String(400))
     event_status = db.Column(db.Enum("Open", "Inactive", "Sold Out", "Cancelled"))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    # A list of comments related to this event
     comments = db.relationship('Comment', backref='event', cascade="all, delete-orphan")
 
 
     def get_id(self):
         return (self.event_id)
 
+# Comment model - links users and events via comment threads
 class Comment(db.Model):
     __tablename__ = 'comments'
     comment_id = db.Column(db.Integer, primary_key=True)
@@ -48,6 +54,7 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'))
 
+# Order model - booking info is stored here
 class Order(db.Model):
     __tablename__ = 'orders'
     order_id = db.Column(db.Integer, primary_key=True)
