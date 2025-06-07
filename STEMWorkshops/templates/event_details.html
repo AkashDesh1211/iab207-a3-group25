@@ -31,6 +31,8 @@
              btn-success
              {% elif event.event_status == 'Inactive' %}
              btn-warning
+             {% elif event.event_status == 'Sold Out' %}
+             btn-info
              {% else %}
             btn-danger
             {% endif %}
