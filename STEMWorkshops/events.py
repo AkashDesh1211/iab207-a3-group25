@@ -11,6 +11,7 @@ from datetime import datetime
 
 events_bp = Blueprint('events', __name__)
 
+# Shows the event details page 
 @events_bp.route('/<id>')
 def show(id):
     event = db.session.scalar(db.select(Event).where(Event.event_id==id))
@@ -22,7 +23,7 @@ def show(id):
     return render_template('event_details.html', event=event, form=form)
 
 
-#cancel an event
+# Cancels an event and updates its status to "Cancelled" in DB 
 @events_bp.route('/<id>/cancel', methods=['POST'])
 @login_required
 def cancel_event(id):
@@ -36,7 +37,7 @@ def cancel_event(id):
   
 
 
-
+# Displays a list of bookings made by the currently logged-in user
 @events_bp.route('/history')
 @login_required
 def booking_history():
@@ -47,7 +48,7 @@ def booking_history():
 
 
 
-
+# Allows a logged-in user to create a new event (GET shows form, POST submits)
 @events_bp.route('/create', methods=['GET', 'POST'])
 @login_required
 def create_event():
@@ -81,6 +82,7 @@ def create_event():
 
     return render_template('create_event.html', form=create_event, heading='Create Event')
 
+# Uploads and stores an image file, returning the relative DB path
 def check_upload_file(form):
   # get file data from form  
   fp = form.image.data
@@ -96,6 +98,7 @@ def check_upload_file(form):
   return db_upload_path
 
 
+# Allows a logged-in user to update their own event 
 @events_bp.route('/<id>/update', methods=['GET', 'POST'])  
 @login_required
 def update_event(id):
@@ -118,7 +121,7 @@ def update_event(id):
 
 
 
-
+# Allows logged-in users to book tickets for a selected event
 @events_bp.route('/<id>/booking', methods=['GET', 'POST'])  
 @login_required
 def booking(id):
@@ -138,6 +141,7 @@ def booking(id):
 
 
 
+# Handles creation of a new comment on an event 
 @events_bp.route('/<id>/comment', methods=['POST'])
 @login_required
 def create_comment(id):
@@ -167,6 +171,7 @@ def create_comment(id):
 
 
 
+# Returns all events ordered by status (Open > Sold Out > Inactive > Cancelled)
 def get_all_events_ordered_by_status():
     return db.session.scalars(
         db.select(Event).order_by(
