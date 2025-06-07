@@ -24,9 +24,7 @@
           <div class="heading col-8 ">
            
             <!--name of the event selected-->
-            <h1>{{ event.event_name }}</h1> 
-          </div>
-          <div class="d-flex justify-content-end col-2 p-2 ">
+            <h1>{{ event.event_name }}</h1> &nbsp;  &nbsp;
             <!--signals the status of the event-->
             <button type="button" class=" btn btn-lg rounded-pill status-button
              {% if event.event_status == 'Open' %}
@@ -37,6 +35,9 @@
             btn-danger
             {% endif %}
              " >{{ event.event_status }}</button>
+          </div>
+          <div class="col-2">
+
           </div>
         </div>
       </div>
