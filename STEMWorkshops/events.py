@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
 from .models import Event, Comment, Order
-from .forms import EventsForm, CommentsForm, OrdersForm, UpdateForm
+from .forms import EventsForm, CommentsForm, OrdersForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
@@ -104,14 +104,15 @@ def update_event(id):
     form = EventsForm(obj= update_event)
     
     if form.validate_on_submit():
-        # call the function that checks and returns image
-        db_file_path = check_upload_file(update_event)
-        form.populate_obj(update_event) 
+       form.populate_obj(update_event) 
 
+       db_file_path = check_upload_file(form)
+       
+       update_event.image = db_file_path 
+           
+       db.session.commit()
 
-        db.session.commit()
-
-        return redirect(url_for('events.show', id=update_event.event_id))
+       return redirect(url_for('events.show', id=update_event.event_id))
 
     return render_template('create_event.html', form=form, heading='Update Event Details')
 

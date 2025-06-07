@@ -42,26 +42,10 @@ class EventsForm(FlaskForm):
     image = FileField('Event Image', validators=[
         FileRequired(message = 'Image cannot be empty'),
         FileAllowed(ALLOWED_FILE, message='Only supports png, jpg, JPG, PNG')])
-    submit = SubmitField("Create Event")
+    submit = SubmitField("Create/Update Event")
 
 
-#form to update event details
-class UpdateForm(FlaskForm):
-    event_name=StringField()
-    start_time=DateTimeLocalField()
-    end_time=DateTimeLocalField()
-    STEM_category=RadioField('STEM Category', choices=[('Science', 'Science'),('Information Technology', 'Information Technology'),('Maths', 'Maths'),('Engineering', 'Engineering')])
-    event_type=RadioField(choices=[('Online','Online'),('In-Person','In-Person')])
-    event_address=StringField()
-    event_venue=StringField()
-    ticket_price=DecimalField()
-    ticket_policy=StringField()
-    max_num_tickets=StringField()
-    description=StringField()
-    image = FileField('Event Image', validators=[
-        FileRequired(message = 'Image cannot be empty'),
-        FileAllowed(ALLOWED_FILE, message='Only supports png, jpg, JPG, PNG')])
-    submit = SubmitField("Update Event")
+
 
 
 
