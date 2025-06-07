@@ -61,5 +61,7 @@ class CommentsForm(FlaskForm):
 
 # Form for all order-related information
 class OrdersForm(FlaskForm):
-    ticket_quantity=StringField(validators=[InputRequired()])
+    ticket_quantity=StringField("Ticket Quanity", validators=[InputRequired()])
     submit=SubmitField("Book Ticket")
+
+  
